@@ -296,7 +296,7 @@ export default function TrendsPage() {
           >
             <div className="relative h-64 md:h-80 rounded-2xl overflow-hidden">
               <Image
-                src="/images/growth-chart.webp"
+                src="/images/market-graph.webp"
                 alt="Market trends growth chart"
                 fill
                 className="object-cover"

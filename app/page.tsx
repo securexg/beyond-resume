@@ -335,7 +335,7 @@ export default function Home() {
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 rounded-3xl blur-2xl" />
                 <Image
-                  src="/images/hero-career.webp"
+                  src="/images/meeting-professional.webp"
                   alt="Career professionals working together"
                   width={600}
                   height={500}
@@ -463,10 +463,10 @@ export default function Home() {
                     <Card className="border-border/50 hover:border-primary/30 bg-card/50 hover:bg-card transition-all duration-300 h-full group cursor-pointer overflow-hidden">
                       <div className="relative h-40 overflow-hidden">
                         <Image
-                          src={feature.href === "/analyze" ? "/images/ai-analysis.webp" :
-                                feature.href === "/trends" ? "/images/growth-chart.webp" :
-                                feature.href === "/interview-prep" ? "/images/interview.webp" :
-                                "/images/technology.webp"}
+                          src={feature.href === "/analyze" ? "/images/document-analysis.webp" :
+                                feature.href === "/trends" ? "/images/analytics-dashboard.webp" :
+                                feature.href === "/interview-prep" ? "/images/interview-conversation.webp" :
+                                "/images/startup-workspace.webp"}
                           alt={feature.title}
                           width={400}
                           height={200}
@@ -522,9 +522,9 @@ export default function Home() {
                   <Card className="border-border/50 bg-card/80 h-full overflow-hidden group">
                     <div className="relative h-32 overflow-hidden">
                       <Image
-                        src={index === 0 ? "/images/graduation.webp" :
-                              index === 1 ? "/images/teamwork.webp" :
-                              "/images/development.webp"}
+                        src={index === 0 ? "/images/campus-students.webp" :
+                              index === 1 ? "/images/team-collaboration.webp" :
+                              "/images/career-success.webp"}
                         alt={guide.title}
                         width={400}
                         height={150}
@@ -693,12 +693,12 @@ export default function Home() {
                   <Card className="border-border/50 bg-card/80 h-full hover:shadow-lg transition-shadow cursor-pointer overflow-hidden group">
                     <div className="relative h-40 overflow-hidden">
                       <Image
-                        src={index === 0 ? "/images/prep.webp" :
-                              index === 1 ? "/images/resume.webp" :
-                              index === 2 ? "/images/learning.webp" :
-                              index === 3 ? "/images/reading.webp" :
-                              index === 4 ? "/images/mentor.webp" :
-                              "/images/success.webp"}
+                        src={index === 0 ? "/images/campus-students.webp" :
+                              index === 1 ? "/images/resume-writing.webp" :
+                              index === 2 ? "/images/coding-dsa.webp" :
+                              index === 3 ? "/images/government-study.webp" :
+                              index === 4 ? "/images/linkedin-networking.webp" :
+                              "/images/salary-meeting.webp"}
                         alt={article.title}
                         width={400}
                         height={200}

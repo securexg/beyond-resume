@@ -405,7 +405,7 @@ export default function AnalyzePage() {
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 rounded-3xl blur-2xl" />
                 <Image
-                  src="/images/resume.webp"
+                  src="/images/document-analysis.webp"
                   alt="Resume analysis"
                   width={500}
                   height={400}

@@ -202,7 +202,7 @@ export default function InterviewPrepPage() {
             >
               <div className="relative h-48 md:h-64 rounded-2xl overflow-hidden">
                 <Image
-                  src="/images/interview.webp"
+                  src="/images/interview-conversation.webp"
                   alt="Interview preparation"
                   fill
                   className="object-cover"

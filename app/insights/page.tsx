@@ -15,7 +15,7 @@ const articles = [
     description: "Complete guide to ace campus interviews at top Indian companies like TCS, Infosys, Wipro, and startups.",
     category: "Campus",
     readTime: "8 min read",
-    externalUrl: "https://www.geeksforgeeks.org/campus-placement-preparation/"
+    isInternal: true
   },
   {
     slug: "building-first-resume",
@@ -23,7 +23,7 @@ const articles = [
     description: "Step-by-step guide for freshers with no experience - how to highlight projects, skills, and achievements.",
     category: "Resume",
     readTime: "6 min read",
-    externalUrl: "https://www.canva.com/resume/templates/"
+    isInternal: true
   },
   {
     slug: "mastering-dsa",
@@ -31,7 +31,7 @@ const articles = [
     description: "Essential data structures and algorithms topics for FAANG and top Indian company interviews.",
     category: "Technical",
     readTime: "12 min read",
-    externalUrl: "https://leetcode.com/"
+    isInternal: true
   },
   {
     slug: "government-job-preparation",
@@ -39,7 +39,7 @@ const articles = [
     description: "Complete roadmap for SSC, Banking, Railways, and UPSC exams with study strategies.",
     category: "Government",
     readTime: "10 min read",
-    externalUrl: "https://www.ssc.nic.in/"
+    isInternal: true
   },
   {
     slug: "linkedin-optimization",
@@ -47,7 +47,7 @@ const articles = [
     description: "How to create a LinkedIn profile that attracts recruiters from Indian and global companies.",
     category: "Personal Branding",
     readTime: "7 min read",
-    externalUrl: "https://www.linkedin.com/"
+    isInternal: true
   },
   {
     slug: "salary-negotiation",
@@ -55,7 +55,7 @@ const articles = [
     description: "Tips for negotiating salary at Indian companies - understanding market rates and benefits.",
     category: "Career Growth",
     readTime: "5 min read",
-    externalUrl: "https://www.glassdoor.co.in/Salaries/"
+    isInternal: true
   }
 ];
 
@@ -90,16 +90,16 @@ export default function InsightsPage() {
               transition={{ delay: index * 0.1, duration: 0.5 }}
               whileHover={{ y: -5 }}
             >
-              <a href={article.externalUrl} target="_blank" rel="noopener noreferrer">
+              <Link href={`/insights/${article.slug}`}>
                 <Card className="border-border/50 bg-card/80 h-full hover:shadow-lg transition-shadow cursor-pointer overflow-hidden group">
                   <div className="relative h-40 overflow-hidden">
                     <Image
-                      src={index === 0 ? "/images/prep.webp" :
-                            index === 1 ? "/images/resume.webp" :
-                            index === 2 ? "/images/learning.webp" :
-                            index === 3 ? "/images/reading.webp" :
-                            index === 4 ? "/images/mentor.webp" :
-                            "/images/success.webp"}
+                      src={index === 0 ? "/images/campus-students.webp" :
+                            index === 1 ? "/images/resume-writing.webp" :
+                            index === 2 ? "/images/coding-dsa.webp" :
+                            index === 3 ? "/images/government-study.webp" :
+                            index === 4 ? "/images/linkedin-networking.webp" :
+                            "/images/salary-meeting.webp"}
                       alt={article.title}
                       width={400}
                       height={200}
@@ -120,7 +120,7 @@ export default function InsightsPage() {
                     </div>
                   </CardContent>
                 </Card>
-              </a>
+              </Link>
             </motion.div>
           ))}
         </div>
