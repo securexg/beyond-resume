@@ -289,7 +289,7 @@ export default function JobsPage() {
           >
             <div className="relative h-64 md:h-80 rounded-2xl overflow-hidden">
               <Image
-                src="/images/hiring-process.webp"
+                src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=800&h=400&q=80"
                 alt="Job search workspace"
                 fill
                 className="object-cover"

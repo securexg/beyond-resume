@@ -202,7 +202,7 @@ export default function InterviewPrepPage() {
             >
               <div className="relative h-48 md:h-64 rounded-2xl overflow-hidden">
                 <Image
-                  src="/images/interview-conversation.webp"
+                  src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=600&h=400&q=80"
                   alt="Interview preparation"
                   fill
                   className="object-cover"

@@ -94,12 +94,12 @@ export default function InsightsPage() {
                 <Card className="border-border/50 bg-card/80 h-full hover:shadow-lg transition-shadow cursor-pointer overflow-hidden group">
                   <div className="relative h-40 overflow-hidden">
                     <Image
-                      src={index === 0 ? "/images/campus-students.webp" :
-                            index === 1 ? "/images/resume-writing.webp" :
-                            index === 2 ? "/images/coding-dsa.webp" :
-                            index === 3 ? "/images/government-study.webp" :
-                            index === 4 ? "/images/linkedin-networking.webp" :
-                            "/images/salary-meeting.webp"}
+                      src={index === 0 ? "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=400&h=200&q=80" :
+                            index === 1 ? "https://images.unsplash.com/photo-1586281380349-632531db7ed4?auto=format&fit=crop&w=400&h=200&q=80" :
+                            index === 2 ? "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=400&h=200&q=80" :
+                            index === 3 ? "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=400&h=200&q=80" :
+                            index === 4 ? "https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=400&h=200&q=80" :
+                            "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=400&h=200&q=80"}
                       alt={article.title}
                       width={400}
                       height={200}
