@@ -141,7 +141,7 @@ export default function Home() {
       <nav className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-border/50">
         <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
           <Link href="/" className="flex items-center">
-            <Image src="/logo.png" alt="CareerOS" width={80} height={80} className="rounded-xl shadow-lg" />
+            <Image src="/logo.png" alt="CareerOS" width={100} height={100} className="rounded-xl shadow-lg" />
           </Link>
           <div className="flex items-center gap-2">
             <Link href="/trends">
@@ -263,7 +263,7 @@ export default function Home() {
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 rounded-3xl blur-2xl" />
                 <Image
-                  src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&q=80"
+                  src="https://placehold.co/600x500/0ea5e9/ffffff?text=CareerOS+AI+Platform"
                   alt="Career professionals working together"
                   width={600}
                   height={500}
@@ -348,9 +348,9 @@ export default function Home() {
                     <Card className="border-border/50 hover:border-primary/30 bg-card/50 hover:bg-card transition-all duration-300 h-full group cursor-pointer overflow-hidden">
                       <div className="relative h-40 overflow-hidden">
                         <Image
-                          src={feature.href === "/analyze" ? "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=600&q=80" :
-                                feature.href === "/trends" ? "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80" :
-                                "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&q=80"}
+                          src={feature.href === "/analyze" ? "https://placehold.co/400x200/0ea5e9/ffffff?text=Resume+Analysis" :
+                                feature.href === "/trends" ? "https://placehold.co/400x200/10b981/ffffff?text=Market+Trends" :
+                                "https://placehold.co/400x200/8b5cf6/ffffff?text=Interview+Prep"}
                           alt={feature.title}
                           width={400}
                           height={200}
@@ -406,9 +406,9 @@ export default function Home() {
                   <Card className="border-border/50 bg-card/80 h-full overflow-hidden group">
                     <div className="relative h-32 overflow-hidden">
                       <Image
-                        src={index === 0 ? "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=600&q=80" :
-                              index === 1 ? "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=600&q=80" :
-                              "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=600&q=80"}
+                        src={index === 0 ? "https://placehold.co/400x150/f59e0b/ffffff?text=First+Job" :
+                              index === 1 ? "https://placehold.co/400x150/3b82f6/ffffff?text=Career+Switch" :
+                              "https://placehold.co/400x150/10b981/ffffff?text=Higher+Salary"}
                         alt={guide.title}
                         width={400}
                         height={150}
