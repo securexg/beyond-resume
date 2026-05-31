@@ -27,7 +27,7 @@ import {
 
 const tips = [
   { icon: Lightbulb, text: "80% of jobs are filled through networking — start building connections early", color: "text-yellow-400" },
-  { icon: Target, text: "AI/ML engineers saw a 45% salary increase in India this year", color: "text-cyan-400" },
+  { icon: Target, text: "Professionals with strong portfolios see 45% more interview callbacks", color: "text-cyan-400" },
   { icon: Zap, text: "Candidates with ATS-optimized resumes are 3x more likely to get interviews", color: "text-purple-400" },
   { icon: Heart, text: "Companies hiring for culture fit value passion projects — showcase yours", color: "text-pink-400" },
   { icon: CheckCircle, text: "Mock interviews improve success rate by 60% — practice with our prep tool", color: "text-emerald-400" },
@@ -53,8 +53,8 @@ const platformFeatures = [
   },
   {
     icon: TrendingUp,
-    title: "Salary Benchmarks",
-    description: "Compare expected salary ranges for your target role across Indian cities with real market data.",
+    title: "Market Insights",
+    description: "Explore hiring trends, salary benchmarks, and growth opportunities across all industries and locations.",
     href: "/trends",
     color: "from-emerald-500/20 to-green-500/20",
     iconColor: "text-emerald-400",
@@ -119,10 +119,14 @@ const careerGuides = [
 ];
 
 const marketInsights = [
-  { sector: "Technology", growth: "+45%", roles: "AI Engineer, Cloud Architect, DevOps", salary: "₹25-50 LPA", color: "border-cyan-500/30" },
-  { sector: "Product & Design", growth: "+35%", roles: "Product Manager, UX Designer, Design Lead", salary: "₹18-35 LPA", color: "border-purple-500/30" },
-  { sector: "Management", growth: "+28%", roles: "Scrum Master, Ops Manager, Strategy Lead", salary: "₹20-40 LPA", color: "border-emerald-500/30" },
-  { sector: "Data & Analytics", growth: "+40%", roles: "Data Scientist, ML Engineer, BI Analyst", salary: "₹22-45 LPA", color: "border-orange-500/30" },
+  { sector: "Technology", growth: "+45%", roles: "Software Engineer, Product Manager, Data Analyst", salary: "₹15-50 LPA", color: "border-cyan-500/30" },
+  { sector: "Healthcare", growth: "+38%", roles: "Doctor, Nurse, Medical Researcher, Healthcare Admin", salary: "₹8-40 LPA", color: "border-emerald-500/30" },
+  { sector: "Finance", growth: "+32%", roles: "Financial Analyst, Investment Banker, Accountant, Risk Manager", salary: "₹12-45 LPA", color: "border-blue-500/30" },
+  { sector: "Marketing", growth: "+35%", roles: "Digital Marketer, Brand Manager, Content Strategist, SEO Specialist", salary: "₹8-30 LPA", color: "border-purple-500/30" },
+  { sector: "Education", growth: "+28%", roles: "Teacher, Professor, EdTech Specialist, Curriculum Designer", salary: "₹6-25 LPA", color: "border-orange-500/30" },
+  { sector: "Manufacturing", growth: "+25%", roles: "Production Manager, Quality Engineer, Supply Chain Analyst", salary: "₹10-35 LPA", color: "border-pink-500/30" },
+  { sector: "Legal", growth: "+30%", roles: "Corporate Lawyer, Legal Counsel, Compliance Officer, Patent Attorney", salary: "₹15-50 LPA", color: "border-indigo-500/30" },
+  { sector: "Sales", growth: "+40%", roles: "Sales Manager, Business Development, Account Executive, Sales Analyst", salary: "₹10-40 LPA", color: "border-rose-500/30" },
 ];
 
 export default function Home() {
@@ -461,10 +465,10 @@ export default function Home() {
             className="text-center mb-14"
           >
             <h2 className="font-heading text-3xl md:text-4xl font-medium mb-4">
-              India Job Market Snapshot
+              Job Market Snapshot
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Live sector-wise growth, top roles, and salary benchmarks
+              Growth trends, top roles, and salary benchmarks across all industries
             </p>
           </motion.div>
 

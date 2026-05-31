@@ -26,11 +26,13 @@ import {
 
 const segments = [
   { id: "tech", name: "Technology", icon: Cpu, color: "bg-blue-500/10 text-blue-500 border-blue-500/20" },
-  { id: "management", name: "Management", icon: Building2, color: "bg-purple-500/10 text-purple-500 border-purple-500/20" },
-  { id: "design", name: "Design", icon: Briefcase, color: "bg-pink-500/10 text-pink-500 border-pink-500/20" },
-  { id: "hr", name: "HR", icon: Globe, color: "bg-green-500/10 text-green-500 border-green-500/20" },
-  { id: "marketing", name: "Marketing", icon: TrendingUp, color: "bg-orange-500/10 text-orange-500 border-orange-500/20" },
+  { id: "healthcare", name: "Healthcare", icon: Globe, color: "bg-emerald-500/10 text-emerald-500 border-emerald-500/20" },
   { id: "finance", name: "Finance", icon: DollarSign, color: "bg-yellow-500/10 text-yellow-500 border-yellow-500/20" },
+  { id: "marketing", name: "Marketing", icon: TrendingUp, color: "bg-orange-500/10 text-orange-500 border-orange-500/20" },
+  { id: "education", name: "Education", icon: Briefcase, color: "bg-purple-500/10 text-purple-500 border-purple-500/20" },
+  { id: "manufacturing", name: "Manufacturing", icon: Building2, color: "bg-pink-500/10 text-pink-500 border-pink-500/20" },
+  { id: "legal", name: "Legal", icon: CheckCircle, color: "bg-indigo-500/10 text-indigo-500 border-indigo-500/20" },
+  { id: "sales", name: "Sales", icon: ArrowRight, color: "bg-rose-500/10 text-rose-500 border-rose-500/20" },
 ];
 
 const steps = [
