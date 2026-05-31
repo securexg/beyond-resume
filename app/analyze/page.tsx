@@ -6,8 +6,9 @@ import Image from "next/image";
 import { useDropzone } from "react-dropzone";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Upload, FileText, Loader2, ArrowLeft, CheckCircle } from "lucide-react";
+import { Upload, FileText, Loader2, ArrowLeft, CheckCircle, Link as LinkIcon, AlertCircle } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function AnalyzePage() {
@@ -15,6 +16,10 @@ export default function AnalyzePage() {
   const [targetRole, setTargetRole] = useState("");
   const [analyzing, setAnalyzing] = useState(false);
   const [resumeText, setResumeText] = useState("");
+  const [linkedinUrl, setLinkedinUrl] = useState<string>(() => 
+    typeof window !== "undefined" ? localStorage.getItem("linkedinUrl") || "" : ""
+  );
+  const [inputMethod, setInputMethod] = useState<"pdf" | "text">("pdf");
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     accept: {
@@ -119,39 +124,96 @@ export default function AnalyzePage() {
               >
                 <Card className="border-border/50 bg-card/50 backdrop-blur">
                   <CardHeader>
-                    <CardTitle className="font-heading">Upload Your Resume</CardTitle>
+                    <CardTitle className="font-heading">Analyze Your Profile</CardTitle>
                     <CardDescription>
-                      We&apos;ll check your ATS score, keyword match, and give you actionable tips
+                      {linkedinUrl ? "LinkedIn profile detected. Paste your resume text below for analysis." : "Upload your resume or paste text for AI analysis"}
                     </CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-6">
-                    <div
-                      {...getRootProps()}
-                      className={`border-2 border-dashed rounded-lg p-8 text-center cursor-pointer transition-colors ${
-                        isDragActive
-                          ? "border-primary bg-primary/5"
-                          : "border-border hover:border-primary/50"
-                      }`}
-                    >
-                      <input {...getInputProps()} />
-                      {file ? (
-                        <div className="flex flex-col items-center gap-2">
-                          <FileText className="w-12 h-12 text-primary" />
-                          <p className="font-medium">{file.name}</p>
-                          <p className="text-sm text-muted-foreground">
-                            {(file.size / 1024).toFixed(1)} KB
-                          </p>
+                    {/* LinkedIn URL Display */}
+                    {linkedinUrl && (
+                      <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                        <div className="flex items-start gap-3">
+                          <LinkIcon className="w-5 h-5 text-blue-500 mt-0.5" />
+                          <div className="flex-1">
+                            <p className="text-sm font-medium text-blue-900">LinkedIn Profile</p>
+                            <p className="text-sm text-blue-700">{linkedinUrl}</p>
+                            <p className="text-xs text-blue-600 mt-1">
+                              <AlertCircle className="w-3 h-3 inline mr-1" />
+                              LinkedIn restricts automated access. Please paste your resume text below.
+                            </p>
+                          </div>
                         </div>
-                      ) : (
-                        <div className="flex flex-col items-center gap-2">
-                          <Upload className="w-12 h-12 text-muted-foreground" />
-                          <p className="font-medium">
-                            {isDragActive ? "Drop your resume here" : "Drop your resume here, or click to browse"}
-                          </p>
-                          <p className="text-sm text-muted-foreground">PDF files only</p>
-                        </div>
-                      )}
+                      </div>
+                    )}
+
+                    {/* Input Method Toggle */}
+                    <div className="flex gap-2">
+                      <Button
+                        type="button"
+                        variant={inputMethod === "pdf" ? "default" : "outline"}
+                        size="sm"
+                        onClick={() => setInputMethod("pdf")}
+                        className="flex-1"
+                      >
+                        <Upload className="w-4 h-4 mr-2" />
+                        Upload PDF
+                      </Button>
+                      <Button
+                        type="button"
+                        variant={inputMethod === "text" ? "default" : "outline"}
+                        size="sm"
+                        onClick={() => setInputMethod("text")}
+                        className="flex-1"
+                      >
+                        <FileText className="w-4 h-4 mr-2" />
+                        Paste Text
+                      </Button>
                     </div>
+
+                    {/* PDF Upload */}
+                    {inputMethod === "pdf" && (
+                      <div
+                        {...getRootProps()}
+                        className={`border-2 border-dashed rounded-lg p-8 text-center cursor-pointer transition-colors ${
+                          isDragActive
+                            ? "border-primary bg-primary/5"
+                            : "border-border hover:border-primary/50"
+                        }`}
+                      >
+                        <input {...getInputProps()} />
+                        {file ? (
+                          <div className="flex flex-col items-center gap-2">
+                            <FileText className="w-12 h-12 text-primary" />
+                            <p className="font-medium">{file.name}</p>
+                            <p className="text-sm text-muted-foreground">
+                              {(file.size / 1024).toFixed(1)} KB
+                            </p>
+                          </div>
+                        ) : (
+                          <div className="flex flex-col items-center gap-2">
+                            <Upload className="w-12 h-12 text-muted-foreground" />
+                            <p className="font-medium">
+                              {isDragActive ? "Drop your resume here" : "Drop your resume here, or click to browse"}
+                            </p>
+                            <p className="text-sm text-muted-foreground">PDF files only</p>
+                          </div>
+                        )}
+                      </div>
+                    )}
+
+                    {/* Text Input */}
+                    {inputMethod === "text" && (
+                      <div className="space-y-2">
+                        <label className="text-sm font-medium">Paste your resume text</label>
+                        <Textarea
+                          placeholder="Copy and paste your resume content here..."
+                          value={resumeText}
+                          onChange={(e) => setResumeText(e.target.value)}
+                          className="bg-background min-h-[200px]"
+                        />
+                      </div>
+                    )}
 
                     <div className="space-y-2">
                       <label className="text-sm font-medium">What job are you targeting?</label>
@@ -171,7 +233,7 @@ export default function AnalyzePage() {
 
                     <Button
                       onClick={handleAnalyze}
-                      disabled={!file || !targetRole || analyzing}
+                      disabled={(!file && !resumeText) || !targetRole || analyzing}
                       className="w-full"
                       size="lg"
                     >

@@ -69,8 +69,13 @@ export default function OnboardingPage() {
     localStorage.setItem("profileSource", source || "");
     if (source === "linkedin") {
       localStorage.setItem("linkedinUrl", linkedinUrl);
+      // Redirect to analyze page for LinkedIn users
+      window.location.href = "/analyze";
+    } else if (source === "resume") {
+      window.location.href = "/analyze";
+    } else {
+      window.location.href = "/trends";
     }
-    window.location.href = "/trends";
   };
 
   return (
