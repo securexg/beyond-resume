@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Upload, FileText, Loader2, ArrowLeft, CheckCircle, Menu, X } from "lucide-react";
+import { Upload, FileText, Loader2, ArrowRight, CheckCircle, Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function AnalyzePage() {
@@ -131,25 +131,40 @@ export default function AnalyzePage() {
   return (
     <div className="min-h-screen bg-background font-sans">
       {/* Navigation */}
-      <nav className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-border/50">
+      <nav className="w-full bg-background/80 backdrop-blur-md border-b border-border/50">
         <div className="max-w-7xl mx-auto px-4 h-16 sm:h-24 flex items-center justify-between">
           <Link href="/" className="flex items-center group">
             <Image 
               src="/logo.png" 
               alt="CareerOS" 
-              width={240} 
-              height={64} 
-              className="h-12 sm:h-16 w-auto object-contain group-hover:scale-105 transition-transform duration-300" 
+              width={320} 
+              height={80} 
+              className="h-16 sm:h-20 w-auto object-contain group-hover:scale-105 transition-transform duration-300" 
             />
           </Link>
           
           {/* Desktop Menu */}
           <div className="hidden sm:flex items-center gap-2">
+            <Link href="/trends">
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">Market Insights</Button>
+              </motion.div>
+            </Link>
+            <Link href="/jobs">
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">Jobs</Button>
+              </motion.div>
+            </Link>
+            <Link href="/interview-prep">
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">Interview Prep</Button>
+              </motion.div>
+            </Link>
             <Link href="/">
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Button variant="ghost" size="sm">
-                  <ArrowLeft className="w-4 h-4 mr-2" />
-                  Back to Home
+                <Button size="sm" className="gap-2 ml-2">
+                  Home
+                  <ArrowRight className="w-4 h-4" />
                 </Button>
               </motion.div>
             </Link>
@@ -174,10 +189,19 @@ export default function AnalyzePage() {
               className="sm:hidden border-b border-border/50 bg-background/95 backdrop-blur-xl"
             >
               <div className="px-4 py-4 space-y-2">
+                <Link href="/trends" onClick={() => setMobileMenuOpen(false)}>
+                  <Button variant="ghost" size="sm" className="w-full justify-start">Market Insights</Button>
+                </Link>
+                <Link href="/jobs" onClick={() => setMobileMenuOpen(false)}>
+                  <Button variant="ghost" size="sm" className="w-full justify-start">Jobs</Button>
+                </Link>
+                <Link href="/interview-prep" onClick={() => setMobileMenuOpen(false)}>
+                  <Button variant="ghost" size="sm" className="w-full justify-start">Interview Prep</Button>
+                </Link>
                 <Link href="/" onClick={() => setMobileMenuOpen(false)}>
-                  <Button variant="ghost" size="sm" className="w-full justify-start">
-                    <ArrowLeft className="w-4 h-4 mr-2" />
-                    Back to Home
+                  <Button size="sm" className="w-full gap-2">
+                    Home
+                    <ArrowRight className="w-4 h-4" />
                   </Button>
                 </Link>
               </div>
@@ -189,7 +213,7 @@ export default function AnalyzePage() {
       <div className="pt-16 sm:pt-24 pb-12 px-4">
         <div className="relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-accent/10" />
-          <div className="relative flex flex-col items-center justify-center py-12">
+          <div className="relative flex flex-col lg:flex-row items-center justify-center gap-12 py-12">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -365,6 +389,28 @@ export default function AnalyzePage() {
                     </Button>
                   </CardContent>
                 </Card>
+              </motion.div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.4, duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
+              className="hidden lg:block relative"
+            >
+              <motion.div
+                animate={{ y: [0, -10, 0] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                className="relative"
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 rounded-3xl blur-2xl" />
+                <Image
+                  src="/images/resume.webp"
+                  alt="Resume analysis"
+                  width={500}
+                  height={400}
+                  className="relative rounded-3xl shadow-2xl object-cover"
+                />
               </motion.div>
             </motion.div>
           </div>

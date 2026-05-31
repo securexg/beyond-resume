@@ -8,7 +8,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  ArrowLeft,
+  ArrowRight,
   GraduationCap,
   MessageSquare,
   Users,
@@ -92,31 +92,41 @@ export default function InterviewPrepPage() {
   return (
     <div className="min-h-screen bg-background font-sans">
       {/* Navigation */}
-      <nav className="fixed top-0 w-full z-50 bg-background/95 backdrop-blur-md border-b border-border">
+      <nav className="w-full bg-background/95 backdrop-blur-md border-b border-border">
         <div className="max-w-7xl mx-auto px-4 h-16 sm:h-24 flex items-center justify-between">
           <Link href="/" className="flex items-center group">
             <Image 
               src="/logo.png" 
               alt="CareerOS" 
-              width={240} 
-              height={64} 
-              className="h-12 sm:h-16 w-auto object-contain group-hover:scale-105 transition-transform duration-300" 
+              width={320} 
+              height={80} 
+              className="h-16 sm:h-20 w-auto object-contain group-hover:scale-105 transition-transform duration-300" 
             />
           </Link>
           
           {/* Desktop Menu */}
           <div className="hidden sm:flex items-center gap-2">
+            <Link href="/trends">
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">Market Insights</Button>
+              </motion.div>
+            </Link>
             <Link href="/analyze">
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Button variant="ghost" size="sm">
-                  <ArrowLeft className="w-4 h-4 mr-2" />
-                  Resume Analysis
-                </Button>
+                <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">Resume Analysis</Button>
+              </motion.div>
+            </Link>
+            <Link href="/jobs">
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">Jobs</Button>
               </motion.div>
             </Link>
             <Link href="/">
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Button variant="ghost" size="sm">Home</Button>
+                <Button size="sm" className="gap-2 ml-2">
+                  Home
+                  <ArrowRight className="w-4 h-4" />
+                </Button>
               </motion.div>
             </Link>
           </div>
@@ -140,14 +150,20 @@ export default function InterviewPrepPage() {
               className="sm:hidden border-b border-border/50 bg-background/95 backdrop-blur-xl"
             >
               <div className="px-4 py-4 space-y-2">
+                <Link href="/trends" onClick={() => setMobileMenuOpen(false)}>
+                  <Button variant="ghost" size="sm" className="w-full justify-start">Market Insights</Button>
+                </Link>
                 <Link href="/analyze" onClick={() => setMobileMenuOpen(false)}>
-                  <Button variant="ghost" size="sm" className="w-full justify-start">
-                    <ArrowLeft className="w-4 h-4 mr-2" />
-                    Resume Analysis
-                  </Button>
+                  <Button variant="ghost" size="sm" className="w-full justify-start">Resume Analysis</Button>
+                </Link>
+                <Link href="/jobs" onClick={() => setMobileMenuOpen(false)}>
+                  <Button variant="ghost" size="sm" className="w-full justify-start">Jobs</Button>
                 </Link>
                 <Link href="/" onClick={() => setMobileMenuOpen(false)}>
-                  <Button variant="ghost" size="sm" className="w-full justify-start">Home</Button>
+                  <Button size="sm" className="w-full gap-2">
+                    Home
+                    <ArrowRight className="w-4 h-4" />
+                  </Button>
                 </Link>
               </div>
             </motion.div>
@@ -176,6 +192,24 @@ export default function InterviewPrepPage() {
                 </p>
               </div>
             </div>
+
+            {/* Hero Image */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.15 }}
+              className="mb-6"
+            >
+              <div className="relative h-48 md:h-64 rounded-2xl overflow-hidden">
+                <Image
+                  src="/images/interview.webp"
+                  alt="Interview preparation"
+                  fill
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
+              </div>
+            </motion.div>
 
             {/* Progress */}
             <Card className="border-primary/20 bg-primary/5">

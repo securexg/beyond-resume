@@ -148,15 +148,15 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-background font-sans">
       {/* Navigation */}
-      <nav className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-border/50">
+      <nav className="w-full bg-background/80 backdrop-blur-xl border-b border-border/50">
         <div className="max-w-7xl mx-auto px-4 h-16 sm:h-24 flex items-center justify-between">
           <Link href="/" className="flex items-center group">
             <Image 
               src="/logo.png" 
               alt="CareerOS" 
-              width={240} 
-              height={64} 
-              className="h-12 sm:h-16 w-auto object-contain group-hover:scale-105 transition-transform duration-300" 
+              width={320} 
+              height={80} 
+              className="h-16 sm:h-20 w-auto object-contain group-hover:scale-105 transition-transform duration-300" 
             />
           </Link>
           
@@ -335,7 +335,7 @@ export default function Home() {
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 rounded-3xl blur-2xl" />
                 <Image
-                  src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&h=500&q=80"
+                  src="/images/hero-career.webp"
                   alt="Career professionals working together"
                   width={600}
                   height={500}
@@ -463,9 +463,10 @@ export default function Home() {
                     <Card className="border-border/50 hover:border-primary/30 bg-card/50 hover:bg-card transition-all duration-300 h-full group cursor-pointer overflow-hidden">
                       <div className="relative h-40 overflow-hidden">
                         <Image
-                          src={feature.href === "/analyze" ? "https://images.unsplash.com/photo-1586281380349-632531db7ed4?auto=format&fit=crop&w=400&h=200&q=80" :
-                                feature.href === "/trends" ? "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=400&h=200&q=80" :
-                                "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=400&h=200&q=80"}
+                          src={feature.href === "/analyze" ? "/images/ai-analysis.webp" :
+                                feature.href === "/trends" ? "/images/growth-chart.webp" :
+                                feature.href === "/interview-prep" ? "/images/interview.webp" :
+                                "/images/technology.webp"}
                           alt={feature.title}
                           width={400}
                           height={200}
@@ -521,9 +522,9 @@ export default function Home() {
                   <Card className="border-border/50 bg-card/80 h-full overflow-hidden group">
                     <div className="relative h-32 overflow-hidden">
                       <Image
-                        src={index === 0 ? "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=400&h=150&q=80" :
-                              index === 1 ? "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=400&h=150&q=80" :
-                              "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=400&h=150&q=80"}
+                        src={index === 0 ? "/images/graduation.webp" :
+                              index === 1 ? "/images/teamwork.webp" :
+                              "/images/development.webp"}
                         alt={guide.title}
                         width={400}
                         height={150}
@@ -688,20 +689,37 @@ export default function Home() {
                 transition={{ delay: index * 0.08, duration: 0.5 }}
                 whileHover={{ y: -5 }}
               >
-                <Card className="border-border/50 bg-card/80 h-full hover:shadow-lg transition-shadow cursor-pointer">
-                  <CardContent className="p-6 space-y-4">
-                    <div className="flex items-center justify-between">
-                      <Badge variant="secondary" className="text-xs">{article.category}</Badge>
-                      <span className="text-xs text-muted-foreground">{article.readTime}</span>
+                <Link href="/insights">
+                  <Card className="border-border/50 bg-card/80 h-full hover:shadow-lg transition-shadow cursor-pointer overflow-hidden group">
+                    <div className="relative h-40 overflow-hidden">
+                      <Image
+                        src={index === 0 ? "/images/prep.webp" :
+                              index === 1 ? "/images/resume.webp" :
+                              index === 2 ? "/images/learning.webp" :
+                              index === 3 ? "/images/reading.webp" :
+                              index === 4 ? "/images/mentor.webp" :
+                              "/images/success.webp"}
+                        alt={article.title}
+                        width={400}
+                        height={200}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-card to-transparent" />
                     </div>
-                    <h3 className="font-heading font-semibold text-lg leading-tight">{article.title}</h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed">{article.description}</p>
-                    <div className="flex items-center text-primary text-sm font-medium">
-                      Read More
-                      <ArrowRight className="w-4 h-4 ml-1" />
-                    </div>
-                  </CardContent>
-                </Card>
+                    <CardContent className="p-6 space-y-4 -mt-12 relative">
+                      <div className="flex items-center justify-between">
+                        <Badge variant="secondary" className="text-xs">{article.category}</Badge>
+                        <span className="text-xs text-muted-foreground">{article.readTime}</span>
+                      </div>
+                      <h3 className="font-heading font-semibold text-lg leading-tight">{article.title}</h3>
+                      <p className="text-sm text-muted-foreground leading-relaxed">{article.description}</p>
+                      <div className="flex items-center text-primary text-sm font-medium">
+                        Read More
+                        <ArrowRight className="w-4 h-4 ml-1" />
+                      </div>
+                    </CardContent>
+                  </Card>
+                </Link>
               </motion.div>
             ))}
           </div>
