@@ -187,16 +187,13 @@ export default function JobsPage() {
       <nav className="fixed top-0 w-full z-50 bg-background/95 backdrop-blur-md border-b border-border">
         <div className="max-w-7xl mx-auto px-4 h-16 sm:h-24 flex items-center justify-between">
           <Link href="/" className="flex items-center group">
-            <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-primary to-cyan-400 rounded-xl sm:rounded-2xl blur-lg opacity-40 group-hover:opacity-60 transition-opacity duration-300" />
-              <Image 
-                src="/logo.png" 
-                alt="CareerOS" 
-                width={56} 
-                height={56} 
-                className="relative w-10 h-10 sm:w-14 sm:h-14 object-contain rounded-xl shadow-2xl group-hover:scale-105 transition-transform duration-300" 
-              />
-            </div>
+            <Image 
+              src="/logo.png" 
+              alt="CareerOS" 
+              width={160} 
+              height={40} 
+              className="h-8 sm:h-10 w-auto object-contain group-hover:scale-105 transition-transform duration-300" 
+            />
           </Link>
           
           {/* Desktop Menu */}
