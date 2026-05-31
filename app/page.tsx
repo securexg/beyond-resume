@@ -139,9 +139,9 @@ export default function Home() {
     <div className="min-h-screen bg-background font-sans">
       {/* Navigation */}
       <nav className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-border/50">
-        <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between">
           <Link href="/" className="flex items-center">
-            <Image src="/logo.png" alt="CareerOS" width={100} height={100} className="rounded-xl shadow-lg" />
+            <Image src="/logo.png" alt="CareerOS" width={80} height={80} className="rounded-xl shadow-lg" />
           </Link>
           <div className="flex items-center gap-2">
             <Link href="/trends">
@@ -191,10 +191,10 @@ export default function Home() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 0.6 }}
-                className="font-heading text-5xl md:text-6xl lg:text-7xl font-light tracking-tight leading-[1.1]"
+                className="font-heading text-5xl md:text-6xl lg:text-7xl font-medium tracking-tight leading-[1.1]"
               >
                 Don&apos;t just search jobs
-                <span className="block bg-gradient-to-r from-primary via-cyan-400 to-accent bg-clip-text text-transparent font-normal">
+                <span className="block bg-gradient-to-r from-primary via-cyan-400 to-accent bg-clip-text text-transparent">
                   engineer your career.
                 </span>
               </motion.h1>
@@ -268,6 +268,7 @@ export default function Home() {
                   width={600}
                   height={500}
                   className="relative rounded-3xl shadow-2xl object-cover"
+                  unoptimized
                 />
               </motion.div>
             </motion.div>
@@ -321,9 +322,9 @@ export default function Home() {
             viewport={{ once: true }}
             className="text-center mb-14"
           >
-            <h2 className="font-heading text-3xl md:text-4xl font-light mb-4">
+            <h2 className="font-heading text-3xl md:text-4xl font-medium mb-4">
               Everything You Need to{" "}
-              <span className="bg-gradient-to-r from-primary to-cyan-400 bg-clip-text text-transparent font-normal">
+              <span className="bg-gradient-to-r from-primary to-cyan-400 bg-clip-text text-transparent">
                 Land Your Dream Role
               </span>
             </h2>
@@ -355,6 +356,7 @@ export default function Home() {
                           width={400}
                           height={200}
                           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                          unoptimized
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-card to-transparent" />
                       </div>
@@ -383,7 +385,7 @@ export default function Home() {
             viewport={{ once: true }}
             className="text-center mb-14"
           >
-            <h2 className="font-heading text-3xl md:text-4xl font-light mb-4">
+            <h2 className="font-heading text-3xl md:text-4xl font-medium mb-4">
               Actionable Career Guides
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
@@ -413,6 +415,7 @@ export default function Home() {
                         width={400}
                         height={150}
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                        unoptimized
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-card to-transparent" />
                     </div>
@@ -449,7 +452,7 @@ export default function Home() {
             viewport={{ once: true }}
             className="text-center mb-14"
           >
-            <h2 className="font-heading text-3xl md:text-4xl font-light mb-4">
+            <h2 className="font-heading text-3xl md:text-4xl font-medium mb-4">
               India Job Market Snapshot
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
@@ -523,7 +526,7 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="font-heading text-3xl md:text-4xl font-light"
+              className="font-heading text-3xl md:text-4xl font-medium"
             >
               Ready to Take Control of Your Career?
             </motion.h2>
