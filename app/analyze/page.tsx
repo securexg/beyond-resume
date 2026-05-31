@@ -2,11 +2,12 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useDropzone } from "react-dropzone";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Upload, FileText, Loader2, ArrowLeft, Sparkles, CheckCircle } from "lucide-react";
+import { Upload, FileText, Loader2, ArrowLeft, CheckCircle } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function AnalyzePage() {
@@ -72,11 +73,14 @@ export default function AnalyzePage() {
       <nav className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-border/50">
         <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <Link href="/" className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center">
-                <Sparkles className="w-4 h-4 text-white" />
+            <Link href="/" className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-lg flex items-center justify-center">
+                <Image src="/logo.png" alt="CareerOS Logo" width={40} height={40} />
               </div>
-              <span className="font-heading font-bold text-xl">CareerCraft</span>
+              <div>
+                <span className="font-heading font-semibold text-xl tracking-wide">CareerOS</span>
+                <p className="text-xs text-muted-foreground">Your Career Operating System</p>
+              </div>
             </Link>
           </div>
           <Link href="/">
@@ -108,7 +112,7 @@ export default function AnalyzePage() {
                   <CheckCircle className="w-4 h-4" />
                   AI-Powered Analysis
                 </div>
-                <h1 className="font-heading text-4xl md:text-5xl font-bold tracking-tight mb-4">
+                <h1 className="font-heading text-4xl md:text-5xl font-semibold tracking-tight mb-4">
                   Analyze Your Resume
                 </h1>
                 <p className="text-lg text-muted-foreground">

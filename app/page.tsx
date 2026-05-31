@@ -50,6 +50,12 @@ export default function Home() {
             <Link href="/trends">
               <Button variant="ghost" size="sm">Market Insights</Button>
             </Link>
+            <Link href="/analyze">
+              <Button variant="ghost" size="sm">Resume Analysis</Button>
+            </Link>
+            <Link href="/interview-prep">
+              <Button variant="ghost" size="sm">Interview Prep</Button>
+            </Link>
             <Link href="/onboarding">
               <Button size="sm" className="gap-2">
                 Start Journey
@@ -315,7 +321,7 @@ export default function Home() {
             className="text-center space-y-6"
           >
             <h2 className="font-heading text-3xl font-semibold">
-              We're Here to Guide You
+              We&apos;re Here to Guide You
             </h2>
             <p className="text-muted-foreground text-lg max-w-xl mx-auto">
               Every step of your career journey, we provide personalized guidance, motivation, and insights to help you succeed.

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
@@ -14,9 +15,7 @@ import {
   Clock, 
   Building2, 
   ExternalLink,
-  Cpu,
-  Filter,
-  ArrowRight
+  Filter
 } from "lucide-react";
 
 const sampleJobs = [
@@ -113,11 +112,11 @@ export default function JobsPage() {
       <nav className="fixed top-0 w-full z-50 bg-background/95 backdrop-blur-md border-b border-border">
         <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center">
-              <Cpu className="w-5 h-5 text-white" />
+            <div className="w-10 h-10 rounded-lg flex items-center justify-center">
+              <Image src="/logo.png" alt="CareerOS Logo" width={40} height={40} />
             </div>
             <div>
-              <span className="font-heading font-bold text-xl">CareerOS</span>
+              <span className="font-heading font-semibold text-xl tracking-wide">CareerOS</span>
               <p className="text-xs text-muted-foreground">Your Career Operating System</p>
             </div>
           </div>
@@ -140,11 +139,11 @@ export default function JobsPage() {
             animate={{ opacity: 1, y: 0 }}
             className="mb-8"
           >
-            <h1 className="font-heading text-3xl md:text-4xl font-bold mb-2">
-              Job Listings
+            <h1 className="font-heading text-3xl md:text-4xl font-semibold mb-2">
+              Personalized Job Matches
             </h1>
             <p className="text-muted-foreground">
-              Aggregated opportunities from LinkedIn, Google Jobs, Indeed, and Naukri
+              Curated opportunities matched to your profile and interests
             </p>
           </motion.div>
 

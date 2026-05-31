@@ -52,10 +52,12 @@ Return a JSON response with this exact structure:
     "average": number (in LPA),
     "context": string
   },
-  "rewriteSuggestions": string[]
+  "rewriteSuggestions": string[],
+  "roleRecommendations": [{ "title": string, "matchScore": number (0-100), "reasoning": string }],
+  "interviewPrepTopics": string[]
 }
 
-Use Indian context: ₹ LPA for salaries, reference Indian companies, job portals like Naukri/LinkedIn India. Be specific and actionable.`;
+For roleRecommendations, suggest 3 alternative roles the candidate is well-suited for based on their skills. For interviewPrepTopics, provide 6-8 specific topics or questions they should prepare for. Use Indian context: ₹ LPA for salaries, reference Indian companies, job portals like Naukri/LinkedIn India. Be specific and actionable.`;
 
     const response = await fetch("https://api.deepseek.com/chat/completions", {
       method: "POST",

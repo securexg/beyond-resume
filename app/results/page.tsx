@@ -6,7 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { motion } from "framer-motion";
-import { ArrowLeft, Loader2, CheckCircle, XCircle, TrendingUp, DollarSign, Target } from "lucide-react";
+import { ArrowLeft, Loader2, CheckCircle, XCircle, TrendingUp, DollarSign, Target, GraduationCap } from "lucide-react";
 import Link from "next/link";
 
 interface AnalysisResult {
@@ -36,6 +36,12 @@ interface AnalysisResult {
     context: string;
   };
   rewriteSuggestions: string[];
+  roleRecommendations?: {
+    title: string;
+    matchScore: number;
+    reasoning: string;
+  }[];
+  interviewPrepTopics?: string[];
 }
 
 export default function ResultsPage() {
@@ -119,19 +125,27 @@ export default function ResultsPage() {
           <div className="max-w-7xl mx-auto space-y-8">
             <div className="flex items-center justify-between">
               <div>
-                <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-2">
+                <h1 className="font-heading text-4xl md:text-5xl font-semibold tracking-tight mb-2">
                   Analysis Results
                 </h1>
                 <p className="text-lg text-muted-foreground">
                   Target Role: {targetRole}
                 </p>
               </div>
-              <Link href="/analyze">
-                <Button variant="outline" size="lg">
-                  <ArrowLeft className="mr-2 h-4 w-4" />
-                  New Analysis
-                </Button>
-              </Link>
+              <div className="flex items-center gap-3">
+                <Link href="/interview-prep">
+                  <Button size="lg" className="gap-2">
+                    <GraduationCap className="h-4 w-4" />
+                    Interview Prep
+                  </Button>
+                </Link>
+                <Link href="/analyze">
+                  <Button variant="outline" size="lg">
+                    <ArrowLeft className="mr-2 h-4 w-4" />
+                    New Analysis
+                  </Button>
+                </Link>
+              </div>
             </div>
 
             <motion.div
@@ -317,6 +331,76 @@ export default function ResultsPage() {
                 </CardContent>
               </Card>
             </motion.div>
+
+            {/* Role Recommendations */}
+            {data.roleRecommendations && data.roleRecommendations.length > 0 && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5, duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
+              >
+                <Card className="border-border/50 bg-card/50 backdrop-blur transition-shadow hover:shadow-lg hover:shadow-primary/5">
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      <Target className="w-5 h-5 text-primary" />
+                      Recommended Roles for You
+                    </CardTitle>
+                    <CardDescription>Based on your skills and experience, these roles are a strong fit</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="grid md:grid-cols-3 gap-4">
+                      {data.roleRecommendations.map((role, i) => (
+                        <div key={i} className="p-4 rounded-lg bg-background/50 border border-border/50 space-y-3">
+                          <div className="flex items-center justify-between">
+                            <p className="font-medium">{role.title}</p>
+                            <Badge variant="secondary">{role.matchScore}% match</Badge>
+                          </div>
+                          <Progress value={role.matchScore} className="h-1" />
+                          <p className="text-xs text-muted-foreground">{role.reasoning}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            )}
+
+            {/* Interview Prep */}
+            {data.interviewPrepTopics && data.interviewPrepTopics.length > 0 && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6, duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
+              >
+                <Card className="border-primary/20 bg-primary/5">
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      <GraduationCap className="w-5 h-5 text-primary" />
+                      Interview Preparation Topics
+                    </CardTitle>
+                    <CardDescription>Key areas to prepare for your target role</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="grid md:grid-cols-2 gap-3">
+                      {data.interviewPrepTopics.map((topic, i) => (
+                        <div key={i} className="flex items-start gap-2 p-3 rounded-lg bg-background/50">
+                          <CheckCircle className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+                          <span className="text-sm">{topic}</span>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="mt-6 text-center">
+                      <Link href="/interview-prep">
+                        <Button size="lg" className="gap-2">
+                          <GraduationCap className="w-4 h-4" />
+                          Start Interview Prep
+                        </Button>
+                      </Link>
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            )}
           </div>
         </div>
       </div>
