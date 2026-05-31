@@ -463,10 +463,14 @@ export default function Home() {
                     <Card className="border-border/50 hover:border-primary/30 bg-card/50 hover:bg-card transition-all duration-300 h-full group cursor-pointer overflow-hidden">
                       <div className="relative h-40 overflow-hidden">
                         <Image
-                          src={feature.href === "/analyze" ? "/images/pexels/feat-analyze.jpeg" :
-                                feature.href === "/trends" ? "/images/pexels/feat-trends.jpeg" :
-                                feature.href === "/interview-prep" ? "/images/pexels/feat-interview.jpeg" :
-                                "/images/pexels/feat-workspace.jpeg"}
+                          src={[
+                            "/images/pexels/feat-resume-ats.jpeg",
+                            "/images/pexels/feat-hiring-score.jpeg",
+                            "/images/pexels/feat-market.jpeg",
+                            "/images/pexels/feat-role-match.jpeg",
+                            "/images/pexels/feat-skillgap.jpeg",
+                            "/images/pexels/feat-interview-prep.jpeg",
+                          ][index]}
                           alt={feature.title}
                           width={400}
                           height={200}
