@@ -139,25 +139,36 @@ export default function Home() {
     <div className="min-h-screen bg-background font-sans">
       {/* Navigation */}
       <nav className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-border/50">
-        <div className="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between">
-          <Link href="/" className="flex items-center">
-            <Image src="/logo.png" alt="CareerOS" width={80} height={80} className="rounded-xl shadow-lg" />
+        <div className="max-w-7xl mx-auto px-4 h-24 flex items-center justify-between">
+          <Link href="/" className="flex items-center group">
+            <div className="relative">
+              <div className="absolute inset-0 bg-gradient-to-r from-primary to-cyan-400 rounded-2xl blur-lg opacity-40 group-hover:opacity-60 transition-opacity duration-300" />
+              <Image src="/logo.png" alt="CareerOS" width={120} height={120} className="relative rounded-2xl shadow-2xl group-hover:scale-105 transition-transform duration-300" />
+            </div>
           </Link>
           <div className="flex items-center gap-2">
             <Link href="/trends">
-              <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">Market Insights</Button>
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">Market Insights</Button>
+              </motion.div>
             </Link>
             <Link href="/analyze">
-              <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">Resume Analysis</Button>
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">Resume Analysis</Button>
+              </motion.div>
             </Link>
             <Link href="/interview-prep">
-              <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">Interview Prep</Button>
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">Interview Prep</Button>
+              </motion.div>
             </Link>
             <Link href="/onboarding">
-              <Button size="sm" className="gap-2 ml-2">
-                Get Started
-                <ArrowRight className="w-4 h-4" />
-              </Button>
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <Button size="sm" className="gap-2 ml-2">
+                  Get Started
+                  <ArrowRight className="w-4 h-4" />
+                </Button>
+              </motion.div>
             </Link>
           </div>
         </div>
@@ -263,12 +274,11 @@ export default function Home() {
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 rounded-3xl blur-2xl" />
                 <Image
-                  src="https://placehold.co/600x500/0ea5e9/ffffff?text=CareerOS+AI+Platform"
+                  src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&h=500&q=80"
                   alt="Career professionals working together"
                   width={600}
                   height={500}
                   className="relative rounded-3xl shadow-2xl object-cover"
-                  unoptimized
                 />
               </motion.div>
             </motion.div>
@@ -349,14 +359,13 @@ export default function Home() {
                     <Card className="border-border/50 hover:border-primary/30 bg-card/50 hover:bg-card transition-all duration-300 h-full group cursor-pointer overflow-hidden">
                       <div className="relative h-40 overflow-hidden">
                         <Image
-                          src={feature.href === "/analyze" ? "https://placehold.co/400x200/0ea5e9/ffffff?text=Resume+Analysis" :
-                                feature.href === "/trends" ? "https://placehold.co/400x200/10b981/ffffff?text=Market+Trends" :
-                                "https://placehold.co/400x200/8b5cf6/ffffff?text=Interview+Prep"}
+                          src={feature.href === "/analyze" ? "https://images.unsplash.com/photo-1586281380349-632531db7ed4?auto=format&fit=crop&w=400&h=200&q=80" :
+                                feature.href === "/trends" ? "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=400&h=200&q=80" :
+                                "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=400&h=200&q=80"}
                           alt={feature.title}
                           width={400}
                           height={200}
                           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                          unoptimized
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-card to-transparent" />
                       </div>
@@ -408,14 +417,13 @@ export default function Home() {
                   <Card className="border-border/50 bg-card/80 h-full overflow-hidden group">
                     <div className="relative h-32 overflow-hidden">
                       <Image
-                        src={index === 0 ? "https://placehold.co/400x150/f59e0b/ffffff?text=First+Job" :
-                              index === 1 ? "https://placehold.co/400x150/3b82f6/ffffff?text=Career+Switch" :
-                              "https://placehold.co/400x150/10b981/ffffff?text=Higher+Salary"}
+                        src={index === 0 ? "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=400&h=150&q=80" :
+                              index === 1 ? "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=400&h=150&q=80" :
+                              "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=400&h=150&q=80"}
                         alt={guide.title}
                         width={400}
                         height={150}
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                        unoptimized
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-card to-transparent" />
                     </div>
