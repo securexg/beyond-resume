@@ -335,7 +335,7 @@ export default function Home() {
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 rounded-3xl blur-2xl" />
                 <Image
-                  src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&h=500&q=80"
+                  src="/images/pexels/hero-team.jpeg"
                   alt="Career professionals working together"
                   width={600}
                   height={500}
@@ -463,10 +463,10 @@ export default function Home() {
                     <Card className="border-border/50 hover:border-primary/30 bg-card/50 hover:bg-card transition-all duration-300 h-full group cursor-pointer overflow-hidden">
                       <div className="relative h-40 overflow-hidden">
                         <Image
-                          src={feature.href === "/analyze" ? "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=400&h=200&q=80" :
-                                feature.href === "/trends" ? "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=400&h=200&q=80" :
-                                feature.href === "/interview-prep" ? "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=400&h=200&q=80" :
-                                "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=400&h=200&q=80"}
+                          src={feature.href === "/analyze" ? "/images/pexels/feat-analyze.jpeg" :
+                                feature.href === "/trends" ? "/images/pexels/feat-trends.jpeg" :
+                                feature.href === "/interview-prep" ? "/images/pexels/feat-interview.jpeg" :
+                                "/images/pexels/feat-workspace.jpeg"}
                           alt={feature.title}
                           width={400}
                           height={200}
@@ -522,9 +522,9 @@ export default function Home() {
                   <Card className="border-border/50 bg-card/80 h-full overflow-hidden group">
                     <div className="relative h-32 overflow-hidden">
                       <Image
-                        src={index === 0 ? "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=400&h=150&q=80" :
-                              index === 1 ? "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=400&h=150&q=80" :
-                              "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=400&h=150&q=80"}
+                        src={index === 0 ? "/images/pexels/guide-firstjob.jpeg" :
+                              index === 1 ? "/images/pexels/guide-midcareer.jpeg" :
+                              "/images/pexels/guide-leadership.jpeg"}
                         alt={guide.title}
                         width={400}
                         height={150}
@@ -693,12 +693,12 @@ export default function Home() {
                   <Card className="border-border/50 bg-card/80 h-full hover:shadow-lg transition-shadow cursor-pointer overflow-hidden group">
                     <div className="relative h-40 overflow-hidden">
                       <Image
-                        src={index === 0 ? "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=400&h=200&q=80" :
-                              index === 1 ? "https://images.unsplash.com/photo-1586281380349-632531db7ed4?auto=format&fit=crop&w=400&h=200&q=80" :
-                              index === 2 ? "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=400&h=200&q=80" :
-                              index === 3 ? "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=400&h=200&q=80" :
-                              index === 4 ? "https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=400&h=200&q=80" :
-                              "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=400&h=200&q=80"}
+                        src={index === 0 ? "/images/pexels/art-campus.jpeg" :
+                              index === 1 ? "/images/pexels/art-resume.jpeg" :
+                              index === 2 ? "/images/pexels/art-coding.jpeg" :
+                              index === 3 ? "/images/pexels/art-govtexam.jpeg" :
+                              index === 4 ? "/images/pexels/art-linkedin.jpeg" :
+                              "/images/pexels/art-salary.jpeg"}
                         alt={article.title}
                         width={400}
                         height={200}
