@@ -22,6 +22,7 @@ export default function AnalyzePage() {
   const [inputMethod, setInputMethod] = useState<"pdf" | "text">("pdf");
   const [fetchingLinkedIn, setFetchingLinkedIn] = useState(false);
   const [linkedinError, setLinkedinError] = useState<string | null>(null);
+  const [pdfError, setPdfError] = useState<string | null>(null);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     accept: {
@@ -32,10 +33,16 @@ export default function AnalyzePage() {
       if (acceptedFiles.length > 0) {
         const selectedFile = acceptedFiles[0];
         setFile(selectedFile);
+        setPdfError(null);
         
-        // Extract text from PDF
-        const text = await extractTextFromPDF(selectedFile);
-        setResumeText(text);
+        try {
+          // Extract text from PDF
+          const text = await extractTextFromPDF(selectedFile);
+          setResumeText(text);
+        } catch (error) {
+          setPdfError(error instanceof Error ? error.message : "Failed to extract text from PDF");
+          console.error("PDF extraction error:", error);
+        }
       }
     },
   });
@@ -258,6 +265,9 @@ export default function AnalyzePage() {
                           </div>
                         )}
                       </div>
+                    )}
+                    {pdfError && (
+                      <p className="text-sm text-red-500">{pdfError}</p>
                     )}
 
                     {/* Text Input */}
