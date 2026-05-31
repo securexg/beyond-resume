@@ -6,20 +6,123 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { motion, AnimatePresence } from "framer-motion";
-import { Cpu, TrendingUp, ArrowRight, Sparkles, Lightbulb, Target, Zap, CheckCircle, Heart } from "lucide-react";
+import {
+  TrendingUp,
+  ArrowRight,
+  Sparkles,
+  Lightbulb,
+  Target,
+  Zap,
+  CheckCircle,
+  Heart,
+  FileText,
+  GraduationCap,
+  BarChart3,
+  BookOpen,
+  Users,
+  Brain,
+  Shield,
+  Rocket,
+} from "lucide-react";
 
 const tips = [
-  { icon: Lightbulb, text: "Start building your professional network early - it's your biggest asset", color: "text-yellow-500" },
-  { icon: Target, text: "Focus on skills that match market demand - Technology +45% growth", color: "text-blue-500" },
-  { icon: Zap, text: "AI/ML roles are booming - consider upskilling in this area", color: "text-purple-500" },
-  { icon: Heart, text: "Your passion matters - align career with what you love", color: "text-pink-500" },
-  { icon: CheckCircle, text: "Build projects that solve real problems - they speak louder than grades", color: "text-green-500" },
+  { icon: Lightbulb, text: "80% of jobs are filled through networking — start building connections early", color: "text-yellow-400" },
+  { icon: Target, text: "AI/ML engineers saw a 45% salary increase in India this year", color: "text-cyan-400" },
+  { icon: Zap, text: "Candidates with ATS-optimized resumes are 3x more likely to get interviews", color: "text-purple-400" },
+  { icon: Heart, text: "Companies hiring for culture fit value passion projects — showcase yours", color: "text-pink-400" },
+  { icon: CheckCircle, text: "Mock interviews improve success rate by 60% — practice with our prep tool", color: "text-emerald-400" },
+  { icon: Brain, text: "Top recruiters spend 7 seconds on a resume — make every word count", color: "text-orange-400" },
+];
+
+const platformFeatures = [
+  {
+    icon: FileText,
+    title: "Resume & ATS Analysis",
+    description: "Upload your resume and get an instant ATS score, keyword gaps, and rewrite suggestions powered by AI.",
+    href: "/analyze",
+    color: "from-cyan-500/20 to-teal-500/20",
+    iconColor: "text-cyan-400",
+  },
+  {
+    icon: BarChart3,
+    title: "Hiring Probability Score",
+    description: "Know your chances before you apply. Get a breakdown of skills match, experience, and education fit.",
+    href: "/analyze",
+    color: "from-purple-500/20 to-violet-500/20",
+    iconColor: "text-purple-400",
+  },
+  {
+    icon: TrendingUp,
+    title: "Salary Benchmarks",
+    description: "Compare expected salary ranges for your target role across Indian cities with real market data.",
+    href: "/trends",
+    color: "from-emerald-500/20 to-green-500/20",
+    iconColor: "text-emerald-400",
+  },
+  {
+    icon: Target,
+    title: "Role Recommendations",
+    description: "Based on your skills, we suggest the best-fit roles you might not have considered.",
+    href: "/analyze",
+    color: "from-orange-500/20 to-amber-500/20",
+    iconColor: "text-orange-400",
+  },
+  {
+    icon: BookOpen,
+    title: "Skill Gap Roadmap",
+    description: "Discover missing skills and get curated learning resources with time estimates to close the gap.",
+    href: "/analyze",
+    color: "from-blue-500/20 to-indigo-500/20",
+    iconColor: "text-blue-400",
+  },
+  {
+    icon: GraduationCap,
+    title: "Interview Preparation",
+    description: "Practice behavioral, technical, and HR questions with expert tips tailored to your target role.",
+    href: "/interview-prep",
+    color: "from-pink-500/20 to-rose-500/20",
+    iconColor: "text-pink-400",
+  },
+];
+
+const careerGuides = [
+  {
+    icon: Shield,
+    title: "First Job After College?",
+    points: [
+      "Start with internships — 70% convert to full-time offers",
+      "Build 2-3 strong projects that solve real problems",
+      "Tailor your resume for each application",
+      "Practice the STAR method for behavioral interviews",
+    ],
+  },
+  {
+    icon: Rocket,
+    title: "Switching Careers?",
+    points: [
+      "Identify transferable skills from your current role",
+      "Take 1-2 certifications in your target domain",
+      "Network with professionals in the new field",
+      "Start with bridge roles that use both skill sets",
+    ],
+  },
+  {
+    icon: Users,
+    title: "Want a Higher Salary?",
+    points: [
+      "Research market rates on Glassdoor and Naukri",
+      "Quantify your achievements with numbers",
+      "Upskill in high-demand areas (AI, Cloud, Product)",
+      "Negotiate with competing offers when possible",
+    ],
+  },
 ];
 
 const marketInsights = [
-  { sector: "Technology", growth: "+45%", insight: "AI/ML and Cloud Computing leading growth", icon: Cpu },
-  { sector: "Design", growth: "+35%", insight: "UX/UI and Product Design growing rapidly", icon: Sparkles },
-  { sector: "Management", growth: "+28%", insight: "Product and Project Management in demand", icon: Target },
+  { sector: "Technology", growth: "+45%", roles: "AI Engineer, Cloud Architect, DevOps", salary: "₹25-50 LPA", color: "border-cyan-500/30" },
+  { sector: "Product & Design", growth: "+35%", roles: "Product Manager, UX Designer, Design Lead", salary: "₹18-35 LPA", color: "border-purple-500/30" },
+  { sector: "Management", growth: "+28%", roles: "Scrum Master, Ops Manager, Strategy Lead", salary: "₹20-40 LPA", color: "border-emerald-500/30" },
+  { sector: "Data & Analytics", growth: "+40%", roles: "Data Scientist, ML Engineer, BI Analyst", salary: "₹22-45 LPA", color: "border-orange-500/30" },
 ];
 
 export default function Home() {
@@ -28,37 +131,31 @@ export default function Home() {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentTip((prev) => (prev + 1) % tips.length);
-    }, 5000);
+    }, 4000);
     return () => clearInterval(interval);
   }, []);
 
   return (
     <div className="min-h-screen bg-background font-sans">
       {/* Navigation */}
-      <nav className="fixed top-0 w-full z-50 bg-background/95 backdrop-blur-md border-b border-border">
+      <nav className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-border/50">
         <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-lg flex items-center justify-center">
-              <Image src="/logo.png" alt="CareerOS Logo" width={40} height={40} />
-            </div>
-            <div>
-              <span className="font-heading font-semibold text-xl tracking-wide">CareerOS</span>
-              <p className="text-xs text-muted-foreground">Your Career Operating System</p>
-            </div>
-          </div>
-          <div className="flex items-center gap-4">
+          <Link href="/" className="flex items-center">
+            <Image src="/logo.png" alt="CareerOS" width={44} height={44} className="rounded-lg" />
+          </Link>
+          <div className="flex items-center gap-2">
             <Link href="/trends">
-              <Button variant="ghost" size="sm">Market Insights</Button>
+              <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">Market Insights</Button>
             </Link>
             <Link href="/analyze">
-              <Button variant="ghost" size="sm">Resume Analysis</Button>
+              <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">Resume Analysis</Button>
             </Link>
             <Link href="/interview-prep">
-              <Button variant="ghost" size="sm">Interview Prep</Button>
+              <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">Interview Prep</Button>
             </Link>
             <Link href="/onboarding">
-              <Button size="sm" className="gap-2">
-                Start Journey
+              <Button size="sm" className="gap-2 ml-2">
+                Get Started
                 <ArrowRight className="w-4 h-4" />
               </Button>
             </Link>
@@ -67,48 +164,50 @@ export default function Home() {
       </nav>
 
       {/* Hero Section */}
-      <div className="relative overflow-hidden pt-32 pb-20">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-accent/5" />
-        
+      <div className="relative overflow-hidden pt-28 pb-20">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/8 via-background to-accent/8" />
+        <div className="absolute top-20 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-accent/5 rounded-full blur-3xl" />
+
         <div className="relative max-w-7xl mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
-              className="space-y-6"
+              className="space-y-8"
             >
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.1, duration: 0.5 }}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium"
               >
                 <Sparkles className="w-4 h-4" />
-                Personalized Career Guidance
+                AI Career Intelligence Platform
               </motion.div>
-              
+
               <motion.h1
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 0.6 }}
-                className="font-heading text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tight"
+                className="font-heading text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tight leading-[1.1]"
               >
-                Your Career
-                <span className="block bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                  Operating System
+                Don&apos;t just search jobs
+                <span className="block bg-gradient-to-r from-primary via-cyan-400 to-accent bg-clip-text text-transparent">
+                  engineer your career.
                 </span>
               </motion.h1>
-              
+
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3, duration: 0.6 }}
-                className="text-lg md:text-xl text-muted-foreground max-w-lg leading-relaxed"
+                className="text-lg text-muted-foreground max-w-lg leading-relaxed"
               >
-                We understand every student is unique. Get personalized career insights, skill recommendations, and guidance tailored to your journey.
+                CareerOS fuses your profile, job market trends, and AI to deliver personalized role recommendations, skill-gap analysis, and interview prep — acting as your true career advisor.
               </motion.p>
-              
+
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -121,6 +220,12 @@ export default function Home() {
                     <ArrowRight className="w-5 h-5" />
                   </Button>
                 </Link>
+                <Link href="/analyze">
+                  <Button variant="outline" size="lg" className="text-lg px-8 py-6 gap-2">
+                    <FileText className="w-5 h-5" />
+                    Analyze Resume
+                  </Button>
+                </Link>
               </motion.div>
 
               <motion.div
@@ -130,75 +235,68 @@ export default function Home() {
                 className="flex items-center gap-6 text-sm text-muted-foreground"
               >
                 <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 rounded-full bg-green-500" />
-                  AI-Powered Insights
+                  <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                  AI-Powered
                 </div>
                 <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 rounded-full bg-green-500" />
-                  Personalized for You
+                  <div className="w-2 h-2 rounded-full bg-cyan-500 animate-pulse" />
+                  Personalized
                 </div>
                 <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 rounded-full bg-green-500" />
+                  <div className="w-2 h-2 rounded-full bg-purple-500 animate-pulse" />
                   Always Free
                 </div>
               </motion.div>
             </motion.div>
 
+            {/* Hero Card - Live Market Data */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.3, duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
               className="relative"
             >
-              <Card className="border-border/50 bg-gradient-to-br from-card to-background shadow-2xl">
-                <CardContent className="p-8">
-                  <div className="space-y-6">
-                    <div className="flex items-center gap-3 pb-4 border-b border-border/50">
-                      <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center">
-                        <TrendingUp className="w-6 h-6 text-primary" />
-                      </div>
-                      <div>
-                        <p className="font-heading font-semibold text-lg">Market Insight</p>
-                        <p className="text-sm text-muted-foreground">Technology sector growing +45%</p>
-                      </div>
+              <Card className="border-border/50 bg-card/80 backdrop-blur shadow-2xl shadow-primary/5">
+                <CardContent className="p-6 space-y-5">
+                  <div className="flex items-center gap-3 pb-4 border-b border-border/50">
+                    <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center">
+                      <TrendingUp className="w-5 h-5 text-primary" />
                     </div>
-                    
-                    <div className="space-y-4">
-                      <div className="flex items-center justify-between">
-                        <span className="text-sm text-muted-foreground">AI/ML</span>
-                        <div className="flex items-center gap-2">
-                          <div className="w-32 h-2 bg-muted rounded-full overflow-hidden">
-                            <div className="h-full bg-primary w-[85%]" />
-                          </div>
-                          <span className="text-sm font-medium">85%</span>
-                        </div>
-                      </div>
-                      <div className="flex items-center justify-between">
-                        <span className="text-sm text-muted-foreground">Cloud</span>
-                        <div className="flex items-center gap-2">
-                          <div className="w-32 h-2 bg-muted rounded-full overflow-hidden">
-                            <div className="h-full bg-primary w-[72%]" />
-                          </div>
-                          <span className="text-sm font-medium">72%</span>
-                        </div>
-                      </div>
-                      <div className="flex items-center justify-between">
-                        <span className="text-sm text-muted-foreground">DevOps</span>
-                        <div className="flex items-center gap-2">
-                          <div className="w-32 h-2 bg-muted rounded-full overflow-hidden">
-                            <div className="h-full bg-primary w-[68%]" />
-                          </div>
-                          <span className="text-sm font-medium">68%</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="pt-4 text-center">
-                      <p className="text-sm text-muted-foreground">
-                        Based on your interests, we recommend focusing on these skills
-                      </p>
+                    <div>
+                      <p className="font-heading font-semibold">India Job Market 2026</p>
+                      <p className="text-xs text-muted-foreground">Real-time sector growth</p>
                     </div>
                   </div>
+
+                  {[
+                    { name: "AI / Machine Learning", pct: 92 },
+                    { name: "Cloud & DevOps", pct: 78 },
+                    { name: "Product Management", pct: 71 },
+                    { name: "Data Science", pct: 85 },
+                    { name: "UX / Product Design", pct: 65 },
+                  ].map((skill) => (
+                    <div key={skill.name} className="space-y-1.5">
+                      <div className="flex items-center justify-between text-sm">
+                        <span className="text-muted-foreground">{skill.name}</span>
+                        <span className="font-medium text-primary">{skill.pct}%</span>
+                      </div>
+                      <div className="w-full h-1.5 bg-muted rounded-full overflow-hidden">
+                        <motion.div
+                          initial={{ width: 0 }}
+                          animate={{ width: `${skill.pct}%` }}
+                          transition={{ delay: 0.8, duration: 1, ease: "easeOut" }}
+                          className="h-full bg-gradient-to-r from-primary to-cyan-400 rounded-full"
+                        />
+                      </div>
+                    </div>
+                  ))}
+
+                  <Link href="/trends" className="block pt-2">
+                    <Button variant="ghost" size="sm" className="w-full text-primary gap-1">
+                      View Full Market Analysis
+                      <ArrowRight className="w-3 h-3" />
+                    </Button>
+                  </Link>
                 </CardContent>
               </Card>
             </motion.div>
@@ -206,50 +304,36 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Flowing Tips Section */}
-      <div className="py-16 bg-muted/30">
+      {/* Flowing Tips */}
+      <div className="py-12 border-y border-border/30">
         <div className="max-w-4xl mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-center mb-8"
-          >
-            <h2 className="font-heading text-2xl font-semibold mb-2">Career Tips for You</h2>
-            <p className="text-muted-foreground">Personalized guidance updated regularly</p>
-          </motion.div>
-
           <AnimatePresence mode="wait">
             <motion.div
               key={currentTip}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.5 }}
+              exit={{ opacity: 0, y: -15 }}
+              transition={{ duration: 0.4 }}
+              className="flex items-center gap-4"
             >
-              <Card className="border-primary/20 bg-primary/5">
-                <CardContent className="p-8">
-                  <div className="flex items-center gap-4">
-                    <div className={`w-16 h-16 rounded-xl bg-background flex items-center justify-center flex-shrink-0`}>
-                      {(() => {
-                        const TipIcon = tips[currentTip].icon;
-                        return <TipIcon className={`w-8 h-8 ${tips[currentTip].color}`} />;
-                      })()}
-                    </div>
-                    <div className="flex-1">
-                      <p className="text-lg font-medium">{tips[currentTip].text}</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+              <div className="w-12 h-12 rounded-xl bg-card border border-border/50 flex items-center justify-center flex-shrink-0">
+                {(() => {
+                  const TipIcon = tips[currentTip].icon;
+                  return <TipIcon className={`w-6 h-6 ${tips[currentTip].color}`} />;
+                })()}
+              </div>
+              <p className="text-muted-foreground">
+                <span className="text-foreground font-medium">Career Tip:</span>{" "}
+                {tips[currentTip].text}
+              </p>
             </motion.div>
           </AnimatePresence>
-
-          <div className="flex justify-center gap-2 mt-4">
+          <div className="flex justify-center gap-1.5 mt-4">
             {tips.map((_, i) => (
               <div
                 key={i}
-                className={`w-2 h-2 rounded-full transition-colors ${
-                  i === currentTip ? "bg-primary" : "bg-muted"
+                className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
+                  i === currentTip ? "bg-primary w-6" : "bg-muted"
                 }`}
               />
             ))}
@@ -257,103 +341,191 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Market Insights Section */}
+      {/* Platform Features - What CareerOS Does */}
       <div className="py-20">
         <div className="max-w-7xl mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-12"
+            className="text-center mb-14"
           >
-            <h2 className="font-heading text-3xl font-semibold mb-4">
-              Market Insights Tailored for You
+            <h2 className="font-heading text-3xl md:text-4xl font-semibold mb-4">
+              Everything You Need to{" "}
+              <span className="bg-gradient-to-r from-primary to-cyan-400 bg-clip-text text-transparent">
+                Land Your Dream Role
+              </span>
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Understand where the opportunities are and align your skills accordingly
+              From resume analysis to interview prep — CareerOS covers every step of your career journey
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {platformFeatures.map((feature, index) => {
+              const FeatureIcon = feature.icon;
+              return (
+                <motion.div
+                  key={feature.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.08, duration: 0.5 }}
+                >
+                  <Link href={feature.href}>
+                    <Card className="border-border/50 hover:border-primary/30 bg-card/50 hover:bg-card transition-all duration-300 h-full group cursor-pointer">
+                      <CardContent className="p-6 space-y-4">
+                        <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${feature.color} flex items-center justify-center`}>
+                          <FeatureIcon className={`w-6 h-6 ${feature.iconColor}`} />
+                        </div>
+                        <h3 className="font-heading font-semibold text-lg group-hover:text-primary transition-colors">{feature.title}</h3>
+                        <p className="text-sm text-muted-foreground leading-relaxed">{feature.description}</p>
+                      </CardContent>
+                    </Card>
+                  </Link>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+
+      {/* Career Guides */}
+      <div className="py-20 bg-card/30">
+        <div className="max-w-7xl mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-14"
+          >
+            <h2 className="font-heading text-3xl md:text-4xl font-semibold mb-4">
+              Actionable Career Guides
+            </h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Practical advice for wherever you are in your career journey
             </p>
           </motion.div>
 
           <div className="grid md:grid-cols-3 gap-6">
+            {careerGuides.map((guide, index) => {
+              const GuideIcon = guide.icon;
+              return (
+                <motion.div
+                  key={guide.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1, duration: 0.5 }}
+                >
+                  <Card className="border-border/50 bg-card/80 h-full">
+                    <CardContent className="p-6 space-y-5">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-lg bg-primary/15 flex items-center justify-center">
+                          <GuideIcon className="w-5 h-5 text-primary" />
+                        </div>
+                        <h3 className="font-heading font-semibold">{guide.title}</h3>
+                      </div>
+                      <ul className="space-y-3">
+                        {guide.points.map((point, pi) => (
+                          <li key={pi} className="flex items-start gap-2.5 text-sm text-muted-foreground">
+                            <CheckCircle className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+                            <span>{point}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+
+      {/* Market Snapshot */}
+      <div className="py-20">
+        <div className="max-w-7xl mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-14"
+          >
+            <h2 className="font-heading text-3xl md:text-4xl font-semibold mb-4">
+              India Job Market Snapshot
+            </h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Live sector-wise growth, top roles, and salary benchmarks
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
             {marketInsights.map((insight, index) => (
               <motion.div
                 key={insight.sector}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.1, duration: 0.5 }}
+                transition={{ delay: index * 0.08, duration: 0.5 }}
               >
-                <Card className="border-border/50 hover:shadow-lg transition-shadow h-full">
-                  <CardContent className="p-6 space-y-4">
-                    <div className="flex items-center gap-3">
-                      <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center">
-                        <insight.icon className="w-6 h-6 text-primary" />
-                      </div>
-                      <div>
-                        <h3 className="font-heading font-semibold">{insight.sector}</h3>
-                        <div className="flex items-center gap-1 text-green-600 font-medium">
-                          <TrendingUp className="w-4 h-4" />
-                          {insight.growth}
-                        </div>
-                      </div>
+                <Card className={`border ${insight.color} bg-card/50 h-full`}>
+                  <CardContent className="p-5 space-y-3">
+                    <div className="flex items-center justify-between">
+                      <h3 className="font-heading font-semibold text-sm">{insight.sector}</h3>
+                      <span className="text-emerald-400 font-semibold text-sm">{insight.growth}</span>
                     </div>
-                    <p className="text-sm text-muted-foreground">{insight.insight}</p>
-                    <Button variant="outline" size="sm" className="w-full">
-                      Explore {insight.sector}
-                    </Button>
+                    <p className="text-xs text-muted-foreground">{insight.roles}</p>
+                    <div className="pt-2 border-t border-border/30">
+                      <p className="text-xs text-muted-foreground">Avg Salary</p>
+                      <p className="font-semibold text-sm text-primary">{insight.salary}</p>
+                    </div>
                   </CardContent>
                 </Card>
               </motion.div>
             ))}
           </div>
+
+          <div className="text-center mt-8">
+            <Link href="/trends">
+              <Button variant="outline" className="gap-2">
+                Explore Full Market Trends
+                <ArrowRight className="w-4 h-4" />
+              </Button>
+            </Link>
+          </div>
         </div>
       </div>
 
-      {/* Counseling Section */}
-      <div className="py-20 bg-muted/30">
-        <div className="max-w-4xl mx-auto px-4">
+      {/* CTA Section */}
+      <div className="py-20 bg-gradient-to-br from-primary/10 via-background to-accent/10">
+        <div className="max-w-3xl mx-auto px-4 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center space-y-6"
+            className="space-y-6"
           >
-            <h2 className="font-heading text-3xl font-semibold">
-              We&apos;re Here to Guide You
+            <h2 className="font-heading text-3xl md:text-4xl font-semibold">
+              Ready to Take Control of Your Career?
             </h2>
             <p className="text-muted-foreground text-lg max-w-xl mx-auto">
-              Every step of your career journey, we provide personalized guidance, motivation, and insights to help you succeed.
+              Upload your resume, discover your strengths, close skill gaps, and prepare for interviews — all in one place.
             </p>
-            <div className="grid md:grid-cols-3 gap-6 mt-8">
-              <div className="text-center space-y-3">
-                <div className="w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center mx-auto">
-                  <Target className="w-8 h-8 text-primary" />
-                </div>
-                <h3 className="font-heading font-semibold">Personalized Goals</h3>
-                <p className="text-sm text-muted-foreground">Set goals based on your interests and market trends</p>
-              </div>
-              <div className="text-center space-y-3">
-                <div className="w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center mx-auto">
-                  <Zap className="w-8 h-8 text-primary" />
-                </div>
-                <h3 className="font-heading font-semibold">Skill Roadmap</h3>
-                <p className="text-sm text-muted-foreground">Step-by-step guidance to build in-demand skills</p>
-              </div>
-              <div className="text-center space-y-3">
-                <div className="w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center mx-auto">
-                  <Heart className="w-8 h-8 text-primary" />
-                </div>
-                <h3 className="font-heading font-semibold">Motivation</h3>
-                <p className="text-sm text-muted-foreground">Stay motivated with personalized tips and encouragement</p>
-              </div>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
+              <Link href="/onboarding">
+                <Button size="lg" className="text-lg px-8 py-6 gap-2">
+                  Start Your Journey
+                  <ArrowRight className="w-5 h-5" />
+                </Button>
+              </Link>
+              <Link href="/interview-prep">
+                <Button variant="outline" size="lg" className="text-lg px-8 py-6 gap-2">
+                  <GraduationCap className="w-5 h-5" />
+                  Practice Interviews
+                </Button>
+              </Link>
             </div>
-            <Link href="/onboarding">
-              <Button size="lg" className="text-lg px-8 py-6 mt-8">
-                Start Your Personalized Journey
-              </Button>
-            </Link>
           </motion.div>
         </div>
       </div>
