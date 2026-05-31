@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import Header from "@/components/Header";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
@@ -83,25 +84,7 @@ export default function OnboardingPage() {
 
   return (
     <div className="min-h-screen bg-background font-sans">
-      {/* Navigation */}
-      <nav className="fixed top-0 w-full z-50 bg-background/95 backdrop-blur-md border-b border-border">
-        <div className="max-w-7xl mx-auto px-4 h-24 flex items-center justify-between">
-          <Link href="/" className="flex items-center group">
-            <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-primary to-cyan-400 rounded-2xl blur-lg opacity-40 group-hover:opacity-60 transition-opacity duration-300" />
-              <Image src="/logo.png" alt="CareerOS" width={120} height={120} className="relative rounded-2xl shadow-2xl group-hover:scale-105 transition-transform duration-300" />
-            </div>
-          </Link>
-          <Link href="/">
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Button variant="ghost" size="sm">
-                <ArrowLeft className="w-4 h-4 mr-2" />
-                Back to Home
-              </Button>
-            </motion.div>
-          </Link>
-        </div>
-      </nav>
+      <Header />
 
       <div className="pt-24 pb-12 px-4">
         <div className="max-w-3xl mx-auto">

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import Header from "@/components/Header";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -16,8 +17,6 @@ import {
   CheckCircle,
   ChevronDown,
   ChevronUp,
-  Menu,
-  X,
 } from "lucide-react";
 
 const interviewCategories = [
@@ -74,7 +73,6 @@ const interviewCategories = [
 export default function InterviewPrepPage() {
   const [expandedCategory, setExpandedCategory] = useState<string | null>("behavioral");
   const [completedQuestions, setCompletedQuestions] = useState<string[]>([]);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const toggleCategory = (id: string) => {
     setExpandedCategory(prev => prev === id ? null : id);
@@ -91,85 +89,7 @@ export default function InterviewPrepPage() {
 
   return (
     <div className="min-h-screen bg-background font-sans">
-      {/* Navigation */}
-      <nav className="w-full bg-background/95 backdrop-blur-md border-b border-border">
-        <div className="max-w-7xl mx-auto px-4 h-16 sm:h-24 flex items-center justify-between">
-          <Link href="/" className="flex items-center group">
-            <Image 
-              src="/logo.png" 
-              alt="CareerOS" 
-              width={320} 
-              height={80} 
-              className="h-16 sm:h-20 w-auto object-contain group-hover:scale-105 transition-transform duration-300" 
-            />
-          </Link>
-          
-          {/* Desktop Menu */}
-          <div className="hidden sm:flex items-center gap-2">
-            <Link href="/trends">
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">Market Insights</Button>
-              </motion.div>
-            </Link>
-            <Link href="/analyze">
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">Resume Analysis</Button>
-              </motion.div>
-            </Link>
-            <Link href="/jobs">
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">Jobs</Button>
-              </motion.div>
-            </Link>
-            <Link href="/">
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Button size="sm" className="gap-2 ml-2">
-                  Home
-                  <ArrowRight className="w-4 h-4" />
-                </Button>
-              </motion.div>
-            </Link>
-          </div>
-
-          {/* Mobile Menu Button */}
-          <button 
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="sm:hidden p-2 rounded-lg hover:bg-accent transition-colors"
-          >
-            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
-        </div>
-
-        {/* Mobile Menu */}
-        <AnimatePresence>
-          {mobileMenuOpen && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              className="sm:hidden border-b border-border/50 bg-background/95 backdrop-blur-xl"
-            >
-              <div className="px-4 py-4 space-y-2">
-                <Link href="/trends" onClick={() => setMobileMenuOpen(false)}>
-                  <Button variant="ghost" size="sm" className="w-full justify-start">Market Insights</Button>
-                </Link>
-                <Link href="/analyze" onClick={() => setMobileMenuOpen(false)}>
-                  <Button variant="ghost" size="sm" className="w-full justify-start">Resume Analysis</Button>
-                </Link>
-                <Link href="/jobs" onClick={() => setMobileMenuOpen(false)}>
-                  <Button variant="ghost" size="sm" className="w-full justify-start">Jobs</Button>
-                </Link>
-                <Link href="/" onClick={() => setMobileMenuOpen(false)}>
-                  <Button size="sm" className="w-full gap-2">
-                    Home
-                    <ArrowRight className="w-4 h-4" />
-                  </Button>
-                </Link>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </nav>
+      <Header />
 
       <div className="pt-16 sm:pt-24 pb-12 px-4">
         <div className="max-w-4xl mx-auto">

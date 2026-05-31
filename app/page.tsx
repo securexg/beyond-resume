@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import Header from "@/components/Header";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -24,8 +25,6 @@ import {
   Brain,
   Shield,
   Rocket,
-  Menu,
-  X,
   MapPin,
   Mail,
 } from "lucide-react";
@@ -136,7 +135,6 @@ const marketInsights = [
 
 export default function Home() {
   const [currentTip, setCurrentTip] = useState(0);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -147,93 +145,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-background font-sans">
-      {/* Navigation */}
-      <nav className="w-full bg-background/80 backdrop-blur-xl border-b border-border/50">
-        <div className="max-w-7xl mx-auto px-4 h-16 sm:h-24 flex items-center justify-between">
-          <Link href="/" className="flex items-center group">
-            <Image 
-              src="/logo.png" 
-              alt="CareerOS" 
-              width={320} 
-              height={80} 
-              className="h-16 sm:h-20 w-auto object-contain group-hover:scale-105 transition-transform duration-300" 
-            />
-          </Link>
-          
-          {/* Desktop Menu */}
-          <div className="hidden sm:flex items-center gap-2">
-            <Link href="/trends">
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">Market Insights</Button>
-              </motion.div>
-            </Link>
-            <Link href="/jobs">
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">Jobs</Button>
-              </motion.div>
-            </Link>
-            <Link href="/analyze">
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">Resume Analysis</Button>
-              </motion.div>
-            </Link>
-            <Link href="/interview-prep">
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">Interview Prep</Button>
-              </motion.div>
-            </Link>
-            <Link href="/onboarding">
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Button size="sm" className="gap-2 ml-2">
-                  Get Started
-                  <ArrowRight className="w-4 h-4" />
-                </Button>
-              </motion.div>
-            </Link>
-          </div>
-
-          {/* Mobile Menu Button */}
-          <button 
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="sm:hidden p-2 rounded-lg hover:bg-accent transition-colors"
-          >
-            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
-        </div>
-
-        {/* Mobile Menu */}
-        <AnimatePresence>
-          {mobileMenuOpen && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              className="sm:hidden border-b border-border/50 bg-background/95 backdrop-blur-xl"
-            >
-              <div className="px-4 py-4 space-y-2">
-                <Link href="/trends" onClick={() => setMobileMenuOpen(false)}>
-                  <Button variant="ghost" size="sm" className="w-full justify-start">Market Insights</Button>
-                </Link>
-                <Link href="/jobs" onClick={() => setMobileMenuOpen(false)}>
-                  <Button variant="ghost" size="sm" className="w-full justify-start">Jobs</Button>
-                </Link>
-                <Link href="/analyze" onClick={() => setMobileMenuOpen(false)}>
-                  <Button variant="ghost" size="sm" className="w-full justify-start">Resume Analysis</Button>
-                </Link>
-                <Link href="/interview-prep" onClick={() => setMobileMenuOpen(false)}>
-                  <Button variant="ghost" size="sm" className="w-full justify-start">Interview Prep</Button>
-                </Link>
-                <Link href="/onboarding" onClick={() => setMobileMenuOpen(false)}>
-                  <Button size="sm" className="w-full gap-2">
-                    Get Started
-                    <ArrowRight className="w-4 h-4" />
-                  </Button>
-                </Link>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </nav>
+      <Header />
 
       {/* Hero Section */}
       <div className="relative overflow-hidden pt-20 sm:pt-28 pb-20">
@@ -629,8 +541,70 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Blog/Insights Section for Indian Students */}
+      {/* Entrepreneurship Glimpse */}
       <div className="py-20">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="space-y-6"
+            >
+              <Badge className="bg-orange-500/10 text-orange-400 border-orange-500/20">
+                <Rocket className="w-3 h-3 mr-1" />
+                Beyond Jobs
+              </Badge>
+              <h2 className="font-heading text-3xl md:text-4xl font-medium">
+                Career isn&apos;t just about{" "}
+                <span className="bg-gradient-to-r from-orange-400 to-amber-400 bg-clip-text text-transparent">getting a job.</span>
+              </h2>
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                Entrepreneurship is a valid and powerful career path. You don&apos;t need a tech degree, an MBA, or a family business. From Ritesh Agarwal (OYO, started at 17) to Falguni Nayar (Nykaa, started at 49) — India&apos;s greatest entrepreneurs prove that all you need is resilience, vision, and the courage to start.
+              </p>
+              <div className="grid grid-cols-3 gap-4">
+                <div className="text-center p-3 rounded-lg bg-orange-500/5 border border-orange-500/10">
+                  <p className="font-heading text-2xl font-semibold text-orange-400">100+</p>
+                  <p className="text-xs text-muted-foreground">Indian Unicorns</p>
+                </div>
+                <div className="text-center p-3 rounded-lg bg-orange-500/5 border border-orange-500/10">
+                  <p className="font-heading text-2xl font-semibold text-orange-400">3rd</p>
+                  <p className="text-xs text-muted-foreground">Largest Startup Ecosystem</p>
+                </div>
+                <div className="text-center p-3 rounded-lg bg-orange-500/5 border border-orange-500/10">
+                  <p className="font-heading text-2xl font-semibold text-orange-400">₹0</p>
+                  <p className="text-xs text-muted-foreground">Required to Start</p>
+                </div>
+              </div>
+              <Link href="/entrepreneurship">
+                <Button className="gap-2 bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white">
+                  Explore Entrepreneur Stories
+                  <ArrowRight className="w-4 h-4" />
+                </Button>
+              </Link>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="relative hidden lg:block"
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-orange-500/20 to-amber-500/20 rounded-3xl blur-2xl" />
+              <Image
+                src="/images/pexels/hero-entrepreneur.jpeg"
+                alt="Entrepreneurship"
+                width={600}
+                height={400}
+                className="relative rounded-3xl shadow-2xl object-cover"
+              />
+            </motion.div>
+          </div>
+        </div>
+      </div>
+
+      {/* Career Insights — Broader */}
+      <div className="py-20 bg-card/30">
         <div className="max-w-7xl mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -639,70 +613,35 @@ export default function Home() {
             className="text-center mb-12"
           >
             <h2 className="font-heading text-3xl md:text-4xl font-medium mb-4">
-              Career Insights for Indian Students
+              Career Insights — Tech, Non-Tech &amp; Beyond
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Expert guides tailored for the Indian job market and education system
+              Guides for every career path — placements, government exams, freelancing, entrepreneurship, creative fields, and more
             </p>
           </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
-              {
-                title: "Cracking Campus Placements",
-                description: "Complete guide to ace campus interviews at top Indian companies like TCS, Infosys, Wipro, and startups.",
-                category: "Campus",
-                readTime: "8 min read"
-              },
-              {
-                title: "Building Your First Resume",
-                description: "Step-by-step guide for freshers with no experience - how to highlight projects, skills, and achievements.",
-                category: "Resume",
-                readTime: "6 min read"
-              },
-              {
-                title: "Mastering DSA for Indian Tech Giants",
-                description: "Essential data structures and algorithms topics for FAANG and top Indian company interviews.",
-                category: "Technical",
-                readTime: "12 min read"
-              },
-              {
-                title: "Government Job Preparation",
-                description: "Complete roadmap for SSC, Banking, Railways, and UPSC exams with study strategies.",
-                category: "Government",
-                readTime: "10 min read"
-              },
-              {
-                title: "LinkedIn Profile Optimization",
-                description: "How to create a LinkedIn profile that attracts recruiters from Indian and global companies.",
-                category: "Personal Branding",
-                readTime: "7 min read"
-              },
-              {
-                title: "Salary Negotiation in India",
-                description: "Tips for negotiating salary at Indian companies - understanding market rates and benefits.",
-                category: "Career Growth",
-                readTime: "5 min read"
-              }
+              { slug: "cracking-campus-placements", title: "Cracking Campus Placements", category: "Campus", readTime: "8 min", image: "/images/pexels/art-campus.jpeg" },
+              { slug: "government-job-preparation", title: "Government Job Preparation", category: "Government", readTime: "10 min", image: "/images/pexels/art-govtexam.jpeg" },
+              { slug: "freelancing-career-guide", title: "Building a Freelancing Career", category: "Freelancing", readTime: "8 min", image: "/images/pexels/art-freelance.jpeg" },
+              { slug: "creative-careers", title: "Creative Careers: Design & Media", category: "Creative", readTime: "7 min", image: "/images/pexels/art-creative.jpeg" },
+              { slug: "entrepreneurship-mindset", title: "The Entrepreneurship Mindset", category: "Entrepreneurship", readTime: "8 min", image: "/images/pexels/art-entrepreneur.jpeg" },
+              { slug: "remote-work-guide", title: "Remote Work & Global Jobs", category: "Remote Work", readTime: "6 min", image: "/images/pexels/art-remote.jpeg" },
             ].map((article, index) => (
               <motion.div
-                key={index}
+                key={article.slug}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.08, duration: 0.5 }}
                 whileHover={{ y: -5 }}
               >
-                <Link href="/insights">
+                <Link href={`/insights/${article.slug}`}>
                   <Card className="border-border/50 bg-card/80 h-full hover:shadow-lg transition-shadow cursor-pointer overflow-hidden group">
                     <div className="relative h-40 overflow-hidden">
                       <Image
-                        src={index === 0 ? "/images/pexels/art-campus.jpeg" :
-                              index === 1 ? "/images/pexels/art-resume.jpeg" :
-                              index === 2 ? "/images/pexels/art-coding.jpeg" :
-                              index === 3 ? "/images/pexels/art-govtexam.jpeg" :
-                              index === 4 ? "/images/pexels/art-linkedin.jpeg" :
-                              "/images/pexels/art-salary.jpeg"}
+                        src={article.image}
                         alt={article.title}
                         width={400}
                         height={200}
@@ -710,13 +649,12 @@ export default function Home() {
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-card to-transparent" />
                     </div>
-                    <CardContent className="p-6 space-y-4 -mt-12 relative">
+                    <CardContent className="p-6 space-y-3 -mt-12 relative">
                       <div className="flex items-center justify-between">
                         <Badge variant="secondary" className="text-xs">{article.category}</Badge>
                         <span className="text-xs text-muted-foreground">{article.readTime}</span>
                       </div>
                       <h3 className="font-heading font-semibold text-lg leading-tight">{article.title}</h3>
-                      <p className="text-sm text-muted-foreground leading-relaxed">{article.description}</p>
                       <div className="flex items-center text-primary text-sm font-medium">
                         Read More
                         <ArrowRight className="w-4 h-4 ml-1" />
@@ -735,10 +673,12 @@ export default function Home() {
             transition={{ delay: 0.5 }}
             className="text-center mt-10"
           >
-            <Button variant="outline" className="gap-2 text-base px-6 py-5">
-              View All Articles
-              <ArrowRight className="w-4 h-4" />
-            </Button>
+            <Link href="/insights">
+              <Button variant="outline" className="gap-2 text-base px-6 py-5">
+                View All 11 Articles
+                <ArrowRight className="w-4 h-4" />
+              </Button>
+            </Link>
           </motion.div>
         </div>
       </div>
@@ -811,6 +751,9 @@ export default function Home() {
                 <Link href="/jobs" className="block text-sm text-muted-foreground hover:text-foreground transition-colors">Job Listings</Link>
                 <Link href="/analyze" className="block text-sm text-muted-foreground hover:text-foreground transition-colors">Resume Analysis</Link>
                 <Link href="/interview-prep" className="block text-sm text-muted-foreground hover:text-foreground transition-colors">Interview Prep</Link>
+                <Link href="/entrepreneurship" className="block text-sm text-muted-foreground hover:text-foreground transition-colors">Entrepreneurship</Link>
+                <Link href="/insights" className="block text-sm text-muted-foreground hover:text-foreground transition-colors">Career Insights</Link>
+                <Link href="/about" className="block text-sm text-muted-foreground hover:text-foreground transition-colors">About Us</Link>
               </div>
             </div>
             <div>

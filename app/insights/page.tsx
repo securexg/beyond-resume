@@ -2,11 +2,25 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
+import Header from "@/components/Header";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
-import { ArrowRight, ArrowLeft } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+
+const articleImages: Record<string, string> = {
+  "cracking-campus-placements": "/images/pexels/art-campus.jpeg",
+  "building-first-resume": "/images/pexels/art-resume.jpeg",
+  "mastering-dsa": "/images/pexels/art-coding.jpeg",
+  "government-job-preparation": "/images/pexels/art-govtexam.jpeg",
+  "linkedin-optimization": "/images/pexels/art-linkedin.jpeg",
+  "salary-negotiation": "/images/pexels/art-salary.jpeg",
+  "freelancing-career-guide": "/images/pexels/art-freelance.jpeg",
+  "creative-careers": "/images/pexels/art-creative.jpeg",
+  "mba-career-guide": "/images/pexels/art-mba.jpeg",
+  "remote-work-guide": "/images/pexels/art-remote.jpeg",
+  "entrepreneurship-mindset": "/images/pexels/art-entrepreneur.jpeg",
+};
 
 const articles = [
   {
@@ -56,28 +70,60 @@ const articles = [
     category: "Career Growth",
     readTime: "5 min read",
     isInternal: true
-  }
+  },
+  {
+    slug: "freelancing-career-guide",
+    title: "Building a Freelancing Career in India",
+    description: "How to start freelancing, find clients, set pricing, and build a sustainable independent career.",
+    category: "Freelancing",
+    readTime: "8 min read",
+    isInternal: true
+  },
+  {
+    slug: "creative-careers",
+    title: "Creative Careers: Design, Content & Media",
+    description: "Breaking into design, content writing, filmmaking, photography, and other creative fields.",
+    category: "Creative",
+    readTime: "7 min read",
+    isInternal: true
+  },
+  {
+    slug: "mba-career-guide",
+    title: "MBA & Higher Education Career Guide",
+    description: "Is an MBA worth it? When to pursue higher education and how it impacts your career trajectory.",
+    category: "Education",
+    readTime: "9 min read",
+    isInternal: true
+  },
+  {
+    slug: "remote-work-guide",
+    title: "Remote Work & Global Opportunities",
+    description: "How to land remote jobs with global companies, build a remote work routine, and grow your career remotely.",
+    category: "Remote Work",
+    readTime: "6 min read",
+    isInternal: true
+  },
+  {
+    slug: "entrepreneurship-mindset",
+    title: "The Entrepreneurship Mindset",
+    description: "Why entrepreneurship is a valid career path and what it takes — no tech degree required.",
+    category: "Entrepreneurship",
+    readTime: "8 min read",
+    isInternal: true
+  },
 ];
 
 export default function InsightsPage() {
   return (
     <div className="min-h-screen bg-background font-sans">
-      <div className="max-w-7xl mx-auto px-4 py-12">
-        <div className="mb-8">
-          <Link href="/">
-            <Button variant="ghost" size="sm" className="gap-2">
-              <ArrowLeft className="w-4 h-4" />
-              Back to Home
-            </Button>
-          </Link>
-        </div>
-
+      <Header />
+      <div className="max-w-7xl mx-auto px-4 pt-24 pb-12">
         <div className="text-center mb-12">
           <h1 className="font-heading text-4xl md:text-5xl font-semibold tracking-tight mb-4">
             Career Insights
           </h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Expert guides tailored for the Indian job market and education system
+            Expert guides for tech, non-tech, government, freelancing, entrepreneurship, and creative careers
           </p>
         </div>
 
@@ -94,12 +140,7 @@ export default function InsightsPage() {
                 <Card className="border-border/50 bg-card/80 h-full hover:shadow-lg transition-shadow cursor-pointer overflow-hidden group">
                   <div className="relative h-40 overflow-hidden">
                     <Image
-                      src={index === 0 ? "/images/pexels/art-campus.jpeg" :
-                            index === 1 ? "/images/pexels/art-resume.jpeg" :
-                            index === 2 ? "/images/pexels/art-coding.jpeg" :
-                            index === 3 ? "/images/pexels/art-govtexam.jpeg" :
-                            index === 4 ? "/images/pexels/art-linkedin.jpeg" :
-                            "/images/pexels/art-salary.jpeg"}
+                      src={articleImages[article.slug] || "/images/pexels/art-campus.jpeg"}
                       alt={article.title}
                       width={400}
                       height={200}
