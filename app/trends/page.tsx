@@ -138,9 +138,9 @@ export default function TrendsPage() {
               <Image 
                 src="/logo.png" 
                 alt="CareerOS" 
-                width={120} 
-                height={120} 
-                className="relative w-12 h-12 sm:w-[120px] sm:h-[120px] object-contain rounded-xl sm:rounded-2xl shadow-2xl group-hover:scale-105 transition-transform duration-300" 
+                width={56} 
+                height={56} 
+                className="relative w-10 h-10 sm:w-14 sm:h-14 object-contain rounded-xl shadow-2xl group-hover:scale-105 transition-transform duration-300" 
               />
             </div>
           </Link>
