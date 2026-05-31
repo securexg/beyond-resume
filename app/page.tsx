@@ -141,7 +141,7 @@ export default function Home() {
       <nav className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-border/50">
         <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
           <Link href="/" className="flex items-center">
-            <Image src="/logo.png" alt="CareerOS" width={56} height={56} className="rounded-lg" />
+            <Image src="/logo.png" alt="CareerOS" width={80} height={80} className="rounded-xl shadow-lg" />
           </Link>
           <div className="flex items-center gap-2">
             <Link href="/trends">
@@ -165,7 +165,7 @@ export default function Home() {
 
       {/* Hero Section */}
       <div className="relative overflow-hidden pt-28 pb-20">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/8 via-background to-accent/8" />
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-accent/5" />
         <div className="absolute top-20 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
         <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-accent/5 rounded-full blur-3xl" />
 
@@ -181,7 +181,7 @@ export default function Home() {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.1, duration: 0.5 }}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-base font-light"
               >
                 <Sparkles className="w-4 h-4" />
                 AI Career Intelligence Platform
@@ -191,10 +191,10 @@ export default function Home() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 0.6 }}
-                className="font-heading text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tight leading-[1.1]"
+                className="font-heading text-5xl md:text-6xl lg:text-7xl font-light tracking-tight leading-[1.1]"
               >
                 Don&apos;t just search jobs
-                <span className="block bg-gradient-to-r from-primary via-cyan-400 to-accent bg-clip-text text-transparent">
+                <span className="block bg-gradient-to-r from-primary via-cyan-400 to-accent bg-clip-text text-transparent font-normal">
                   engineer your career.
                 </span>
               </motion.h1>
@@ -203,7 +203,7 @@ export default function Home() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3, duration: 0.6 }}
-                className="text-lg text-muted-foreground max-w-lg leading-relaxed"
+                className="text-xl text-muted-foreground max-w-lg leading-relaxed"
               >
                 CareerOS fuses your profile, job market trends, and AI to deliver personalized role recommendations, skill-gap analysis, and interview prep — acting as your true career advisor.
               </motion.p>
@@ -232,7 +232,7 @@ export default function Home() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.6, duration: 0.5 }}
-                className="flex items-center gap-6 text-sm text-muted-foreground"
+                className="flex items-center gap-6 text-base text-muted-foreground"
               >
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
@@ -249,56 +249,27 @@ export default function Home() {
               </motion.div>
             </motion.div>
 
-            {/* Hero Card - Live Market Data */}
+            {/* Hero Image */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.3, duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
               className="relative"
             >
-              <Card className="border-border/50 bg-card/80 backdrop-blur shadow-2xl shadow-primary/5">
-                <CardContent className="p-6 space-y-5">
-                  <div className="flex items-center gap-3 pb-4 border-b border-border/50">
-                    <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center">
-                      <TrendingUp className="w-5 h-5 text-primary" />
-                    </div>
-                    <div>
-                      <p className="font-heading font-semibold">India Job Market 2026</p>
-                      <p className="text-xs text-muted-foreground">Real-time sector growth</p>
-                    </div>
-                  </div>
-
-                  {[
-                    { name: "AI / Machine Learning", pct: 92 },
-                    { name: "Cloud & DevOps", pct: 78 },
-                    { name: "Product Management", pct: 71 },
-                    { name: "Data Science", pct: 85 },
-                    { name: "UX / Product Design", pct: 65 },
-                  ].map((skill) => (
-                    <div key={skill.name} className="space-y-1.5">
-                      <div className="flex items-center justify-between text-sm">
-                        <span className="text-muted-foreground">{skill.name}</span>
-                        <span className="font-medium text-primary">{skill.pct}%</span>
-                      </div>
-                      <div className="w-full h-1.5 bg-muted rounded-full overflow-hidden">
-                        <motion.div
-                          initial={{ width: 0 }}
-                          animate={{ width: `${skill.pct}%` }}
-                          transition={{ delay: 0.8, duration: 1, ease: "easeOut" }}
-                          className="h-full bg-gradient-to-r from-primary to-cyan-400 rounded-full"
-                        />
-                      </div>
-                    </div>
-                  ))}
-
-                  <Link href="/trends" className="block pt-2">
-                    <Button variant="ghost" size="sm" className="w-full text-primary gap-1">
-                      View Full Market Analysis
-                      <ArrowRight className="w-3 h-3" />
-                    </Button>
-                  </Link>
-                </CardContent>
-              </Card>
+              <motion.div
+                animate={{ y: [0, -10, 0] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                className="relative"
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 rounded-3xl blur-2xl" />
+                <Image
+                  src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&q=80"
+                  alt="Career professionals working together"
+                  width={600}
+                  height={500}
+                  className="relative rounded-3xl shadow-2xl object-cover"
+                />
+              </motion.div>
             </motion.div>
           </div>
         </div>
@@ -350,18 +321,18 @@ export default function Home() {
             viewport={{ once: true }}
             className="text-center mb-14"
           >
-            <h2 className="font-heading text-3xl md:text-4xl font-semibold mb-4">
+            <h2 className="font-heading text-3xl md:text-4xl font-light mb-4">
               Everything You Need to{" "}
-              <span className="bg-gradient-to-r from-primary to-cyan-400 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-primary to-cyan-400 bg-clip-text text-transparent font-normal">
                 Land Your Dream Role
               </span>
             </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               From resume analysis to interview prep — CareerOS covers every step of your career journey
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {platformFeatures.map((feature, index) => {
               const FeatureIcon = feature.icon;
               return (
@@ -371,15 +342,28 @@ export default function Home() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.08, duration: 0.5 }}
+                  whileHover={{ y: -5 }}
                 >
                   <Link href={feature.href}>
-                    <Card className="border-border/50 hover:border-primary/30 bg-card/50 hover:bg-card transition-all duration-300 h-full group cursor-pointer">
-                      <CardContent className="p-6 space-y-4">
-                        <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${feature.color} flex items-center justify-center`}>
-                          <FeatureIcon className={`w-6 h-6 ${feature.iconColor}`} />
+                    <Card className="border-border/50 hover:border-primary/30 bg-card/50 hover:bg-card transition-all duration-300 h-full group cursor-pointer overflow-hidden">
+                      <div className="relative h-40 overflow-hidden">
+                        <Image
+                          src={feature.href === "/analyze" ? "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=600&q=80" :
+                                feature.href === "/trends" ? "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80" :
+                                "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&q=80"}
+                          alt={feature.title}
+                          width={400}
+                          height={200}
+                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-card to-transparent" />
+                      </div>
+                      <CardContent className="p-6 space-y-4 -mt-12 relative">
+                        <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${feature.color} flex items-center justify-center shadow-lg`}>
+                          <FeatureIcon className={`w-7 h-7 ${feature.iconColor}`} />
                         </div>
-                        <h3 className="font-heading font-semibold text-lg group-hover:text-primary transition-colors">{feature.title}</h3>
-                        <p className="text-sm text-muted-foreground leading-relaxed">{feature.description}</p>
+                        <h3 className="font-heading font-normal text-xl group-hover:text-primary transition-colors">{feature.title}</h3>
+                        <p className="text-base text-muted-foreground leading-relaxed">{feature.description}</p>
                       </CardContent>
                     </Card>
                   </Link>
@@ -399,10 +383,10 @@ export default function Home() {
             viewport={{ once: true }}
             className="text-center mb-14"
           >
-            <h2 className="font-heading text-3xl md:text-4xl font-semibold mb-4">
+            <h2 className="font-heading text-3xl md:text-4xl font-light mb-4">
               Actionable Career Guides
             </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               Practical advice for wherever you are in your career journey
             </p>
           </motion.div>
@@ -417,19 +401,32 @@ export default function Home() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1, duration: 0.5 }}
+                  whileHover={{ y: -5 }}
                 >
-                  <Card className="border-border/50 bg-card/80 h-full">
-                    <CardContent className="p-6 space-y-5">
+                  <Card className="border-border/50 bg-card/80 h-full overflow-hidden group">
+                    <div className="relative h-32 overflow-hidden">
+                      <Image
+                        src={index === 0 ? "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=600&q=80" :
+                              index === 1 ? "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=600&q=80" :
+                              "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=600&q=80"}
+                        alt={guide.title}
+                        width={400}
+                        height={150}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-card to-transparent" />
+                    </div>
+                    <CardContent className="p-6 space-y-5 -mt-10 relative">
                       <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-lg bg-primary/15 flex items-center justify-center">
-                          <GuideIcon className="w-5 h-5 text-primary" />
+                        <div className="w-12 h-12 rounded-lg bg-primary/15 flex items-center justify-center shadow-lg">
+                          <GuideIcon className="w-6 h-6 text-primary" />
                         </div>
-                        <h3 className="font-heading font-semibold">{guide.title}</h3>
+                        <h3 className="font-heading font-normal text-lg">{guide.title}</h3>
                       </div>
                       <ul className="space-y-3">
                         {guide.points.map((point, pi) => (
-                          <li key={pi} className="flex items-start gap-2.5 text-sm text-muted-foreground">
-                            <CheckCircle className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+                          <li key={pi} className="flex items-start gap-2.5 text-base text-muted-foreground">
+                            <CheckCircle className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
                             <span>{point}</span>
                           </li>
                         ))}
@@ -452,10 +449,10 @@ export default function Home() {
             viewport={{ once: true }}
             className="text-center mb-14"
           >
-            <h2 className="font-heading text-3xl md:text-4xl font-semibold mb-4">
+            <h2 className="font-heading text-3xl md:text-4xl font-light mb-4">
               India Job Market Snapshot
             </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               Live sector-wise growth, top roles, and salary benchmarks
             </p>
           </motion.div>
@@ -468,17 +465,26 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.08, duration: 0.5 }}
+                whileHover={{ y: -8, scale: 1.02 }}
               >
-                <Card className={`border ${insight.color} bg-card/50 h-full`}>
+                <Card className={`border ${insight.color} bg-card/50 h-full transition-all duration-300`}>
                   <CardContent className="p-5 space-y-3">
                     <div className="flex items-center justify-between">
-                      <h3 className="font-heading font-semibold text-sm">{insight.sector}</h3>
-                      <span className="text-emerald-400 font-semibold text-sm">{insight.growth}</span>
+                      <h3 className="font-heading font-normal text-base">{insight.sector}</h3>
+                      <motion.span
+                        initial={{ scale: 0 }}
+                        whileInView={{ scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: index * 0.08 + 0.3, type: "spring" }}
+                        className="text-emerald-500 font-semibold text-base"
+                      >
+                        {insight.growth}
+                      </motion.span>
                     </div>
-                    <p className="text-xs text-muted-foreground">{insight.roles}</p>
+                    <p className="text-sm text-muted-foreground">{insight.roles}</p>
                     <div className="pt-2 border-t border-border/30">
-                      <p className="text-xs text-muted-foreground">Avg Salary</p>
-                      <p className="font-semibold text-sm text-primary">{insight.salary}</p>
+                      <p className="text-sm text-muted-foreground">Avg Salary</p>
+                      <p className="font-normal text-base text-primary">{insight.salary}</p>
                     </div>
                   </CardContent>
                 </Card>
@@ -486,14 +492,20 @@ export default function Home() {
             ))}
           </div>
 
-          <div className="text-center mt-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.4 }}
+            className="text-center mt-8"
+          >
             <Link href="/trends">
-              <Button variant="outline" className="gap-2">
+              <Button variant="outline" className="gap-2 text-base px-6 py-5">
                 Explore Full Market Trends
                 <ArrowRight className="w-4 h-4" />
               </Button>
             </Link>
-          </div>
+          </motion.div>
         </div>
       </div>
 
@@ -506,13 +518,31 @@ export default function Home() {
             viewport={{ once: true }}
             className="space-y-6"
           >
-            <h2 className="font-heading text-3xl md:text-4xl font-semibold">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="font-heading text-3xl md:text-4xl font-light"
+            >
               Ready to Take Control of Your Career?
-            </h2>
-            <p className="text-muted-foreground text-lg max-w-xl mx-auto">
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="text-xl text-muted-foreground max-w-xl mx-auto"
+            >
               Upload your resume, discover your strengths, close skill gaps, and prepare for interviews — all in one place.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
+            </motion.p>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+              className="flex flex-col sm:flex-row gap-4 justify-center pt-4"
+            >
               <Link href="/onboarding">
                 <Button size="lg" className="text-lg px-8 py-6 gap-2">
                   Start Your Journey
@@ -525,7 +555,7 @@ export default function Home() {
                   Practice Interviews
                 </Button>
               </Link>
-            </div>
+            </motion.div>
           </motion.div>
         </div>
       </div>
