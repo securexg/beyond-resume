@@ -8,8 +8,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Upload, FileText, Loader2, ArrowLeft, CheckCircle } from "lucide-react";
-import { motion } from "framer-motion";
+import { Upload, FileText, Loader2, ArrowLeft, CheckCircle, Menu, X } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function AnalyzePage() {
   const [file, setFile] = useState<File | null>(null);
@@ -23,6 +23,7 @@ export default function AnalyzePage() {
   const [fetchingLinkedIn, setFetchingLinkedIn] = useState(false);
   const [linkedinError, setLinkedinError] = useState<string | null>(null);
   const [pdfError, setPdfError] = useState<string | null>(null);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     accept: {
@@ -135,19 +136,57 @@ export default function AnalyzePage() {
           <Link href="/" className="flex items-center group">
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-r from-primary to-cyan-400 rounded-xl sm:rounded-2xl blur-lg opacity-40 group-hover:opacity-60 transition-opacity duration-300" />
-              <Image src="/logo.png" alt="CareerOS" width={60} height={60} className="relative w-12 h-12 sm:w-[120px] sm:h-[120px] rounded-xl sm:rounded-2xl shadow-2xl group-hover:scale-105 transition-transform duration-300" />
+              <Image 
+                src="/logo.png" 
+                alt="CareerOS" 
+                width={120} 
+                height={120} 
+                className="relative w-12 h-12 sm:w-[120px] sm:h-[120px] object-contain rounded-xl sm:rounded-2xl shadow-2xl group-hover:scale-105 transition-transform duration-300" 
+              />
             </div>
           </Link>
-          <Link href="/">
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Button variant="ghost" size="sm" className="text-xs sm:text-sm">
-                <ArrowLeft className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
-                <span className="hidden sm:inline">Back to Home</span>
-                <span className="sm:hidden">Back</span>
-              </Button>
-            </motion.div>
-          </Link>
+          
+          {/* Desktop Menu */}
+          <div className="hidden sm:flex items-center gap-2">
+            <Link href="/">
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <Button variant="ghost" size="sm">
+                  <ArrowLeft className="w-4 h-4 mr-2" />
+                  Back to Home
+                </Button>
+              </motion.div>
+            </Link>
+          </div>
+
+          {/* Mobile Menu Button */}
+          <button 
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="sm:hidden p-2 rounded-lg hover:bg-accent transition-colors"
+          >
+            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
         </div>
+
+        {/* Mobile Menu */}
+        <AnimatePresence>
+          {mobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              className="sm:hidden border-b border-border/50 bg-background/95 backdrop-blur-xl"
+            >
+              <div className="px-4 py-4 space-y-2">
+                <Link href="/" onClick={() => setMobileMenuOpen(false)}>
+                  <Button variant="ghost" size="sm" className="w-full justify-start">
+                    <ArrowLeft className="w-4 h-4 mr-2" />
+                    Back to Home
+                  </Button>
+                </Link>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </nav>
 
       <div className="pt-16 sm:pt-24 pb-12 px-4">
