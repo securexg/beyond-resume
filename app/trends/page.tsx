@@ -75,6 +75,62 @@ const indiaTrends = [
     avgSalary: "₹15-50 LPA",
   },
   {
+    category: "E-commerce",
+    growth: "+42%",
+    status: "high",
+    description: "Online retail and logistics booming",
+    topRoles: ["E-commerce Manager", "Operations Lead", "Category Manager"],
+    avgSalary: "₹10-40 LPA",
+  },
+  {
+    category: "Renewable Energy",
+    growth: "+40%",
+    status: "high",
+    description: "Solar, wind and green energy initiatives",
+    topRoles: ["Solar Engineer", "Energy Consultant", "Project Manager"],
+    avgSalary: "₹12-45 LPA",
+  },
+  {
+    category: "Automotive",
+    growth: "+28%",
+    status: "medium",
+    description: "EV manufacturing and automotive tech",
+    topRoles: ["Automotive Engineer", "EV Specialist", "Quality Manager"],
+    avgSalary: "₹10-35 LPA",
+  },
+  {
+    category: "Pharmaceuticals",
+    growth: "+35%",
+    status: "high",
+    description: "Drug development and healthcare innovation",
+    topRoles: ["Research Scientist", "Quality Analyst", "Regulatory Affairs"],
+    avgSalary: "₹12-50 LPA",
+  },
+  {
+    category: "Logistics & Supply Chain",
+    growth: "+33%",
+    status: "high",
+    description: "Transportation and warehousing expansion",
+    topRoles: ["Logistics Manager", "Supply Chain Analyst", "Warehouse Supervisor"],
+    avgSalary: "₹8-30 LPA",
+  },
+  {
+    category: "Real Estate",
+    growth: "+22%",
+    status: "medium",
+    description: "Property development and management",
+    topRoles: ["Real Estate Agent", "Property Manager", "Developer"],
+    avgSalary: "₹6-40 LPA",
+  },
+  {
+    category: "Telecommunications",
+    growth: "+30%",
+    status: "medium",
+    description: "5G rollout and network infrastructure",
+    topRoles: ["Network Engineer", "Telecom Specialist", "Project Manager"],
+    avgSalary: "₹10-35 LPA",
+  },
+  {
     category: "Sales",
     growth: "+40%",
     status: "high",
@@ -90,36 +146,42 @@ const globalTrends = [
     topSectors: ["Healthcare", "Technology", "Finance", "Manufacturing"],
     growth: "+32%",
     opportunities: "High",
+    avgSalary: "$60,000 - $150,000",
   },
   {
     region: "Europe",
     topSectors: ["Green Energy", "Manufacturing", "Finance", "Healthcare"],
     growth: "+24%",
     opportunities: "Medium",
+    avgSalary: "€45,000 - €120,000",
   },
   {
     region: "Asia Pacific",
     topSectors: ["Technology", "Manufacturing", "Healthcare", "E-commerce"],
     growth: "+38%",
     opportunities: "High",
+    avgSalary: "$40,000 - $100,000",
   },
   {
     region: "Middle East",
     topSectors: ["Construction", "Oil & Gas", "Finance", "Healthcare"],
     growth: "+28%",
     opportunities: "Medium",
+    avgSalary: "$50,000 - $130,000",
   },
   {
     region: "Latin America",
     topSectors: ["Agriculture", "Mining", "Manufacturing", "Technology"],
     growth: "+22%",
     opportunities: "Medium",
+    avgSalary: "$25,000 - $70,000",
   },
   {
     region: "Africa",
     topSectors: ["Agriculture", "Mining", "Telecom", "Healthcare"],
     growth: "+26%",
     opportunities: "Growing",
+    avgSalary: "$20,000 - $60,000",
   },
 ];
 
@@ -136,9 +198,9 @@ export default function TrendsPage() {
             <Image 
               src="/logo.png" 
               alt="CareerOS" 
-              width={160} 
-              height={40} 
-              className="h-8 sm:h-10 w-auto object-contain group-hover:scale-105 transition-transform duration-300" 
+              width={240} 
+              height={64} 
+              className="h-12 sm:h-16 w-auto object-contain group-hover:scale-105 transition-transform duration-300" 
             />
           </Link>
           
@@ -364,6 +426,14 @@ export default function TrendsPage() {
                                 {sector}
                               </Badge>
                             ))}
+                          </div>
+                        </div>
+
+                        <div className="flex items-center justify-between pt-2 border-t border-border/50">
+                          <span className="text-sm text-muted-foreground">Avg Salary</span>
+                          <div className="flex items-center gap-1 text-green-600 font-medium">
+                            <DollarSign className="w-4 h-4" />
+                            {trend.avgSalary}
                           </div>
                         </div>
 

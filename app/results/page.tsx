@@ -6,7 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { motion } from "framer-motion";
-import { ArrowLeft, Loader2, CheckCircle, XCircle, TrendingUp, DollarSign, Target, GraduationCap } from "lucide-react";
+import { ArrowLeft, Loader2, CheckCircle, XCircle, TrendingUp, DollarSign, Target, GraduationCap, Download } from "lucide-react";
 import Link from "next/link";
 
 interface AnalysisResult {
@@ -49,6 +49,49 @@ export default function ResultsPage() {
   const [error, setError] = useState<string | null>(null);
   const [data, setData] = useState<AnalysisResult | null>(null);
   const [targetRole, setTargetRole] = useState("");
+
+  const downloadPDF = () => {
+    const printContent = document.getElementById("results-content");
+    if (!printContent) return;
+
+    const printWindow = window.open("", "_blank");
+    if (!printWindow) return;
+
+    const printStyles = `
+      <style>
+        body { font-family: system-ui, -apple-system, sans-serif; padding: 40px; color: #333; }
+        h1 { font-size: 28px; margin-bottom: 10px; color: #1a1a1a; }
+        h2 { font-size: 20px; margin: 24px 0 12px; color: #333; border-bottom: 2px solid #e5e5e5; padding-bottom: 8px; }
+        .score { font-size: 48px; font-weight: bold; color: #3b82f6; }
+        .badge { display: inline-block; padding: 4px 12px; margin: 4px; border-radius: 16px; font-size: 12px; }
+        .badge-green { background: #dcfce7; color: #166534; }
+        .badge-red { background: #fee2e2; color: #991b1b; }
+        .card { border: 1px solid #e5e5e5; border-radius: 12px; padding: 20px; margin: 16px 0; background: #fafafa; }
+        .progress-bar { height: 8px; background: #e5e5e5; border-radius: 4px; overflow: hidden; margin: 12px 0; }
+        .progress-fill { height: 100%; background: #3b82f6; }
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        @media print { body { padding: 20px; } }
+      </style>
+    `;
+
+    printWindow.document.write(`
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <title>CareerOS - Resume Analysis Report</title>
+        ${printStyles}
+      </head>
+      <body>
+        <h1>CareerOS - Resume Analysis Report</h1>
+        <p><strong>Target Role:</strong> ${targetRole}</p>
+        <p><strong>Generated:</strong> ${new Date().toLocaleDateString()}</p>
+        ${printContent.innerHTML}
+      </body>
+      </html>
+    `);
+    printWindow.document.close();
+    printWindow.print();
+  };
 
   useEffect(() => {
     const analyzeResume = async () => {
@@ -122,7 +165,7 @@ export default function ResultsPage() {
       <div className="relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-accent/10" />
         <div className="relative px-4 py-12">
-          <div className="max-w-7xl mx-auto space-y-8">
+          <div className="max-w-7xl mx-auto space-y-8" id="results-content">
             <div className="flex items-center justify-between">
               <div>
                 <h1 className="font-heading text-4xl md:text-5xl font-semibold tracking-tight mb-2">
@@ -133,6 +176,10 @@ export default function ResultsPage() {
                 </p>
               </div>
               <div className="flex items-center gap-3">
+                <Button size="lg" className="gap-2" onClick={downloadPDF}>
+                  <Download className="h-4 w-4" />
+                  Download PDF
+                </Button>
                 <Link href="/interview-prep">
                   <Button size="lg" className="gap-2">
                     <GraduationCap className="h-4 w-4" />

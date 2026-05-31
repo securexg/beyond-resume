@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   TrendingUp,
@@ -25,6 +26,8 @@ import {
   Rocket,
   Menu,
   X,
+  MapPin,
+  Mail,
 } from "lucide-react";
 
 const tips = [
@@ -151,9 +154,9 @@ export default function Home() {
             <Image 
               src="/logo.png" 
               alt="CareerOS" 
-              width={160} 
-              height={40} 
-              className="h-8 sm:h-10 w-auto object-contain group-hover:scale-105 transition-transform duration-300" 
+              width={240} 
+              height={64} 
+              className="h-12 sm:h-16 w-auto object-contain group-hover:scale-105 transition-transform duration-300" 
             />
           </Link>
           
@@ -162,6 +165,11 @@ export default function Home() {
             <Link href="/trends">
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">Market Insights</Button>
+              </motion.div>
+            </Link>
+            <Link href="/jobs">
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">Jobs</Button>
               </motion.div>
             </Link>
             <Link href="/analyze">
@@ -205,6 +213,9 @@ export default function Home() {
               <div className="px-4 py-4 space-y-2">
                 <Link href="/trends" onClick={() => setMobileMenuOpen(false)}>
                   <Button variant="ghost" size="sm" className="w-full justify-start">Market Insights</Button>
+                </Link>
+                <Link href="/jobs" onClick={() => setMobileMenuOpen(false)}>
+                  <Button variant="ghost" size="sm" className="w-full justify-start">Jobs</Button>
                 </Link>
                 <Link href="/analyze" onClick={() => setMobileMenuOpen(false)}>
                   <Button variant="ghost" size="sm" className="w-full justify-start">Resume Analysis</Button>
@@ -333,6 +344,49 @@ export default function Home() {
               </motion.div>
             </motion.div>
           </div>
+        </div>
+      </div>
+
+      {/* About Us */}
+      <div className="py-20 bg-gradient-to-b from-background to-muted/20">
+        <div className="max-w-7xl mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center max-w-3xl mx-auto"
+          >
+            <h2 className="font-heading text-3xl md:text-4xl font-semibold mb-6">
+              About CareerOS
+            </h2>
+            <p className="text-lg text-muted-foreground leading-relaxed mb-8">
+              CareerOS is an AI-powered career intelligence platform designed specifically for Indian students and professionals. We bridge the gap between education and employment by providing personalized career guidance, resume optimization, job market insights, and interview preparation tools. Our mission is to empower every individual to make informed career decisions and achieve their professional goals.
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-12">
+              <div className="p-6 rounded-xl bg-card border border-border/50">
+                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mx-auto mb-4">
+                  <Target className="w-6 h-6 text-primary" />
+                </div>
+                <h3 className="font-semibold mb-2">Personalized</h3>
+                <p className="text-sm text-muted-foreground">Tailored recommendations based on your unique profile and goals</p>
+              </div>
+              <div className="p-6 rounded-xl bg-card border border-border/50">
+                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mx-auto mb-4">
+                  <Brain className="w-6 h-6 text-primary" />
+                </div>
+                <h3 className="font-semibold mb-2">AI-Powered</h3>
+                <p className="text-sm text-muted-foreground">Advanced AI analyzes your resume and suggests improvements</p>
+              </div>
+              <div className="p-6 rounded-xl bg-card border border-border/50">
+                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mx-auto mb-4">
+                  <Shield className="w-6 h-6 text-primary" />
+                </div>
+                <h3 className="font-semibold mb-2">Trusted</h3>
+                <p className="text-sm text-muted-foreground">Built for Indian students with local market insights</p>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </div>
 
@@ -570,6 +624,103 @@ export default function Home() {
         </div>
       </div>
 
+      {/* Blog/Insights Section for Indian Students */}
+      <div className="py-20">
+        <div className="max-w-7xl mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h2 className="font-heading text-3xl md:text-4xl font-medium mb-4">
+              Career Insights for Indian Students
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Expert guides tailored for the Indian job market and education system
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              {
+                title: "Cracking Campus Placements",
+                description: "Complete guide to ace campus interviews at top Indian companies like TCS, Infosys, Wipro, and startups.",
+                category: "Campus",
+                readTime: "8 min read"
+              },
+              {
+                title: "Building Your First Resume",
+                description: "Step-by-step guide for freshers with no experience - how to highlight projects, skills, and achievements.",
+                category: "Resume",
+                readTime: "6 min read"
+              },
+              {
+                title: "Mastering DSA for Indian Tech Giants",
+                description: "Essential data structures and algorithms topics for FAANG and top Indian company interviews.",
+                category: "Technical",
+                readTime: "12 min read"
+              },
+              {
+                title: "Government Job Preparation",
+                description: "Complete roadmap for SSC, Banking, Railways, and UPSC exams with study strategies.",
+                category: "Government",
+                readTime: "10 min read"
+              },
+              {
+                title: "LinkedIn Profile Optimization",
+                description: "How to create a LinkedIn profile that attracts recruiters from Indian and global companies.",
+                category: "Personal Branding",
+                readTime: "7 min read"
+              },
+              {
+                title: "Salary Negotiation in India",
+                description: "Tips for negotiating salary at Indian companies - understanding market rates and benefits.",
+                category: "Career Growth",
+                readTime: "5 min read"
+              }
+            ].map((article, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.08, duration: 0.5 }}
+                whileHover={{ y: -5 }}
+              >
+                <Card className="border-border/50 bg-card/80 h-full hover:shadow-lg transition-shadow cursor-pointer">
+                  <CardContent className="p-6 space-y-4">
+                    <div className="flex items-center justify-between">
+                      <Badge variant="secondary" className="text-xs">{article.category}</Badge>
+                      <span className="text-xs text-muted-foreground">{article.readTime}</span>
+                    </div>
+                    <h3 className="font-heading font-semibold text-lg leading-tight">{article.title}</h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{article.description}</p>
+                    <div className="flex items-center text-primary text-sm font-medium">
+                      Read More
+                      <ArrowRight className="w-4 h-4 ml-1" />
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.5 }}
+            className="text-center mt-10"
+          >
+            <Button variant="outline" className="gap-2 text-base px-6 py-5">
+              View All Articles
+              <ArrowRight className="w-4 h-4" />
+            </Button>
+          </motion.div>
+        </div>
+      </div>
+
       {/* CTA Section */}
       <div className="py-20 bg-gradient-to-br from-primary/10 via-background to-accent/10">
         <div className="max-w-3xl mx-auto px-4 text-center">
@@ -620,6 +771,45 @@ export default function Home() {
           </motion.div>
         </div>
       </div>
+
+      {/* Footer */}
+      <footer className="py-12 border-t border-border/50 bg-muted/30">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="grid md:grid-cols-3 gap-8 mb-8">
+            <div>
+              <h3 className="font-heading text-lg font-semibold mb-4">CareerOS</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                AI-powered career intelligence platform for Indian students and professionals. Your guide to career success.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-heading text-lg font-semibold mb-4">Quick Links</h3>
+              <div className="space-y-2">
+                <Link href="/trends" className="block text-sm text-muted-foreground hover:text-foreground transition-colors">Market Insights</Link>
+                <Link href="/jobs" className="block text-sm text-muted-foreground hover:text-foreground transition-colors">Job Listings</Link>
+                <Link href="/analyze" className="block text-sm text-muted-foreground hover:text-foreground transition-colors">Resume Analysis</Link>
+                <Link href="/interview-prep" className="block text-sm text-muted-foreground hover:text-foreground transition-colors">Interview Prep</Link>
+              </div>
+            </div>
+            <div>
+              <h3 className="font-heading text-lg font-semibold mb-4">Contact</h3>
+              <div className="space-y-2 text-sm text-muted-foreground">
+                <p className="flex items-center gap-2">
+                  <MapPin className="w-4 h-4" />
+                  New Delhi, India
+                </p>
+                <p className="flex items-center gap-2">
+                  <Mail className="w-4 h-4" />
+                  info@simplyplugged.com
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="pt-8 border-t border-border/50 text-center text-sm text-muted-foreground">
+            <p>&copy; {new Date().getFullYear()} CareerOS. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
