@@ -48,23 +48,32 @@ export default function AnalyzePage() {
   });
 
   const extractTextFromPDF = async (file: File): Promise<string> => {
-    const pdfjsLib = await import("pdfjs-dist");
-    pdfjsLib.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.js`;
-    
-    const arrayBuffer = await file.arrayBuffer();
-    const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
-    let text = "";
-    
-    for (let i = 1; i <= pdf.numPages; i++) {
-      const page = await pdf.getPage(i);
-      const content = await page.getTextContent();
-      const pageText = content.items
-        .map((item) => ("str" in item ? item.str : ""))
-        .join(" ");
-      text += pageText + "\n";
+    try {
+      const pdfjsLib = await import("pdfjs-dist");
+      
+      // Use absolute URL for worker to avoid protocol issues
+      pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.js`;
+      
+      const arrayBuffer = await file.arrayBuffer();
+      const loadingTask = pdfjsLib.getDocument({ data: arrayBuffer });
+      const pdf = await loadingTask.promise;
+      
+      let text = "";
+      
+      for (let i = 1; i <= pdf.numPages; i++) {
+        const page = await pdf.getPage(i);
+        const content = await page.getTextContent();
+        const pageText = content.items
+          .map((item) => ("str" in item ? item.str : ""))
+          .join(" ");
+        text += pageText + "\n";
+      }
+      
+      return text;
+    } catch (error) {
+      console.error("PDF extraction detailed error:", error);
+      throw new Error(`PDF extraction failed: ${error instanceof Error ? error.message : String(error)}`);
     }
-    
-    return text;
   };
 
   const fetchLinkedInData = async () => {
