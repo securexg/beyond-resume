@@ -51,8 +51,8 @@ export default function AnalyzePage() {
     try {
       const pdfjsLib = await import("pdfjs-dist");
       
-      // Use absolute URL for worker to avoid protocol issues
-      pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.js`;
+      // Use local worker file to avoid CDN issues
+      pdfjsLib.GlobalWorkerOptions.workerSrc = "/pdf.worker.mjs";
       
       const arrayBuffer = await file.arrayBuffer();
       const loadingTask = pdfjsLib.getDocument({ data: arrayBuffer });
@@ -114,14 +114,14 @@ export default function AnalyzePage() {
   };
 
   const handleAnalyze = async () => {
-    if ((!file && !resumeText) || !targetRole) return;
+    if (!file && !resumeText) return;
     
     setAnalyzing(true);
     
     // Store data in localStorage for results page
     localStorage.setItem("resumeText", resumeText);
-    localStorage.setItem("targetRole", targetRole);
-    localStorage.setItem("fileName", file?.name || "LinkedIn Profile");
+    localStorage.setItem("targetRole", targetRole || "General");
+    localStorage.setItem("fileName", file?.name || "Resume Analysis");
     
     // Navigate to results
     window.location.href = "/results";

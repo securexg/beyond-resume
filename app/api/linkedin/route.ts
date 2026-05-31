@@ -35,8 +35,8 @@ export async function POST(request: NextRequest) {
     if (!PROXYCURL_API_KEY) {
       return NextResponse.json(
         { 
-          error: "LinkedIn data extraction service not configured",
-          message: "Please use the manual text input option instead. You can paste your resume text directly."
+          error: "LinkedIn feature is temporarily unavailable",
+          message: "Please use the 'Paste Text' option to paste your LinkedIn profile content or resume directly."
         },
         { status: 503 }
       );
