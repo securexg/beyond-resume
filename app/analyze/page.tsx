@@ -131,25 +131,26 @@ export default function AnalyzePage() {
     <div className="min-h-screen bg-background font-sans">
       {/* Navigation */}
       <nav className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-border/50">
-        <div className="max-w-7xl mx-auto px-4 h-24 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 h-16 sm:h-24 flex items-center justify-between">
           <Link href="/" className="flex items-center group">
             <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-primary to-cyan-400 rounded-2xl blur-lg opacity-40 group-hover:opacity-60 transition-opacity duration-300" />
-              <Image src="/logo.png" alt="CareerOS" width={120} height={120} className="relative rounded-2xl shadow-2xl group-hover:scale-105 transition-transform duration-300" />
+              <div className="absolute inset-0 bg-gradient-to-r from-primary to-cyan-400 rounded-xl sm:rounded-2xl blur-lg opacity-40 group-hover:opacity-60 transition-opacity duration-300" />
+              <Image src="/logo.png" alt="CareerOS" width={60} height={60} className="relative w-12 h-12 sm:w-[120px] sm:h-[120px] rounded-xl sm:rounded-2xl shadow-2xl group-hover:scale-105 transition-transform duration-300" />
             </div>
           </Link>
           <Link href="/">
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Button variant="ghost" size="sm">
-                <ArrowLeft className="w-4 h-4 mr-2" />
-                Back to Home
+              <Button variant="ghost" size="sm" className="text-xs sm:text-sm">
+                <ArrowLeft className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
+                <span className="hidden sm:inline">Back to Home</span>
+                <span className="sm:hidden">Back</span>
               </Button>
             </motion.div>
           </Link>
         </div>
       </nav>
 
-      <div className="pt-24 pb-12 px-4">
+      <div className="pt-16 sm:pt-24 pb-12 px-4">
         <div className="relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-accent/10" />
           <div className="relative flex flex-col items-center justify-center py-12">

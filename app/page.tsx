@@ -143,34 +143,35 @@ export default function Home() {
     <div className="min-h-screen bg-background font-sans">
       {/* Navigation */}
       <nav className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-border/50">
-        <div className="max-w-7xl mx-auto px-4 h-24 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 h-16 sm:h-24 flex items-center justify-between">
           <Link href="/" className="flex items-center group">
             <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-primary to-cyan-400 rounded-2xl blur-lg opacity-40 group-hover:opacity-60 transition-opacity duration-300" />
-              <Image src="/logo.png" alt="CareerOS" width={120} height={120} className="relative rounded-2xl shadow-2xl group-hover:scale-105 transition-transform duration-300" />
+              <div className="absolute inset-0 bg-gradient-to-r from-primary to-cyan-400 rounded-xl sm:rounded-2xl blur-lg opacity-40 group-hover:opacity-60 transition-opacity duration-300" />
+              <Image src="/logo.png" alt="CareerOS" width={60} height={60} className="relative w-12 h-12 sm:w-[120px] sm:h-[120px] rounded-xl sm:rounded-2xl shadow-2xl group-hover:scale-105 transition-transform duration-300" />
             </div>
           </Link>
-          <div className="flex items-center gap-2">
-            <Link href="/trends">
+          <div className="flex items-center gap-1 sm:gap-2">
+            <Link href="/trends" className="hidden sm:block">
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">Market Insights</Button>
               </motion.div>
             </Link>
-            <Link href="/analyze">
+            <Link href="/analyze" className="hidden sm:block">
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">Resume Analysis</Button>
               </motion.div>
             </Link>
-            <Link href="/interview-prep">
+            <Link href="/interview-prep" className="hidden sm:block">
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">Interview Prep</Button>
               </motion.div>
             </Link>
             <Link href="/onboarding">
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Button size="sm" className="gap-2 ml-2">
-                  Get Started
-                  <ArrowRight className="w-4 h-4" />
+                <Button size="sm" className="gap-1 sm:gap-2 ml-1 sm:ml-2 text-xs sm:text-sm">
+                  <span className="hidden sm:inline">Get Started</span>
+                  <span className="sm:hidden">Start</span>
+                  <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4" />
                 </Button>
               </motion.div>
             </Link>
@@ -179,7 +180,7 @@ export default function Home() {
       </nav>
 
       {/* Hero Section */}
-      <div className="relative overflow-hidden pt-28 pb-20">
+      <div className="relative overflow-hidden pt-20 sm:pt-28 pb-20">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-accent/5" />
         <div className="absolute top-20 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
         <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-accent/5 rounded-full blur-3xl" />
