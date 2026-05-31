@@ -18,6 +18,7 @@ export const metadata: Metadata = {
   description: "Personalized career guidance with AI resume analysis, skill-gap insights, role recommendations, and interview preparation. Your career operating system.",
   icons: {
     icon: "/favicon.ico",
+    apple: "/favicon.ico",
   },
 };
 

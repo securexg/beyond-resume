@@ -293,7 +293,7 @@ export default function AnalyzePage() {
                     )}
 
                     <div className="space-y-2">
-                      <label className="text-sm font-medium">What job are you targeting?</label>
+                      <label className="text-sm font-medium">What job are you targeting? <span className="text-muted-foreground font-normal">(Optional)</span></label>
                       <Input
                         placeholder="e.g., Software Engineer, Data Analyst, Product Manager"
                         value={targetRole}
@@ -310,7 +310,7 @@ export default function AnalyzePage() {
 
                     <Button
                       onClick={handleAnalyze}
-                      disabled={(!file && !resumeText) || !targetRole || analyzing}
+                      disabled={(!file && !resumeText) || analyzing}
                       className="w-full"
                       size="lg"
                     >

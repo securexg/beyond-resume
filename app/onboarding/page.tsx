@@ -33,6 +33,7 @@ const segments = [
   { id: "manufacturing", name: "Manufacturing", icon: Building2, color: "bg-pink-500/10 text-pink-500 border-pink-500/20" },
   { id: "legal", name: "Legal", icon: CheckCircle, color: "bg-indigo-500/10 text-indigo-500 border-indigo-500/20" },
   { id: "sales", name: "Sales", icon: ArrowRight, color: "bg-rose-500/10 text-rose-500 border-rose-500/20" },
+  { id: "other", name: "Other", icon: LinkIcon, color: "bg-gray-500/10 text-gray-500 border-gray-500/20" },
 ];
 
 const steps = [

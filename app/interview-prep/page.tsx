@@ -123,7 +123,7 @@ export default function InterviewPrepPage() {
             animate={{ opacity: 1, y: 0 }}
             className="mb-8"
           >
-            <div className="flex items-center gap-3 mb-4">
+            <div className="flex items-center gap-3 mb-4 flex-col sm:flex-row sm:items-start">
               <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center">
                 <GraduationCap className="w-6 h-6 text-primary" />
               </div>

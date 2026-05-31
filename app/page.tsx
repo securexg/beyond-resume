@@ -206,10 +206,10 @@ export default function Home() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 0.6 }}
-                className="font-heading text-5xl md:text-6xl lg:text-7xl font-medium tracking-tight leading-[1.1]"
+                className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-medium tracking-tight leading-[1.1]"
               >
-                Don&apos;t just search jobs
-                <span className="block bg-gradient-to-r from-primary via-cyan-400 to-accent bg-clip-text text-transparent">
+                Don&apos;t just search jobs{" "}
+                <span className="bg-gradient-to-r from-primary via-cyan-400 to-accent bg-clip-text text-transparent">
                   engineer your career.
                 </span>
               </motion.h1>
@@ -218,7 +218,7 @@ export default function Home() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3, duration: 0.6 }}
-                className="text-xl text-muted-foreground max-w-lg leading-relaxed"
+                className="text-lg sm:text-xl text-muted-foreground max-w-lg leading-relaxed"
               >
                 CareerOS fuses your profile, job market trends, and AI to deliver personalized role recommendations, skill-gap analysis, and interview prep — acting as your true career advisor.
               </motion.p>
@@ -347,7 +347,7 @@ export default function Home() {
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {platformFeatures.map((feature, index) => {
               const FeatureIcon = feature.icon;
               return (
@@ -406,7 +406,7 @@ export default function Home() {
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {careerGuides.map((guide, index) => {
               const GuideIcon = guide.icon;
               return (
@@ -472,7 +472,7 @@ export default function Home() {
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {marketInsights.map((insight, index) => (
               <motion.div
                 key={insight.sector}

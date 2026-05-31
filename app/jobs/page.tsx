@@ -227,7 +227,7 @@ export default function JobsPage() {
             transition={{ delay: 0.1 }}
             className="mb-8 space-y-4"
           >
-            <div className="flex gap-4">
+            <div className="flex flex-col sm:flex-row gap-4">
               <div className="flex-1 relative">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                 <Input
@@ -286,7 +286,7 @@ export default function JobsPage() {
                           </Badge>
                         </div>
                         
-                        <div className="flex items-center gap-4 text-sm text-muted-foreground mb-3">
+                        <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground mb-3">
                           <div className="flex items-center gap-1">
                             <Building2 className="w-4 h-4" />
                             {job.company}
@@ -297,7 +297,7 @@ export default function JobsPage() {
                           </div>
                         </div>
 
-                        <div className="flex items-center gap-4 text-sm mb-3">
+                        <div className="flex flex-wrap items-center gap-4 text-sm mb-3">
                           <div className="flex items-center gap-1 text-green-600 font-medium">
                             <DollarSign className="w-4 h-4" />
                             {job.salary}

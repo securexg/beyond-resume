@@ -36,7 +36,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(
         { 
           error: "LinkedIn data extraction service not configured",
-          message: "Please use the manual text input option instead"
+          message: "Please use the manual text input option instead. You can paste your resume text directly."
         },
         { status: 503 }
       );
