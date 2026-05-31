@@ -141,7 +141,7 @@ export default function Home() {
       <nav className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-border/50">
         <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
           <Link href="/" className="flex items-center">
-            <Image src="/logo.png" alt="CareerOS" width={44} height={44} className="rounded-lg" />
+            <Image src="/logo.png" alt="CareerOS" width={56} height={56} className="rounded-lg" />
           </Link>
           <div className="flex items-center gap-2">
             <Link href="/trends">
