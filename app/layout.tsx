@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, IBM_Plex_Sans } from "next/font/google";
+import { Inter, Sora } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
@@ -7,15 +7,15 @@ const inter = Inter({
   subsets: ["latin"],
 });
 
-const ibmPlexSans = IBM_Plex_Sans({
+const sora = Sora({
   variable: "--font-heading",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "500", "600"],
 });
 
 export const metadata: Metadata = {
   title: "CareerOS - Your Career Operating System",
-  description: "Comprehensive career platform with job listings, market trends, and AI-powered career guidance for India and global markets.",
+  description: "Personalized career guidance platform with AI-powered insights for students and professionals.",
 };
 
 export default function RootLayout({
@@ -26,7 +26,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${ibmPlexSans.variable} h-full antialiased`}
+      className={`${inter.variable} ${sora.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-sans">{children}</body>
     </html>

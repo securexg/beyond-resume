@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
@@ -20,7 +21,7 @@ import {
   TrendingUp,
   DollarSign,
   CheckCircle,
-  ArrowRight
+  ArrowRight,
 } from "lucide-react";
 
 const segments = [
@@ -69,7 +70,7 @@ export default function OnboardingPage() {
     if (source === "linkedin") {
       localStorage.setItem("linkedinUrl", linkedinUrl);
     }
-    window.location.href = "/jobs";
+    window.location.href = "/trends";
   };
 
   return (
@@ -78,11 +79,11 @@ export default function OnboardingPage() {
       <nav className="fixed top-0 w-full z-50 bg-background/95 backdrop-blur-md border-b border-border">
         <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center">
-              <Cpu className="w-5 h-5 text-white" />
+            <div className="w-10 h-10 rounded-lg flex items-center justify-center">
+              <Image src="/logo.png" alt="CareerOS Logo" width={40} height={40} />
             </div>
             <div>
-              <span className="font-heading font-bold text-xl">CareerOS</span>
+              <span className="font-heading font-semibold text-xl tracking-wide">CareerOS</span>
               <p className="text-xs text-muted-foreground">Your Career Operating System</p>
             </div>
           </div>
@@ -141,7 +142,7 @@ export default function OnboardingPage() {
               >
                 <Card>
                   <CardHeader>
-                    <CardTitle className="font-heading text-2xl">How would you like to start?</CardTitle>
+                    <CardTitle className="font-heading text-2xl font-semibold">How would you like to start?</CardTitle>
                     <CardDescription>
                       Choose how you want to provide your profile information
                     </CardDescription>
@@ -250,9 +251,9 @@ export default function OnboardingPage() {
               >
                 <Card>
                   <CardHeader>
-                    <CardTitle className="font-heading text-2xl">Select Your Career Interests</CardTitle>
+                    <CardTitle className="font-heading text-2xl font-semibold">Select Your Career Interests</CardTitle>
                     <CardDescription>
-                      Choose the segments you're interested in. We'll show relevant jobs and trends.
+                      Choose the segments you&apos;re interested in. We&apos;ll show relevant insights and trends.
                     </CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-6">
@@ -313,9 +314,9 @@ export default function OnboardingPage() {
                     <div className="w-16 h-16 rounded-full bg-green-500/10 flex items-center justify-center mx-auto mb-4">
                       <CheckCircle className="w-8 h-8 text-green-500" />
                     </div>
-                    <CardTitle className="font-heading text-2xl">Setup Complete!</CardTitle>
+                    <CardTitle className="font-heading text-2xl font-semibold">Setup Complete!</CardTitle>
                     <CardDescription>
-                      You're all set to explore job opportunities and market trends
+                      You&apos;re all set to explore personalized career insights
                     </CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-6">
