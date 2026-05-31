@@ -76,9 +76,11 @@ Create a `.env.local` file in the root directory:
 
 ```env
 DEEPSEEK_API_KEY=your_deepseek_api_key_here
+PROXYCURL_API_KEY=your_proxycurl_api_key_here
 ```
 
-Get your API key from [DeepSeek Console](https://platform.deepseek.com/).
+- **DEEPSEEK_API_KEY**: Get your API key from [DeepSeek Console](https://platform.deepseek.com/)
+- **PROXYCURL_API_KEY** (Optional): Get your API key from [Proxycurl](https://www.proxycurl.com/) for LinkedIn data extraction. Without this, users can still manually paste resume text.
 
 ---
 

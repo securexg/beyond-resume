@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Upload, FileText, Loader2, ArrowLeft, CheckCircle, Link as LinkIcon, AlertCircle } from "lucide-react";
+import { Upload, FileText, Loader2, ArrowLeft, CheckCircle } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function AnalyzePage() {
@@ -20,6 +20,8 @@ export default function AnalyzePage() {
     typeof window !== "undefined" ? localStorage.getItem("linkedinUrl") || "" : ""
   );
   const [inputMethod, setInputMethod] = useState<"pdf" | "text">("pdf");
+  const [fetchingLinkedIn, setFetchingLinkedIn] = useState(false);
+  const [linkedinError, setLinkedinError] = useState<string | null>(null);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     accept: {
@@ -58,15 +60,52 @@ export default function AnalyzePage() {
     return text;
   };
 
+  const fetchLinkedInData = async () => {
+    if (!linkedinUrl) {
+      setLinkedinError("Please enter a LinkedIn URL");
+      return;
+    }
+
+    setFetchingLinkedIn(true);
+    setLinkedinError(null);
+
+    try {
+      const response = await fetch("/api/linkedin", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ linkedinUrl }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Failed to fetch LinkedIn data");
+      }
+
+      // Populate resume text with extracted data
+      setResumeText(data.resumeText);
+      setInputMethod("text");
+      
+      // Update LinkedIn URL in localStorage
+      localStorage.setItem("linkedinUrl", linkedinUrl);
+    } catch (error) {
+      setLinkedinError(error instanceof Error ? error.message : "Failed to fetch LinkedIn data");
+    } finally {
+      setFetchingLinkedIn(false);
+    }
+  };
+
   const handleAnalyze = async () => {
-    if (!file || !targetRole || !resumeText) return;
+    if ((!file && !resumeText) || !targetRole) return;
     
     setAnalyzing(true);
     
     // Store data in localStorage for results page
     localStorage.setItem("resumeText", resumeText);
     localStorage.setItem("targetRole", targetRole);
-    localStorage.setItem("fileName", file.name);
+    localStorage.setItem("fileName", file?.name || "LinkedIn Profile");
     
     // Navigate to results
     window.location.href = "/results";
@@ -130,22 +169,36 @@ export default function AnalyzePage() {
                     </CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-6">
-                    {/* LinkedIn URL Display */}
-                    {linkedinUrl && (
-                      <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
-                        <div className="flex items-start gap-3">
-                          <LinkIcon className="w-5 h-5 text-blue-500 mt-0.5" />
-                          <div className="flex-1">
-                            <p className="text-sm font-medium text-blue-900">LinkedIn Profile</p>
-                            <p className="text-sm text-blue-700">{linkedinUrl}</p>
-                            <p className="text-xs text-blue-600 mt-1">
-                              <AlertCircle className="w-3 h-3 inline mr-1" />
-                              LinkedIn restricts automated access. Please paste your resume text below.
-                            </p>
-                          </div>
-                        </div>
+                    {/* LinkedIn URL Input */}
+                    <div className="space-y-3">
+                      <label className="text-sm font-medium">LinkedIn Profile URL (Optional)</label>
+                      <div className="flex gap-2">
+                        <Input
+                          placeholder="https://www.linkedin.com/in/yourprofile"
+                          value={linkedinUrl}
+                          onChange={(e) => setLinkedinUrl(e.target.value)}
+                          className="bg-background"
+                        />
+                        <Button
+                          type="button"
+                          onClick={fetchLinkedInData}
+                          disabled={!linkedinUrl || fetchingLinkedIn}
+                          variant="outline"
+                        >
+                          {fetchingLinkedIn ? (
+                            <Loader2 className="w-4 h-4 animate-spin" />
+                          ) : (
+                            "Fetch"
+                          )}
+                        </Button>
                       </div>
-                    )}
+                      {linkedinError && (
+                        <p className="text-sm text-red-500">{linkedinError}</p>
+                      )}
+                      <p className="text-xs text-muted-foreground">
+                        Enter your public LinkedIn URL to automatically extract profile data for analysis.
+                      </p>
+                    </div>
 
                     {/* Input Method Toggle */}
                     <div className="flex gap-2">
