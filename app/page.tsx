@@ -27,6 +27,7 @@ import {
   Rocket,
   MapPin,
   Mail,
+  Globe,
 } from "lucide-react";
 
 const tips = [
