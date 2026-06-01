@@ -177,9 +177,9 @@ export default function Home() {
                 transition={{ delay: 0.2, duration: 0.6 }}
                 className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-medium tracking-tight leading-[1.1]"
               >
-                Don&apos;t just search jobs{" "}
+                Your career partner{" "}
                 <span className="bg-gradient-to-r from-primary via-cyan-400 to-accent bg-clip-text text-transparent">
-                  engineer your career.
+                  at every step.
                 </span>
               </motion.h1>
 
@@ -189,7 +189,7 @@ export default function Home() {
                 transition={{ delay: 0.3, duration: 0.6 }}
                 className="text-lg sm:text-xl text-muted-foreground max-w-lg leading-relaxed"
               >
-                CareerOS fuses your profile, job market trends, and AI to deliver personalized role recommendations, skill-gap analysis, and interview prep — acting as your true career advisor.
+                Whether you&apos;re exploring tech, non-tech, government jobs, or global opportunities — we guide you through market insights, resume building, interview prep, and career planning like a friend.
               </motion.p>
 
               <motion.div
@@ -198,14 +198,8 @@ export default function Home() {
                 transition={{ delay: 0.4, duration: 0.6 }}
                 className="flex flex-col sm:flex-row gap-4"
               >
-                <Link href="/onboarding">
-                  <Button size="lg" className="text-lg px-8 py-6 gap-2">
-                    Begin Your Journey
-                    <ArrowRight className="w-5 h-5" />
-                  </Button>
-                </Link>
                 <Link href="/career-quiz">
-                  <Button variant="outline" size="lg" className="text-lg px-8 py-6 gap-2">
+                  <Button size="lg" className="text-lg px-8 py-6 gap-2 bg-gradient-to-r from-violet-500 to-pink-500 text-white border-0">
                     <Sparkles className="w-5 h-5" />
                     Find Your Path
                   </Button>
@@ -265,6 +259,105 @@ export default function Home() {
         </div>
       </div>
 
+      {/* Domain Overview */}
+      <div className="py-20 bg-muted/30">
+        <div className="max-w-7xl mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h2 className="font-heading text-3xl md:text-4xl font-semibold mb-4">
+              Explore Every Career Path
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Whether you&apos;re in tech, non-tech, government, or looking to go global — we have resources tailored for you
+            </p>
+          </motion.div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              {
+                icon: TrendingUp,
+                title: "Tech Careers",
+                description: "Software engineering, data science, AI/ML, DevOps — with salary trends, top hirers, and skills in demand.",
+                href: "/trends",
+                color: "from-cyan-500/20 to-blue-500/20",
+                iconColor: "text-cyan-400",
+              },
+              {
+                icon: Users,
+                title: "Non-Tech Careers",
+                description: "Sales, marketing, finance, operations — high-paying roles in India's startup ecosystem.",
+                href: "/trends",
+                color: "from-purple-500/20 to-pink-500/20",
+                iconColor: "text-purple-400",
+              },
+              {
+                icon: Shield,
+                title: "Government Jobs",
+                description: "UPSC, SSC, Banking, Railways — complete exam guides, eligibility, and preparation strategies.",
+                href: "/govt-jobs",
+                color: "from-orange-500/20 to-red-500/20",
+                iconColor: "text-orange-400",
+              },
+              {
+                icon: Globe,
+                title: "Global Opportunities",
+                description: "Work visas, study abroad, and PR pathways for Canada, Germany, UK, Australia, and more.",
+                href: "/global",
+                color: "from-green-500/20 to-teal-500/20",
+                iconColor: "text-green-400",
+              },
+              {
+                icon: BookOpen,
+                title: "Content Creation",
+                description: "Build a creator career — platforms, earnings, niche ideas, and tools for YouTube, LinkedIn, and more.",
+                href: "/content-creation",
+                color: "from-pink-500/20 to-rose-500/20",
+                iconColor: "text-pink-400",
+              },
+              {
+                icon: Target,
+                title: "Interview Prep",
+                description: "Practice behavioral, technical, and HR questions with AI-powered feedback and expert tips.",
+                href: "/interview-prep",
+                color: "from-indigo-500/20 to-violet-500/20",
+                iconColor: "text-indigo-400",
+              },
+            ].map((domain, i) => {
+              const DomainIcon = domain.icon;
+              return (
+                <motion.div
+                  key={domain.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.08 }}
+                >
+                  <Link href={domain.href}>
+                    <Card className={`border-border/50 hover:shadow-lg transition-all h-full bg-gradient-to-br ${domain.color}`}>
+                      <CardContent className="p-6">
+                        <div className={`w-12 h-12 rounded-xl bg-background/50 flex items-center justify-center mb-4 ${domain.iconColor}`}>
+                          <DomainIcon className="w-6 h-6" />
+                        </div>
+                        <h3 className="font-heading font-semibold text-lg mb-2">{domain.title}</h3>
+                        <p className="text-sm text-muted-foreground leading-relaxed">{domain.description}</p>
+                        <div className="flex items-center text-primary text-sm font-medium mt-4">
+                          Explore
+                          <ArrowRight className="w-4 h-4 ml-1" />
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </Link>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+
       {/* About Us */}
       <div className="py-20 bg-gradient-to-b from-background to-muted/20">
         <div className="max-w-7xl mx-auto px-4">
@@ -276,10 +369,10 @@ export default function Home() {
             className="text-center max-w-3xl mx-auto"
           >
             <h2 className="font-heading text-3xl md:text-4xl font-semibold mb-6">
-              About CareerOS
+              Your Guide, Your Friend
             </h2>
             <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-              CareerOS is an AI-powered career intelligence platform designed specifically for Indian students and professionals. We bridge the gap between education and employment by providing personalized career guidance, resume optimization, job market insights, and interview preparation tools. Our mission is to empower every individual to make informed career decisions and achieve their professional goals.
+              CareerOS isn&apos;t just a tool — it&apos;s your career companion. From your first resume to landing your dream job, we walk with you through every step: discovering your path, building skills, preparing for interviews, and navigating the job market. We believe career guidance should feel like a conversation with a friend who truly understands your goals.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-12">
               <div className="p-6 rounded-xl bg-card border border-border/50">
