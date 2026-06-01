@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import Header from "@/components/Header";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
@@ -16,176 +15,252 @@ import {
   ArrowRight,
 } from "lucide-react";
 
-const indiaTrends = [
+const techTrends = [
   {
-    category: "Technology",
-    growth: "+45%",
-    status: "high",
-    description: "AI/ML and Cloud Computing leading growth",
-    topRoles: ["Software Engineer", "Data Analyst", "Product Manager"],
-    avgSalary: "₹15-50 LPA",
+    category: "Artificial Intelligence & ML",
+    growth: "+68%",
+    status: "hot",
+    description: "Generative AI, LLMs, MLOps driving massive hiring across startups and MNCs",
+    topRoles: ["ML Engineer", "AI/LLM Engineer", "Data Scientist", "Prompt Engineer"],
+    avgSalary: "₹20-80 LPA",
+    topCompanies: ["Google", "Microsoft", "Flipkart AI", "Sarvam AI", "Krutrim"],
+    skillsInDemand: ["Python", "PyTorch", "LangChain", "AWS SageMaker"],
   },
   {
-    category: "Healthcare",
-    growth: "+38%",
-    status: "high",
-    description: "Medical and healthcare services expanding",
-    topRoles: ["Doctor", "Nurse", "Healthcare Administrator"],
-    avgSalary: "₹8-40 LPA",
-  },
-  {
-    category: "Finance",
-    growth: "+32%",
-    status: "high",
-    description: "Banking and financial services growing",
-    topRoles: ["Financial Analyst", "Investment Banker", "Accountant"],
-    avgSalary: "₹12-45 LPA",
-  },
-  {
-    category: "Marketing",
-    growth: "+35%",
-    status: "high",
-    description: "Digital marketing and brand management",
-    topRoles: ["Digital Marketer", "Brand Manager", "Content Strategist"],
-    avgSalary: "₹8-30 LPA",
-  },
-  {
-    category: "Education",
-    growth: "+28%",
-    status: "medium",
-    description: "EdTech and teaching opportunities",
-    topRoles: ["Teacher", "Professor", "EdTech Specialist"],
-    avgSalary: "₹6-25 LPA",
-  },
-  {
-    category: "Manufacturing",
-    growth: "+25%",
-    status: "medium",
-    description: "Production and supply chain management",
-    topRoles: ["Production Manager", "Quality Engineer", "Supply Chain Analyst"],
-    avgSalary: "₹10-35 LPA",
-  },
-  {
-    category: "Legal",
-    growth: "+30%",
-    status: "medium",
-    description: "Corporate law and compliance",
-    topRoles: ["Corporate Lawyer", "Legal Counsel", "Compliance Officer"],
-    avgSalary: "₹15-50 LPA",
-  },
-  {
-    category: "E-commerce",
+    category: "Software Development",
     growth: "+42%",
     status: "high",
-    description: "Online retail and logistics booming",
-    topRoles: ["E-commerce Manager", "Operations Lead", "Category Manager"],
-    avgSalary: "₹10-40 LPA",
+    description: "Full-stack and backend roles remain the backbone of India's tech economy",
+    topRoles: ["Software Engineer", "Backend Dev", "Full Stack Dev", "DevOps Engineer"],
+    avgSalary: "₹12-55 LPA",
+    topCompanies: ["Amazon", "Infosys", "TCS", "Razorpay", "Zepto"],
+    skillsInDemand: ["React", "Node.js", "Go", "Kubernetes", "TypeScript"],
   },
   {
-    category: "Renewable Energy",
-    growth: "+40%",
+    category: "Cloud & DevOps",
+    growth: "+55%",
+    status: "hot",
+    description: "Cloud migration and infrastructure-as-code boom across enterprise India",
+    topRoles: ["Cloud Architect", "SRE", "DevOps Engineer", "Platform Engineer"],
+    avgSalary: "₹18-70 LPA",
+    topCompanies: ["AWS India", "Azure", "Wipro Cloud", "Accenture", "HCL"],
+    skillsInDemand: ["AWS", "Terraform", "Docker", "Jenkins", "GCP"],
+  },
+  {
+    category: "Cybersecurity",
+    growth: "+60%",
+    status: "hot",
+    description: "India's digital boom creating serious demand for security professionals",
+    topRoles: ["Security Analyst", "Ethical Hacker", "SOC Engineer", "Cloud Security"],
+    avgSalary: "₹15-65 LPA",
+    topCompanies: ["Palo Alto", "IBM Security", "KPMG", "Deloitte", "TCS CISO"],
+    skillsInDemand: ["SIEM", "Penetration Testing", "CISSP", "Zero Trust"],
+  },
+  {
+    category: "Data Engineering & Analytics",
+    growth: "+50%",
+    status: "hot",
+    description: "Every Indian business now needs data pipelines and dashboards",
+    topRoles: ["Data Engineer", "Analytics Engineer", "BI Developer", "Data Analyst"],
+    avgSalary: "₹14-55 LPA",
+    topCompanies: ["Walmart Global Tech", "PhonePe", "Swiggy", "Meesho", "Juspay"],
+    skillsInDemand: ["Spark", "dbt", "Snowflake", "Airflow", "Power BI"],
+  },
+  {
+    category: "Product Management",
+    growth: "+38%",
     status: "high",
-    description: "Solar, wind and green energy initiatives",
-    topRoles: ["Solar Engineer", "Energy Consultant", "Project Manager"],
-    avgSalary: "₹12-45 LPA",
+    description: "India's startup boom making PMs one of the most in-demand roles",
+    topRoles: ["Product Manager", "APM", "Senior PM", "Product Analyst"],
+    avgSalary: "₹18-70 LPA",
+    topCompanies: ["Zomato", "CRED", "Groww", "Nykaa", "Ola"],
+    skillsInDemand: ["Product Strategy", "SQL", "A/B Testing", "Figma"],
   },
   {
-    category: "Automotive",
-    growth: "+28%",
-    status: "medium",
-    description: "EV manufacturing and automotive tech",
-    topRoles: ["Automotive Engineer", "EV Specialist", "Quality Manager"],
-    avgSalary: "₹10-35 LPA",
-  },
-  {
-    category: "Pharmaceuticals",
+    category: "UI/UX Design",
     growth: "+35%",
     status: "high",
-    description: "Drug development and healthcare innovation",
-    topRoles: ["Research Scientist", "Quality Analyst", "Regulatory Affairs"],
-    avgSalary: "₹12-50 LPA",
+    description: "Design-led companies creating demand for product designers",
+    topRoles: ["UI Designer", "UX Researcher", "Product Designer", "Design Lead"],
+    avgSalary: "₹10-40 LPA",
+    topCompanies: ["Freshworks", "CRED", "Slice", "Plum", "Razorpay"],
+    skillsInDemand: ["Figma", "Prototyping", "User Research", "Design Systems"],
   },
   {
-    category: "Logistics & Supply Chain",
-    growth: "+33%",
-    status: "high",
-    description: "Transportation and warehousing expansion",
-    topRoles: ["Logistics Manager", "Supply Chain Analyst", "Warehouse Supervisor"],
-    avgSalary: "₹8-30 LPA",
-  },
-  {
-    category: "Real Estate",
-    growth: "+22%",
-    status: "medium",
-    description: "Property development and management",
-    topRoles: ["Real Estate Agent", "Property Manager", "Developer"],
-    avgSalary: "₹6-40 LPA",
-  },
-  {
-    category: "Telecommunications",
+    category: "Blockchain & Web3",
     growth: "+30%",
     status: "medium",
-    description: "5G rollout and network infrastructure",
-    topRoles: ["Network Engineer", "Telecom Specialist", "Project Manager"],
-    avgSalary: "₹10-35 LPA",
+    description: "Niche but high-paying domain with global remote opportunities",
+    topRoles: ["Solidity Dev", "Smart Contract Auditor", "Web3 Product Manager"],
+    avgSalary: "₹20-80 LPA",
+    topCompanies: ["CoinDCX", "WazirX", "Mudrex", "Polygon", "Remote global"],
+    skillsInDemand: ["Solidity", "Rust", "Ethereum", "DeFi protocols"],
+  },
+];
+
+const nonTechTrends = [
+  {
+    category: "Digital Marketing",
+    growth: "+48%",
+    status: "hot",
+    description: "Performance marketing, SEO, and content are booming across D2C brands",
+    topRoles: ["Performance Marketer", "SEO Specialist", "Content Strategist", "Growth Manager"],
+    avgSalary: "₹8-35 LPA",
+    topCompanies: ["Mamaearth", "Boat", "Lenskart", "Nykaa", "Urban Company"],
+    skillsInDemand: ["Meta Ads", "Google Ads", "SEO", "Analytics", "CRM tools"],
   },
   {
-    category: "Sales",
+    category: "Sales & Business Development",
+    growth: "+45%",
+    status: "hot",
+    description: "B2B SaaS and fintech creating high-paying sales roles",
+    topRoles: ["B2B Sales Manager", "Account Executive", "SDR", "Partnerships"],
+    avgSalary: "₹10-45 LPA",
+    topCompanies: ["Zoho", "Freshworks", "BrowserStack", "Chargebee", "LeadSquared"],
+    skillsInDemand: ["HubSpot", "Salesforce", "Cold Outreach", "Enterprise Sales"],
+  },
+  {
+    category: "Human Resources",
+    growth: "+32%",
+    status: "high",
+    description: "HR Business Partners and talent acquisition in high demand",
+    topRoles: ["HRBP", "Talent Acquisition", "L&D Manager", "Compensation Analyst"],
+    avgSalary: "₹8-30 LPA",
+    topCompanies: ["Byju's HR", "Infosys BPO", "Genpact", "Wipro HR", "Accenture"],
+    skillsInDemand: ["Workday", "Darwinbox", "Talent Analytics", "HR Strategy"],
+  },
+  {
+    category: "Finance & Accounting",
+    growth: "+36%",
+    status: "high",
+    description: "CFO offices and fintech expanding FP&A and treasury teams",
+    topRoles: ["FP&A Analyst", "CA", "Finance Manager", "Investment Analyst"],
+    avgSalary: "₹12-55 LPA",
+    topCompanies: ["HDFC Bank", "Kotak", "Angel One", "Zerodha", "Groww"],
+    skillsInDemand: ["Excel", "SAP", "Tally", "IFRS", "Financial Modeling"],
+  },
+  {
+    category: "Operations & Supply Chain",
+    growth: "+38%",
+    status: "high",
+    description: "Quick commerce and logistics creating ops roles across India",
+    topRoles: ["Operations Manager", "Supply Chain Analyst", "Category Manager", "Warehouse Lead"],
+    avgSalary: "₹10-40 LPA",
+    topCompanies: ["Blinkit", "Swiggy Instamart", "Delhivery", "Shadowfax", "Flipkart"],
+    skillsInDemand: ["ERP", "Six Sigma", "Inventory Management", "Lean Ops"],
+  },
+  {
+    category: "Healthcare & Allied",
     growth: "+40%",
     status: "high",
-    description: "Business development and sales",
-    topRoles: ["Sales Manager", "Business Development", "Account Executive"],
-    avgSalary: "₹10-40 LPA",
+    description: "Hospital chains and healthtech startups hiring across India",
+    topRoles: ["Healthcare Admin", "Medical Coder", "Health Data Analyst", "Hospital Manager"],
+    avgSalary: "₹8-35 LPA",
+    topCompanies: ["Apollo", "Fortis", "Practo", "Healthifyme", "Mfine"],
+    skillsInDemand: ["Medical Coding", "NABH standards", "Healthcare Analytics"],
+  },
+  {
+    category: "Legal & Compliance",
+    growth: "+30%",
+    status: "medium",
+    description: "Corporate law, SEBI compliance and IP law in demand",
+    topRoles: ["Corporate Lawyer", "Compliance Officer", "Legal Counsel", "IP Attorney"],
+    avgSalary: "₹15-60 LPA",
+    topCompanies: ["Cyril Amarchand", "AZB & Partners", "Khaitan & Co", "LIC Legal"],
+    skillsInDemand: ["Contract Drafting", "SEBI Regulations", "IP Law", "Due Diligence"],
+  },
+  {
+    category: "Media & Content",
+    growth: "+52%",
+    status: "hot",
+    description: "OTT, digital media and brand content exploding in India",
+    topRoles: ["Content Writer", "Video Editor", "Social Media Manager", "Journalist"],
+    avgSalary: "₹6-30 LPA",
+    topCompanies: ["Netflix India", "Hotstar", "The Wire", "Times Internet", "Inshorts"],
+    skillsInDemand: ["Video Editing", "Adobe Suite", "Copywriting", "Social Strategy"],
   },
 ];
 
-const globalTrends = [
-  {
-    region: "North America",
-    topSectors: ["Healthcare", "Technology", "Finance", "Manufacturing"],
-    growth: "+32%",
-    opportunities: "High",
-    avgSalary: "$60,000 - $150,000",
-  },
-  {
-    region: "Europe",
-    topSectors: ["Green Energy", "Manufacturing", "Finance", "Healthcare"],
-    growth: "+24%",
-    opportunities: "Medium",
-    avgSalary: "€45,000 - €120,000",
-  },
-  {
-    region: "Asia Pacific",
-    topSectors: ["Technology", "Manufacturing", "Healthcare", "E-commerce"],
-    growth: "+38%",
-    opportunities: "High",
-    avgSalary: "$40,000 - $100,000",
-  },
-  {
-    region: "Middle East",
-    topSectors: ["Construction", "Oil & Gas", "Finance", "Healthcare"],
-    growth: "+28%",
-    opportunities: "Medium",
-    avgSalary: "$50,000 - $130,000",
-  },
-  {
-    region: "Latin America",
-    topSectors: ["Agriculture", "Mining", "Manufacturing", "Technology"],
-    growth: "+22%",
-    opportunities: "Medium",
-    avgSalary: "$25,000 - $70,000",
-  },
-  {
-    region: "Africa",
-    topSectors: ["Agriculture", "Mining", "Telecom", "Healthcare"],
-    growth: "+26%",
-    opportunities: "Growing",
-    avgSalary: "$20,000 - $60,000",
-  },
-];
+const statusColor: Record<string, string> = {
+  hot: "bg-red-500",
+  high: "bg-green-500",
+  medium: "bg-yellow-500",
+};
+
+const statusLabel: Record<string, string> = {
+  hot: "🔥 Hot",
+  high: "High Demand",
+  medium: "Growing",
+};
+
+function TrendCard({ trend, index }: { trend: typeof techTrends[0]; index: number }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay: index * 0.06, duration: 0.4 }}
+    >
+      <Card className="border-border/50 hover:shadow-md transition-shadow h-full">
+        <CardHeader className="pb-3">
+          <div className="flex items-start justify-between gap-2">
+            <CardTitle className="font-heading text-base">{trend.category}</CardTitle>
+            <Badge className={`${statusColor[trend.status]} text-white shrink-0 text-xs`}>
+              {statusLabel[trend.status]}
+            </Badge>
+          </div>
+          <CardDescription className="text-xs">{trend.description}</CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-3 pt-0">
+          <div className="flex items-center justify-between">
+            <span className="text-xs text-muted-foreground">YoY Growth</span>
+            <div className="flex items-center gap-1 text-green-500 font-semibold text-sm">
+              <ArrowUp className="w-3 h-3" />
+              {trend.growth}
+            </div>
+          </div>
+
+          <div>
+            <p className="text-xs font-medium mb-1.5 text-muted-foreground">Top Roles</p>
+            <div className="flex flex-wrap gap-1.5">
+              {trend.topRoles.map(role => (
+                <Badge key={role} variant="secondary" className="text-xs py-0">
+                  {role}
+                </Badge>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <p className="text-xs font-medium mb-1.5 text-muted-foreground">Top Companies Hiring</p>
+            <div className="flex flex-wrap gap-1.5">
+              {trend.topCompanies.map(c => (
+                <span key={c} className="text-xs bg-muted px-2 py-0.5 rounded-full">{c}</span>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <p className="text-xs font-medium mb-1.5 text-muted-foreground">Skills in Demand</p>
+            <div className="flex flex-wrap gap-1.5">
+              {trend.skillsInDemand.map(s => (
+                <span key={s} className="text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full">{s}</span>
+              ))}
+            </div>
+          </div>
+
+          <div className="flex items-center justify-between pt-2 border-t border-border/50">
+            <span className="text-xs text-muted-foreground">Avg Salary (India)</span>
+            <span className="text-green-500 font-semibold text-sm">{trend.avgSalary}</span>
+          </div>
+        </CardContent>
+      </Card>
+    </motion.div>
+  );
+}
 
 export default function TrendsPage() {
-  const [selectedRegion, setSelectedRegion] = useState<"india" | "global">("india");
+  const [sector, setSector] = useState<"tech" | "nontech">("tech");
 
   return (
     <div className="min-h-screen bg-background font-sans">
@@ -193,238 +268,139 @@ export default function TrendsPage() {
 
       <div className="pt-16 sm:pt-24 pb-12 px-4">
         <div className="max-w-7xl mx-auto">
-          {/* Header */}
+          {/* Page header */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="mb-8"
           >
+            <div className="flex items-center gap-2 mb-2">
+              <MapPin className="w-4 h-4 text-primary" />
+              <span className="text-sm text-primary font-medium">India Market Insights 2025</span>
+            </div>
             <h1 className="font-heading text-3xl md:text-4xl font-semibold mb-2">
-              Market Trends
+              Job Market Trends
             </h1>
-            <p className="text-muted-foreground">
-              Real-time insights on job market trends in India and globally
+            <p className="text-muted-foreground max-w-2xl">
+              Live sector-by-sector breakdown of India&apos;s job market — salaries, top hirers, and skills in demand for Tech and Non-Tech careers.
             </p>
           </motion.div>
 
-          {/* Hero Image */}
+          {/* Stats bar */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.15 }}
-            className="mb-8"
-          >
-            <div className="relative h-64 md:h-80 rounded-2xl overflow-hidden">
-              <Image
-                src="/images/pexels/hero-trends.jpeg"
-                alt="Market trends growth chart"
-                fill
-                className="object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
-            </div>
-          </motion.div>
-
-          {/* Region Toggle */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="mb-8"
+            className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8"
+          >
+            {[
+              { label: "Active Openings", value: "2.4M+" },
+              { label: "Avg Salary Growth", value: "+18% YoY" },
+              { label: "Remote Jobs", value: "34%" },
+              { label: "Top Hiring City", value: "Bangalore" },
+            ].map((stat) => (
+              <Card key={stat.label} className="border-border/40 bg-card/60 text-center p-4">
+                <p className="font-heading text-2xl font-bold text-primary">{stat.value}</p>
+                <p className="text-xs text-muted-foreground mt-1">{stat.label}</p>
+              </Card>
+            ))}
+          </motion.div>
+
+          {/* Tech / Non-Tech tabs */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.15 }}
+            className="mb-6"
           >
             <div className="inline-flex p-1 bg-muted rounded-lg">
               <Button
-                variant={selectedRegion === "india" ? "default" : "ghost"}
+                variant={sector === "tech" ? "default" : "ghost"}
                 size="sm"
-                onClick={() => setSelectedRegion("india")}
+                onClick={() => setSector("tech")}
                 className="gap-2"
               >
-                <MapPin className="w-4 h-4" />
-                India
+                <TrendingUp className="w-4 h-4" />
+                Tech Sector
               </Button>
               <Button
-                variant={selectedRegion === "global" ? "default" : "ghost"}
+                variant={sector === "nontech" ? "default" : "ghost"}
                 size="sm"
-                onClick={() => setSelectedRegion("global")}
+                onClick={() => setSector("nontech")}
                 className="gap-2"
               >
                 <Globe className="w-4 h-4" />
-                Global
+                Non-Tech Sector
               </Button>
             </div>
           </motion.div>
 
-          {selectedRegion === "india" ? (
-            <div className="space-y-6">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 }}
-              >
-                <Card className="border-primary/20 bg-primary/5">
-                  <CardContent className="p-6">
-                    <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center">
-                        <TrendingUp className="w-6 h-6 text-primary" />
-                      </div>
-                      <div>
-                        <h3 className="font-heading text-lg font-semibold">India Job Market Overview</h3>
-                        <p className="text-sm text-muted-foreground">
-                          Overall growth of +28% in Q4 2024. Technology and Design sectors leading the recovery.
-                        </p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
+          {/* Overview banner */}
+          <motion.div
+            key={sector}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="mb-6"
+          >
+            <Card className="border-primary/20 bg-primary/5">
+              <CardContent className="p-5 flex items-center gap-4">
+                <div className="w-10 h-10 rounded-xl bg-primary/20 flex items-center justify-center shrink-0">
+                  <TrendingUp className="w-5 h-5 text-primary" />
+                </div>
+                <div>
+                  <p className="font-semibold text-sm">
+                    {sector === "tech"
+                      ? "Tech Sector — India Q1 2025"
+                      : "Non-Tech Sector — India Q1 2025"}
+                  </p>
+                  <p className="text-xs text-muted-foreground">
+                    {sector === "tech"
+                      ? "AI/ML, Cloud and Cybersecurity leading growth. India added 320,000 tech jobs in Q4 2024 alone."
+                      : "Digital Marketing, Sales & Ops booming. Non-tech roles now account for 58% of total Indian job postings."}
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
 
-              <div className="grid sm:grid-cols-2 gap-4">
-                {indiaTrends.map((trend, index) => (
-                  <motion.div
-                    key={trend.category}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.08, duration: 0.5 }}
-                    whileHover={{ y: -5 }}
-                  >
-                    <Card className="border-border/50 hover:shadow-md transition-shadow">
-                      <CardHeader>
-                        <div className="flex items-center justify-between">
-                          <CardTitle className="font-heading text-lg">{trend.category}</CardTitle>
-                          <Badge className={trend.status === "high" ? "bg-green-500" : "bg-yellow-500"}>
-                            {trend.status === "high" ? "High Demand" : "Growing"}
-                          </Badge>
-                        </div>
-                        <CardDescription>{trend.description}</CardDescription>
-                      </CardHeader>
-                      <CardContent className="space-y-4">
-                        <div className="flex items-center justify-between">
-                          <span className="text-sm text-muted-foreground">Growth Rate</span>
-                          <div className="flex items-center gap-1 text-green-600 font-medium">
-                            <ArrowUp className="w-4 h-4" />
-                            {trend.growth}
-                          </div>
-                        </div>
-                        
-                        <div>
-                          <p className="text-sm font-medium mb-2">Top Roles</p>
-                          <div className="flex flex-wrap gap-2">
-                            {trend.topRoles.map(role => (
-                              <Badge key={role} variant="secondary" className="text-xs">
-                                {role}
-                              </Badge>
-                            ))}
-                          </div>
-                        </div>
-
-                        <div className="flex items-center justify-between pt-2 border-t border-border/50">
-                          <span className="text-sm text-muted-foreground">Avg Salary</span>
-                          <div className="text-green-600 font-medium">
-                            {trend.avgSalary}
-                          </div>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          ) : (
-            <div className="space-y-6">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 }}
-              >
-                <Card className="border-primary/20 bg-primary/5">
-                  <CardContent className="p-6">
-                    <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center">
-                        <Globe className="w-6 h-6 text-primary" />
-                      </div>
-                      <div>
-                        <h3 className="font-heading text-lg font-semibold">Global Market Overview</h3>
-                        <p className="text-sm text-muted-foreground">
-                          Asia Pacific leading growth at +38%, followed by North America at +32%. Remote work opportunities increasing globally.
-                        </p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                {globalTrends.map((trend, index) => (
-                  <motion.div
-                    key={trend.region}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.08, duration: 0.5 }}
-                    whileHover={{ y: -5 }}
-                  >
-                    <Card className="border-border/50 hover:shadow-md transition-shadow">
-                      <CardHeader>
-                        <CardTitle className="font-heading text-lg">{trend.region}</CardTitle>
-                      </CardHeader>
-                      <CardContent className="space-y-4">
-                        <div className="flex items-center justify-between">
-                          <span className="text-sm text-muted-foreground">Growth</span>
-                          <div className="flex items-center gap-1 text-green-600 font-medium">
-                            <ArrowUp className="w-4 h-4" />
-                            {trend.growth}
-                          </div>
-                        </div>
-
-                        <div>
-                          <p className="text-sm font-medium mb-2">Top Sectors</p>
-                          <div className="flex flex-wrap gap-2">
-                            {trend.topSectors.map(sector => (
-                              <Badge key={sector} variant="secondary" className="text-xs">
-                                {sector}
-                              </Badge>
-                            ))}
-                          </div>
-                        </div>
-
-                        <div className="flex items-center justify-between pt-2 border-t border-border/50">
-                          <span className="text-sm text-muted-foreground">Avg Salary</span>
-                          <div className="text-green-600 font-medium">
-                            {trend.avgSalary}
-                          </div>
-                        </div>
-
-                        <div className="flex items-center justify-between pt-2 border-t border-border/50">
-                          <span className="text-sm text-muted-foreground">Opportunities</span>
-                          <Badge className={trend.opportunities === "High" ? "bg-green-500" : "bg-yellow-500"}>
-                            {trend.opportunities}
-                          </Badge>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          )}
+          {/* Cards grid */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={sector}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"
+            >
+              {(sector === "tech" ? techTrends : nonTechTrends).map((trend, index) => (
+                <TrendCard key={trend.category} trend={trend} index={index} />
+              ))}
+            </motion.div>
+          </AnimatePresence>
 
           {/* CTA */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             className="mt-12 text-center"
           >
-            <p className="text-muted-foreground mb-4">
-              Ready to apply these insights to your job search?
-            </p>
-            <Link href="/jobs">
-              <Button size="lg" className="gap-2">
-                Browse Job Listings
-                <ArrowUp className="w-4 h-4" />
-              </Button>
-            </Link>
+            <p className="text-muted-foreground mb-4">Ready to apply these insights?</p>
+            <div className="flex gap-3 justify-center flex-wrap">
+              <Link href="/jobs">
+                <Button size="lg" className="gap-2">
+                  Browse Job Listings
+                  <ArrowRight className="w-4 h-4" />
+                </Button>
+              </Link>
+              <Link href="/global">
+                <Button variant="outline" size="lg" className="gap-2">
+                  <Globe className="w-4 h-4" />
+                  Global Opportunities
+                </Button>
+              </Link>
+            </div>
           </motion.div>
         </div>
       </div>

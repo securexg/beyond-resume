@@ -20,6 +20,10 @@ const articleImages: Record<string, string> = {
   "mba-career-guide": "/images/pexels/art-mba.jpeg",
   "remote-work-guide": "/images/pexels/art-remote.jpeg",
   "entrepreneurship-mindset": "/images/pexels/art-entrepreneur.jpeg",
+  "content-creator-career": "/images/pexels/art-creative.jpeg",
+  "govt-exam-strategy": "/images/pexels/art-govtexam.jpeg",
+  "global-career-guide": "/images/pexels/art-remote.jpeg",
+  "non-tech-careers-india": "/images/pexels/art-mba.jpeg",
 };
 
 const articles = [
@@ -108,6 +112,38 @@ const articles = [
     title: "The Entrepreneurship Mindset",
     description: "Why entrepreneurship is a valid career path and what it takes — no tech degree required.",
     category: "Entrepreneurship",
+    readTime: "8 min read",
+    isInternal: true
+  },
+  {
+    slug: "content-creator-career",
+    title: "How to Build a Full-Time Creator Career in India",
+    description: "From YouTube to Substack — step-by-step guide to turning content into a ₹1L+/month business.",
+    category: "Creator Economy",
+    readTime: "10 min read",
+    isInternal: true
+  },
+  {
+    slug: "govt-exam-strategy",
+    title: "Govt Exam Mastery: Strategy for UPSC, SSC & Banking",
+    description: "What toppers actually do differently — study plans, resources, and mindset shifts for competitive exams.",
+    category: "Government",
+    readTime: "11 min read",
+    isInternal: true
+  },
+  {
+    slug: "global-career-guide",
+    title: "Moving Abroad as an Indian Professional",
+    description: "Canada, Germany, UAE, or Australia? A practical guide to work visa, PR, and job hunting from India.",
+    category: "Global Careers",
+    readTime: "9 min read",
+    isInternal: true
+  },
+  {
+    slug: "non-tech-careers-india",
+    title: "High-Paying Non-Tech Careers in India's Startup Boom",
+    description: "Sales, Marketing, Finance, Ops — why non-tech roles at startups now pay ₹25-50 LPA and how to get in.",
+    category: "Non-Tech",
     readTime: "8 min read",
     isInternal: true
   },
