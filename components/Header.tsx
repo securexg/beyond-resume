@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 
 const navLinks = [
+  { label: "Find Your Path", href: "/career-quiz" },
   { label: "Market Insights", href: "/trends" },
   { label: "Jobs", href: "/jobs" },
   { label: "Resume Analysis", href: "/analyze" },

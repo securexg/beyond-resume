@@ -204,6 +204,12 @@ export default function Home() {
                     <ArrowRight className="w-5 h-5" />
                   </Button>
                 </Link>
+                <Link href="/career-quiz">
+                  <Button variant="outline" size="lg" className="text-lg px-8 py-6 gap-2">
+                    <Sparkles className="w-5 h-5" />
+                    Find Your Path
+                  </Button>
+                </Link>
                 <Link href="/analyze">
                   <Button variant="outline" size="lg" className="text-lg px-8 py-6 gap-2">
                     <FileText className="w-5 h-5" />
@@ -721,6 +727,12 @@ export default function Home() {
                 <Button size="lg" className="text-lg px-8 py-6 gap-2">
                   Start Your Journey
                   <ArrowRight className="w-5 h-5" />
+                </Button>
+              </Link>
+              <Link href="/career-quiz">
+                <Button variant="outline" size="lg" className="text-lg px-8 py-6 gap-2">
+                  <Sparkles className="w-5 h-5" />
+                  Find Your Path
                 </Button>
               </Link>
               <Link href="/interview-prep">
