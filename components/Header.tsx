@@ -55,9 +55,8 @@ export default function Header() {
     <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border/50 bg-background/80 backdrop-blur-xl">
       <div className="max-w-7xl mx-auto px-4 flex items-center justify-between h-16">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 shrink-0">
-          <Image src="/logo.png" alt="CareerOS" width={32} height={32} className="rounded-lg" />
-          <span className="font-heading font-semibold text-lg">CareerOS</span>
+        <Link href="/" className="flex items-center shrink-0">
+          <Image src="/logo.png" alt="CareerOS" width={115} height={32} className="h-8 w-auto object-contain" />
         </Link>
 
         {/* Desktop Menu */}

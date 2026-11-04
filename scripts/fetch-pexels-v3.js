@@ -2,7 +2,11 @@ const https = require('https');
 const fs = require('fs');
 const path = require('path');
 
-const PEXELS_API_KEY = 'PSwUzOzz4re42lSzO3lHejfyJdOqOKx0oW9ldHm0MKTpRDTfqMUuZGGI';
+const PEXELS_API_KEY = process.env.PEXELS_API_KEY;
+if (!PEXELS_API_KEY) {
+  console.error('PEXELS_API_KEY environment variable is required');
+  process.exit(1);
+}
 
 const images = [
   // Entrepreneurship page

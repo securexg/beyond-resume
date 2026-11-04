@@ -2,7 +2,11 @@ const https = require('https');
 const fs = require('fs');
 const path = require('path');
 
-const UNSPLASH_ACCESS_KEY = process.env.UNSPLASH_ACCESS_KEY || 'KY-BqffhIkQp2hCffeUaifhPO-IBcHqSH2uD9nzjDtM';
+const UNSPLASH_ACCESS_KEY = process.env.UNSPLASH_ACCESS_KEY;
+if (!UNSPLASH_ACCESS_KEY) {
+  console.error('UNSPLASH_ACCESS_KEY environment variable is required');
+  process.exit(1);
+}
 
 const images = [
   // Unique images for home page sections

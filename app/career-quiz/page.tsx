@@ -92,6 +92,16 @@ const careerPaths = [
     description: "Design, content, media, arts, and creative fields",
     link: "/insights/creative-careers",
   },
+  {
+    id: "offbeat",
+    name: "Offbeat & Alt Careers",
+    icon: Sparkles,
+    color: "from-teal-500 to-emerald-500",
+    bgColor: "bg-teal-500/10",
+    textColor: "text-teal-400",
+    description: "Ethical hacking, sports management, culinary arts, travel blogging, and organic farming",
+    link: "/insights/creative-careers",
+  },
 ];
 
 const questions = [
@@ -133,6 +143,35 @@ const questions = [
       { value: "healthcare", label: "Healthcare & Medicine" },
       { value: "social", label: "Social Impact & NGO" },
       { value: "sports", label: "Sports & Fitness" },
+      { value: "media", label: "Content Creation, Media & Blogging" },
+      { value: "marketing", label: "Marketing, Branding & Sales" },
+      { value: "writing", label: "Writing, Journalism & Podcasting" },
+      { value: "research", label: "Scientific Research & Academics" },
+      { value: "performing_arts", label: "Performing Arts, Music & Acting" },
+      { value: "agriculture", label: "Agriculture, Forestry & Environment" },
+      { value: "legal", label: "Law, Advocacy & Legal Services" },
+    ],
+  },
+  {
+    id: "career_type",
+    title: "Which type of career route excites you most?",
+    type: "single",
+    options: [
+      { value: "corporate", label: "Structured Corporate: Climbing the established ladder" },
+      { value: "startup", label: "High-Growth Startup: Fast-paced, high ownership, multi-role" },
+      { value: "offbeat", label: "Offbeat / Alternative: Out-of-the-box fields (culinary, travel, organic farming, hacking)" },
+      { value: "public_service", label: "Public Service: Serving society with security and prestige" },
+    ],
+  },
+  {
+    id: "camera_comfort",
+    title: "How comfortable are you with camera presence and public communication?",
+    type: "single",
+    options: [
+      { value: "camera_ready", label: "Love the camera — comfortable speaking on video and presenting" },
+      { value: "behind_scenes", label: "Behind the scenes — prefer writing, editing, or design (no camera)" },
+      { value: "wants_to_learn", label: "Shy on camera, but excited to learn and improve my communication" },
+      { value: "no_content", label: "No interest in content creation — prefer core tech or operations" },
     ],
   },
   {
@@ -166,6 +205,17 @@ const questions = [
       { value: "flexible", label: "Flexible remote work" },
       { value: "self_directed", label: "Self-directed" },
       { value: "team", label: "Team-based collaborative" },
+    ],
+  },
+  {
+    id: "location_pref",
+    title: "What is your preference regarding work location and travel?",
+    type: "single",
+    options: [
+      { value: "wfh", label: "Fully remote / Work from anywhere" },
+      { value: "metro", label: "Tech Hub / Metro city (Bangalore, Mumbai, Delhi)" },
+      { value: "local", label: "Home town / Tier-2 city close to family" },
+      { value: "abroad", label: "Global opportunity / Relocating abroad" },
     ],
   },
   {
@@ -213,6 +263,7 @@ const questions = [
       { value: "family-business", label: "Family Business" },
       { value: "freelancing", label: "Freelancing" },
       { value: "creative", label: "Creative Careers" },
+      { value: "offbeat", label: "Offbeat & Alternative Careers" },
     ],
   },
 ];
@@ -267,6 +318,7 @@ export default function CareerQuizPage() {
       "family-business": 0,
       freelancing: 0,
       creative: 0,
+      offbeat: 0,
     };
 
     // Stage scoring
@@ -274,6 +326,7 @@ export default function CareerQuizPage() {
       scores.govt += 15;
       scores.tech += 10;
       scores["non-tech"] += 10;
+      scores.offbeat += 5;
     } else if (answers.stage === "fresh_grad") {
       scores.tech += 15;
       scores["non-tech"] += 15;
@@ -286,6 +339,7 @@ export default function CareerQuizPage() {
       scores.entrepreneurship += 15;
       scores.freelancing += 10;
       scores.creative += 10;
+      scores.offbeat += 10;
     }
 
     // Education scoring
@@ -300,6 +354,7 @@ export default function CareerQuizPage() {
       scores.entrepreneurship += 15;
       scores.freelancing += 15;
       scores.creative += 10;
+      scores.offbeat += 15;
     }
 
     // Passions scoring
@@ -317,6 +372,70 @@ export default function CareerQuizPage() {
     if (passions.includes("teaching")) scores.govt += 10;
     if (passions.includes("healthcare")) scores.govt += 15;
     if (passions.includes("social")) scores.govt += 10;
+    if (passions.includes("sports")) scores.offbeat += 20;
+    if (passions.includes("media")) {
+      scores.creative += 15;
+      scores.freelancing += 15;
+      scores.offbeat += 10;
+    }
+    if (passions.includes("marketing")) {
+      scores["non-tech"] += 15;
+      scores.entrepreneurship += 15;
+    }
+    if (passions.includes("writing")) {
+      scores.creative += 15;
+      scores.freelancing += 15;
+    }
+    if (passions.includes("research")) {
+      scores.tech += 15;
+      scores.govt += 15;
+    }
+    if (passions.includes("performing_arts")) {
+      scores.creative += 20;
+      scores.offbeat += 15;
+    }
+    if (passions.includes("agriculture")) {
+      scores.offbeat += 20;
+      scores["family-business"] += 15;
+    }
+    if (passions.includes("legal")) {
+      scores["non-tech"] += 15;
+      scores.govt += 10;
+    }
+
+    // Career route scoring (Offbeat vs Traditional)
+    if (answers.career_type === "corporate") {
+      scores["non-tech"] += 20;
+      scores.tech += 15;
+    } else if (answers.career_type === "startup") {
+      scores.entrepreneurship += 20;
+      scores.tech += 15;
+      scores.freelancing += 10;
+    } else if (answers.career_type === "offbeat") {
+      scores.offbeat += 30;
+      scores.creative += 15;
+      scores.freelancing += 10;
+    } else if (answers.career_type === "public_service") {
+      scores.govt += 25;
+    }
+
+    // Camera comfort scoring
+    if (answers.camera_comfort === "camera_ready") {
+      scores.creative += 20; // e.g. Content creation / video
+      scores.freelancing += 10;
+      scores.offbeat += 10;
+    } else if (answers.camera_comfort === "wants_to_learn") {
+      scores.creative += 15;
+      scores["non-tech"] += 10; // sales / branding / communication
+    } else if (answers.camera_comfort === "behind_scenes") {
+      scores.creative += 15; // editor / writer / designer
+      scores.tech += 10;
+      scores.freelancing += 10;
+    } else if (answers.camera_comfort === "no_content") {
+      scores.tech += 15;
+      scores.govt += 15;
+      scores["family-business"] += 10;
+    }
 
     // Goal scoring
     if (answers.goal === "stability") {
@@ -343,9 +462,11 @@ export default function CareerQuizPage() {
     } else if (answers.risk === "medium") {
       scores.tech += 15;
       scores["non-tech"] += 10;
+      scores.offbeat += 5;
     } else if (answers.risk === "high") {
       scores.entrepreneurship += 25;
       scores.freelancing += 15;
+      scores.offbeat += 15;
     }
 
     // Work style scoring
@@ -358,9 +479,26 @@ export default function CareerQuizPage() {
     } else if (answers.work_style === "self_directed") {
       scores.entrepreneurship += 20;
       scores.freelancing += 15;
+      scores.offbeat += 10;
     } else if (answers.work_style === "team") {
       scores["non-tech"] += 15;
       scores.tech += 10;
+    }
+
+    // Location preference scoring
+    if (answers.location_pref === "wfh") {
+      scores.freelancing += 20;
+      scores.tech += 15;
+      scores.creative += 10;
+    } else if (answers.location_pref === "metro") {
+      scores.tech += 20;
+      scores["non-tech"] += 15;
+    } else if (answers.location_pref === "local") {
+      scores["family-business"] += 15;
+      scores.govt += 15;
+    } else if (answers.location_pref === "abroad") {
+      scores.tech += 20;
+      scores.freelancing += 10;
     }
 
     // Financial scoring
@@ -540,35 +678,64 @@ export default function CareerQuizPage() {
                             return (
                               <div
                                 key={option.value}
-                                className={`p-4 rounded-lg border-2 transition-all ${
+                                onClick={(e) => {
+                                  // Don't toggle selection if clicking the reorder buttons
+                                  if ((e.target as HTMLElement).closest('button')) return;
+                                  
+                                  setAnswers((prev) => {
+                                    const current = prev.priorities || [];
+                                    const index = current.indexOf(option.value);
+                                    if (index !== -1) {
+                                      // Deselect: remove from list
+                                      return {
+                                        ...prev,
+                                        priorities: current.filter((v: string) => v !== option.value),
+                                      };
+                                    } else if (current.length < 3) {
+                                      // Select: add to end of list
+                                      return {
+                                        ...prev,
+                                        priorities: [...current, option.value],
+                                      };
+                                    }
+                                    return prev;
+                                  });
+                                }}
+                                className={`p-4 rounded-lg border-2 transition-all cursor-pointer select-none ${
                                   isSelected
-                                    ? "border-primary bg-primary/10"
-                                    : "border-border/50"
+                                    ? "border-primary bg-primary/10 shadow-sm"
+                                    : "border-border/50 hover:border-border hover:bg-muted/40"
                                 }`}
                               >
                                 <div className="flex items-center justify-between">
                                   <div className="flex items-center gap-3">
-                                    {isSelected && (
-                                      <Badge className="bg-primary text-primary-foreground">
-                                        #{ranking + 1}
-                                      </Badge>
-                                    )}
-                                    <span className="font-medium">{option.label}</span>
+                                    <div className="flex-shrink-0 w-6 h-6 rounded-full border border-muted-foreground/30 flex items-center justify-center text-xs font-semibold">
+                                      {isSelected ? (
+                                        <Badge className="bg-primary text-primary-foreground text-xs px-1.5 py-0.5 rounded-full">
+                                          {ranking + 1}
+                                        </Badge>
+                                      ) : (
+                                        <span className="text-muted-foreground/45">•</span>
+                                      )}
+                                    </div>
+                                    <span className="font-medium text-foreground">{option.label}</span>
                                   </div>
                                   <div className="flex gap-2">
                                     <button
+                                      type="button"
                                       onClick={() => handleRanking(option.value, "up")}
                                       disabled={!isSelected || ranking === 0}
-                                      className="p-1 rounded hover:bg-muted disabled:opacity-30"
+                                      className="p-1 rounded hover:bg-muted disabled:opacity-30 cursor-pointer disabled:cursor-not-allowed"
                                     >
-                                      <ArrowLeft className="w-4 h-4" />
+                                      <ArrowLeft className="w-4 h-4 text-muted-foreground" />
                                     </button>
                                     <button
+                                      type="button"
                                       onClick={() => handleRanking(option.value, "down")}
-                                      disabled={!isSelected || ranking === 2}
-                                      className="p-1 rounded hover:bg-muted disabled:opacity-30"
+                                      disabled={!isSelected || ranking === (answers.priorities || []).length - 1}
+                                      className="p-1 rounded hover:bg-muted disabled:opacity-30 cursor-pointer disabled:cursor-not-allowed"
                                     >
-                                      <ArrowRight className="w-4 h-4" />
+                                      <ArrowRight className="w-4 h-4 text-muted-foreground" />
                                     </button>
                                   </div>
                                 </div>
@@ -576,7 +743,7 @@ export default function CareerQuizPage() {
                             );
                           })}
                           <p className="text-sm text-muted-foreground mt-4">
-                            Select up to 3 options and rank them by priority
+                            Click to select up to 3 options (ranked in order of selection). Use the arrows to reorder.
                           </p>
                         </div>
                       )}
@@ -594,8 +761,10 @@ export default function CareerQuizPage() {
                         <Button
                           onClick={handleNext}
                           disabled={
-                            currentQuestion.type === "multi" &&
-                            (!answers[currentQuestion.id] || answers[currentQuestion.id].length === 0)
+                            (currentQuestion.type === "multi" &&
+                               (!answers[currentQuestion.id] || answers[currentQuestion.id].length === 0)) ||
+                             (currentQuestion.type === "ranking" &&
+                               (!answers.priorities || answers.priorities.length === 0))
                           }
                         >
                           {currentStep === questions.length - 1 ? "See Results" : "Next"}
